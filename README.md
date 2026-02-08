@@ -1,8 +1,8 @@
 # 🧠 NEXT LEVEL BRAIN - Simplified AI Trading System
 
-**Created by: Aleem Shahzad | AI Development Partner: Claude (Anthropic)**
+**Created by: Aleem Shahzad**
 
-A streamlined AI-powered trading system with ICT/SMC strategies and continuous learning capabilities.
+A streamlined AI-powered trading system with ICT/SMC strategies, Autonomous Market Intelligence, and continuous learning capabilities.
 
 ## 🚀 Quick Start
 
@@ -10,6 +10,7 @@ A streamlined AI-powered trading system with ICT/SMC strategies and continuous l
 - Python 3.8+
 - MetaTrader 5 terminal
 - MT5 trading account
+- Groq API Key (for Market Intelligence)
 
 ### Installation
 ```bash
@@ -25,11 +26,23 @@ mt5:
   server: your_server
 ```
 
+Configure Market Intelligence in `market_intelligence/config.py`:
+```python
+LLM_PROVIDER = "groq"
+GROQ_API_KEY = "your_key"
+```
+
 ## 📊 Usage
 
 ### Live Trading
 ```bash
 python live_trading.py
+```
+
+### Market Intelligence Report
+Run the autonomous sentiment engine:
+```bash
+python run_market_intelligence.py
 ```
 
 ### Backtesting & AI Training
@@ -41,22 +54,30 @@ python backtesting.py
 
 - **AI Trading Brain**: Neural network decision making with continuous learning
 - **ICT/SMC Strategies**: Order blocks, fair value gaps, market structure analysis
+- **Autonomous Market Intelligence**: 
+  - Scrapes social media & news (Twitter, Reddit, Macro)
+  - analyzing sentiment using Groq LLMs (Llama 3, Mixtral)
+  - Detects smart money divergence & contrarian opportunities
 - **Risk Management**: Dynamic position sizing and drawdown protection
 - **Multi-Asset Support**: Forex, commodities, and cryptocurrencies
-- **Backtesting Engine**: Historical testing with AI training
-- **Real-time Analysis**: Live market data processing
 
 ## 📁 File Structure
 
 ```
 NEXT LEVEL BRAIN/
-├── live_trading.py     # Main live trading system
-├── backtesting.py      # Backtesting and AI training
-├── config.yaml         # Configuration file
-├── requirements.txt    # Dependencies
-├── logs/              # Trading logs
-├── models/            # AI models and memories
-└── backtest_results/  # Backtest reports
+├── live_trading.py             # Main live trading system
+├── run_market_intelligence.py  # Market Intelligence Entry Point
+├── market_intelligence/        # Sentiment Analysis Module
+│   ├── config.py               # AI & API Configuration
+│   ├── sentiment_intelligence.py # Core Logic
+│   ├── data_acquisition.py     # Data Crawlers
+│   └── models.py               # Data Structures
+├── backtesting.py              # Backtesting and AI training
+├── config.yaml                 # General System Config
+├── requirements.txt            # Dependencies
+├── logs/                       # Trading logs
+├── models/                     # AI models and memories
+└── backtest_results/           # Backtest reports
 ```
 
 ## 🛠️ Configuration Options
@@ -78,20 +99,12 @@ ai:
 
 ## 🎯 How It Works
 
-1. **AI Analysis**: Neural network analyzes market conditions using technical indicators
-2. **ICT/SMC Integration**: Applies institutional trading concepts (order blocks, market structure)
-3. **Risk Assessment**: Calculates optimal position sizes based on account balance and risk limits
-4. **Trade Execution**: Places orders through MetaTrader 5 with stop loss and take profit
-5. **Continuous Learning**: AI remembers trade outcomes and improves over time
-
-## 📈 Performance Tracking
-
-The system automatically tracks:
-- Win rate and profit factor
-- Maximum drawdown
-- Sharpe ratio
-- Trade statistics
-- AI learning progress
+1. **Market Intelligence**: The system scans the web for sentiment, filtering retail noise from institutional signals.
+2. **AI Analysis**: Neural network analyzes technical market conditions (ICT/SMC).
+3. **Decision Synthesis**: Combines technicals with sentiment (e.g., "Bullish Structure" + "Contrarian Buy Signal").
+4. **Risk Assessment**: Calculates optimal position sizes based on volatility and sentiment confidence.
+5. **Trade Execution**: Places orders through MetaTrader 5.
+6. **Continuous Learning**: AI remembers trade outcomes to refine future decisions.
 
 ## ⚠️ Disclaimer
 
@@ -99,6 +112,4 @@ This trading system is for educational purposes. Trading involves significant ri
 
 ---
 
-**© 2024 Aleem Shahzad - Next Level BRAIN Trading System**  
-*Developed in collaboration with Claude (Anthropic AI)*
-#
+**© 2026 Aleem Shahzad - Next Level BRAIN Trading System**

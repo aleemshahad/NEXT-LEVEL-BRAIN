@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 NEXT LEVEL BRAIN - Backtesting System
 All-in-one backtesting and AI training

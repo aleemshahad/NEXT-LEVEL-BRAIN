@@ -1,0 +1,262 @@
+[
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-09 08:50:00",
+    "exit_time": "2026-01-09 15:25:00",
+    "type": "SELL",
+    "pnl": -29.999999999999996,
+    "success": "False",
+    "confidence": 0.7100826827323181,
+    "market_conditions": {
+      "rsi": 71.87272965683927,
+      "trend": "bullish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-11 23:15:00",
+    "exit_time": "2026-01-13 14:35:00",
+    "type": "BUY",
+    "pnl": 29.91,
+    "success": "True",
+    "confidence": 0.7131772613678169,
+    "market_conditions": {
+      "rsi": 67.54673168466292,
+      "trend": "bullish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-14 14:50:00",
+    "exit_time": "2026-01-16 15:20:00",
+    "type": "BUY",
+    "pnl": -29.99973,
+    "success": "False",
+    "confidence": 0.7125263020225101,
+    "market_conditions": {
+      "rsi": 40.72617565771445,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-20 05:05:00",
+    "exit_time": "2026-01-20 05:10:00",
+    "type": "SELL",
+    "pnl": 2.0310675324399363,
+    "success": "True",
+    "confidence": 0.8110747148564574,
+    "market_conditions": {
+      "rsi": 11.933134982774988,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-20 17:35:00",
+    "exit_time": "2026-01-20 22:30:00",
+    "type": "SELL",
+    "pnl": 29.91582401259732,
+    "success": "True",
+    "confidence": 0.7113007757420768,
+    "market_conditions": {
+      "rsi": 12.550453955901517,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-21 23:45:00",
+    "exit_time": "2026-01-23 17:35:00",
+    "type": "SELL",
+    "pnl": -30.005571484635112,
+    "success": "False",
+    "confidence": 0.6008182104414643,
+    "market_conditions": {
+      "rsi": 77.99898835022033,
+      "trend": "bullish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-26 02:25:00",
+    "exit_time": "2026-01-28 10:15:00",
+    "type": "BUY",
+    "pnl": 29.915554770181213,
+    "success": "True",
+    "confidence": 0.7148929407987841,
+    "market_conditions": {
+      "rsi": 71.36304744611768,
+      "trend": "bullish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-28 11:45:00",
+    "exit_time": "2026-01-29 02:45:00",
+    "type": "BUY",
+    "pnl": -30.005301434491756,
+    "success": "False",
+    "confidence": 0.6282853504309192,
+    "market_conditions": {
+      "rsi": 11.864654820497805,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-29 15:05:00",
+    "exit_time": "2026-01-29 15:50:00",
+    "type": "SELL",
+    "pnl": 29.915285530188278,
+    "success": "True",
+    "confidence": 0.7189312792793574,
+    "market_conditions": {
+      "rsi": 15.955950706743408,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-30 18:50:00",
+    "exit_time": "2026-01-31 14:20:00",
+    "type": "BUY",
+    "pnl": -30.005031386778843,
+    "success": "False",
+    "confidence": 0.7128635520334419,
+    "market_conditions": {
+      "rsi": 24.50298932429314,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-01-31 23:20:00",
+    "exit_time": "2026-02-01 14:30:00",
+    "type": "BUY",
+    "pnl": -29.915016292618503,
+    "success": "False",
+    "confidence": 0.7218746656277346,
+    "market_conditions": {
+      "rsi": 10.832348448720992,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-03 02:50:00",
+    "exit_time": "2026-02-03 17:00:00",
+    "type": "SELL",
+    "pnl": 29.82527124374065,
+    "success": "True",
+    "confidence": 0.7125550152738755,
+    "market_conditions": {
+      "rsi": 11.84416004875375,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-03 17:10:00",
+    "exit_time": "2026-02-03 18:25:00",
+    "type": "SELL",
+    "pnl": 29.914747057471875,
+    "success": "True",
+    "confidence": 0.7203716996072349,
+    "market_conditions": {
+      "rsi": 17.544043232254566,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-03 18:45:00",
+    "exit_time": "2026-02-03 19:10:00",
+    "type": "SELL",
+    "pnl": -30.004491298644282,
+    "success": "False",
+    "confidence": 0.7143026978899951,
+    "market_conditions": {
+      "rsi": 43.13034308136198,
+      "trend": "bullish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-03 21:05:00",
+    "exit_time": "2026-02-03 21:10:00",
+    "type": "BUY",
+    "pnl": -29.914477824748353,
+    "success": "False",
+    "confidence": 0.9059876166936887,
+    "market_conditions": {
+      "rsi": 88.61194416675872,
+      "trend": "bullish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-04 16:40:00",
+    "exit_time": "2026-02-05 02:15:00",
+    "type": "SELL",
+    "pnl": 29.824734391274106,
+    "success": "True",
+    "confidence": 0.7493994867165541,
+    "market_conditions": {
+      "rsi": 29.69614410602138,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-05 12:15:00",
+    "exit_time": "2026-02-05 14:35:00",
+    "type": "SELL",
+    "pnl": -29.914208594447928,
+    "success": "False",
+    "confidence": 0.7176571251436048,
+    "market_conditions": {
+      "rsi": 76.31501594626745,
+      "trend": "bullish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-05 17:55:00",
+    "exit_time": "2026-02-05 20:15:00",
+    "type": "SELL",
+    "pnl": 29.824465968664747,
+    "success": "True",
+    "confidence": 0.6001443353995294,
+    "market_conditions": {
+      "rsi": 22.798875762471553,
+      "trend": "bearish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-06 22:30:00",
+    "exit_time": "2026-02-06 22:35:00",
+    "type": "BUY",
+    "pnl": 0.532945678858997,
+    "success": "True",
+    "confidence": 0.6131798429969924,
+    "market_conditions": {
+      "rsi": 72.50053305195503,
+      "trend": "bullish"
+    }
+  },
+  {
+    "symbol": "BTCUSDm",
+    "entry_time": "2026-02-07 06:55:00",
+    "exit_time": "2026-02-07 07:15:00",
+    "type": "SELL",
+    "pnl": 29.915538203607156,
+    "success": "True",
+    "confidence": 0.7161131001100094,
+    "market_conditions": {
+      "rsi": 10.54809903573289,
+      "trend": "bearish"
+    }
+  }
+]
