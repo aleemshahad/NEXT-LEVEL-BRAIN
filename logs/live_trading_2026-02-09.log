@@ -1,0 +1,30 @@
+2026-02-09 08:17:23.010 | INFO     | __main__:initialize:663 - 🧠 Initializing NEXT LEVEL BRAIN Live Trading System...
+2026-02-09 08:17:52.965 | ERROR    | __main__:connect:433 - MT5 initialization failed
+2026-02-09 08:17:52.968 | ERROR    | __main__:initialize:667 - Failed to connect to MT5
+2026-02-09 08:17:52.974 | INFO     | __main__:shutdown:851 - 🛑 Shutting down trading system...
+2026-02-09 08:17:52.977 | INFO     | __main__:shutdown:856 - ✅ Shutdown completed
+2026-02-09 17:11:45.596 | INFO     | __main__:initialize:663 - 🧠 Initializing NEXT LEVEL BRAIN Live Trading System...
+2026-02-09 17:13:51.398 | ERROR    | __main__:connect:433 - MT5 initialization failed
+2026-02-09 17:13:51.399 | ERROR    | __main__:initialize:667 - Failed to connect to MT5
+2026-02-09 17:13:51.399 | INFO     | __main__:shutdown:851 - 🛑 Shutting down trading system...
+2026-02-09 17:13:51.399 | INFO     | __main__:shutdown:856 - ✅ Shutdown completed
+2026-02-09 17:15:12.707 | INFO     | __main__:initialize:663 - 🧠 Initializing NEXT LEVEL BRAIN Live Trading System...
+2026-02-09 17:15:12.723 | INFO     | __main__:connect:449 - Connected to MT5 - Balance: $0.00
+2026-02-09 17:15:12.724 | INFO     | __main__:initialize:674 - Account Balance: $0.00
+2026-02-09 17:15:12.725 | INFO     | __main__:initialize:676 - ✅ System initialized successfully
+2026-02-09 17:15:12.725 | INFO     | __main__:run:812 - 🚀 Starting live trading...
+2026-02-09 17:18:42.788 | INFO     | __main__:shutdown:851 - 🛑 Shutting down trading system...
+2026-02-09 17:18:42.789 | INFO     | __main__:shutdown:856 - ✅ Shutdown completed
+2026-02-09 17:18:42.792 | INFO     | __main__:main:925 - Application interrupted by user
+2026-02-09 17:18:54.385 | INFO     | __main__:initialize:663 - 🧠 Initializing NEXT LEVEL BRAIN Live Trading System...
+2026-02-09 17:18:54.398 | INFO     | __main__:connect:449 - Connected to MT5 - Balance: $1000.00
+2026-02-09 17:18:54.400 | INFO     | __main__:initialize:674 - Account Balance: $1000.00
+2026-02-09 17:18:54.400 | INFO     | __main__:initialize:676 - ✅ System initialized successfully
+2026-02-09 17:18:54.401 | INFO     | __main__:run:812 - 🚀 Starting live trading...
+2026-02-09 19:35:22.112 | INFO     | __main__:place_order:522 - Order placed: BUY 0.2 XAUUSDm at 5033.785
+2026-02-09 19:35:22.175 | INFO     | __main__:_execute_trade:745 - ✅ Trade executed: BUY XAUUSDm
+2026-02-09 19:35:22.181 | INFO     | __main__:_execute_trade:746 - 📊 Reasoning: ICT Bullish: FVG (BULLISH), Order Block (BULLISH) (Score: 2.0)
+2026-02-09 19:39:01.546 | WARNING  | __main__:monitor_positions:771 - ⚠️ Position XAUUSDm in loss: $-118.10
+2026-02-09 19:39:32.772 | WARNING  | __main__:monitor_positions:771 - ⚠️ Position XAUUSDm in loss: $-113.04
+2026-02-09 19:41:37.538 | WARNING  | __main__:monitor_positions:771 - ⚠️ Position XAUUSDm in loss: $-128.04
+2026-02-09 19:42:08.721 | WARNING  | __main__:monitor_positions:771 - ⚠️ Position XAUUSDm in loss: $-114.42
