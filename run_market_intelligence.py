@@ -3,7 +3,11 @@ from datetime import datetime
 from typing import List
 
 # Ensure we can import from the local directory
+# Ensure we can import from the local directory
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 sys.path.append(os.getcwd())
 
 from market_intelligence.models import (

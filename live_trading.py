@@ -18,6 +18,11 @@ import signal
 import threading
 import time
 from typing import Dict, List, Optional, Tuple
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Setup logging
 logger.remove()
@@ -434,9 +439,9 @@ class MT5Broker:
                 return False
                 
             # Login with credentials
-            login = self.config.get('login')
-            password = self.config.get('password')
-            server = self.config.get('server')
+            login = self.config.get('login') or int(os.getenv('MT5_LOGIN', 0))
+            password = self.config.get('password') or os.getenv('MT5_PASSWORD')
+            server = self.config.get('server') or os.getenv('MT5_SERVER')
             
             if login and password and server:
                 if not mt5.login(login, password=password, server=server):

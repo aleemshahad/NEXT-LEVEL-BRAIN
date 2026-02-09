@@ -14,3 +14,4 @@ PyYAML>=6.0
 # streamlit>=1.28.0      # For web dashboard
 # scikit-learn>=1.0.0    # For advanced ML
 # tensorflow>=2.8.0      # For neural networks
+python-dotenv>=1.0.0
