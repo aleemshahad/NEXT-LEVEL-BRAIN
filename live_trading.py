@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NEXT LEVEL TRADING SYSTEM - Live Trading System (CLI only)
+NEXT LEVEL BRAIN - Live Trading System (CLI only)
 All-in-one live trading with AI enhancement
 Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)
 """
@@ -570,7 +570,7 @@ class GridManager:
         self.magic_buy = 777001
         self.magic_sell = 777002
         self.grid_size = grid_config.get('size', 300)
-        self.spacing = grid_config.get('spacing', 1.0)  # Base spacing in $ (calibrated for Gold ~$2900)
+        self.spacing = grid_config.get('spacing', 1.0)  # Spacing in $
         self.lot_size = grid_config.get('lot_size', 0.01)
         self.per_trade_profit = 1.0                     # $ profit per trade target
         self.mode = grid_config.get('mode', 'BOTH') 
@@ -586,31 +586,6 @@ class GridManager:
         # State Persistence
         self.state_file = Path("logs/grid_state.json")
         self._load_state()
-
-    def _get_effective_spacing(self, symbol: str, current_price: float) -> float:
-        """
-        Auto-scale grid spacing based on asset price.
-        Base: $1.0 spacing for Gold (~$2900) = ~0.035% of price.
-        For cheaper assets (e.g. Oil ~$51), spacing scales down proportionally
-        so orders stay at the same % distance from price.
-        Minimum spacing enforced via symbol tick_size.
-        """
-        REFERENCE_PRICE = 2900.0  # Gold baseline
-        SPACING_PCT = self.spacing / REFERENCE_PRICE  # ~0.000345 (0.035%)
-        
-        effective = current_price * SPACING_PCT
-        
-        # Enforce minimum spacing = 5 * tick_size to avoid "too close" rejections
-        symbol_info = mt5.symbol_info(symbol)
-        if symbol_info:
-            tick_size = getattr(symbol_info, 'trade_tick_size', 0.0)
-            min_spacing = tick_size * 5 if tick_size > 0 else 0.01
-            effective = max(effective, min_spacing)
-            # Round to tick_size
-            if tick_size > 0:
-                effective = round(round(effective / tick_size) * tick_size, symbol_info.digits)
-        
-        return effective
 
     def _save_state(self):
         """Save grid progress to file"""
@@ -654,9 +629,6 @@ class GridManager:
                 logger.error(f"Cannot update grid: Symbol {symbol} not found")
                 return
 
-            # Dynamic spacing based on asset price
-            effective_spacing = self._get_effective_spacing(symbol, current_price)
-
             # 1. Update Grid Positions (Raw objects for ProfitController)
             raw_positions = mt5.positions_get(symbol=symbol)
             if raw_positions is None: raw_positions = []
@@ -673,6 +645,10 @@ class GridManager:
                     # Immediately recycle the level
                     await self._recycle_level(symbol, pos.price_open, pos.type)
 
+            # 2.5 Side-Based Basket Trailing (Smart Trailing Selection)
+            if getattr(self, 'trailing_enabled', False):
+                await self.profit_ctrl.monitor_trailing(symbol, self.magic_buy, self.magic_sell)
+
             # 3. Batch Maintenance Logic
             all_orders = mt5.orders_get(symbol=symbol)
             if all_orders is None: all_orders = []
@@ -680,114 +656,69 @@ class GridManager:
 
             # 3. Dynamic Grid Logic (SELL Side)
             if self.mode in ('SELL_ONLY', 'BOTH'):
-                sell_pendings = [o for o in grid_pendings if o.magic == self.magic_sell]
-                sell_positions = [p for p in grid_objs if p.magic == self.magic_sell]
-                if symbol not in self.active_grids: self.active_grids[symbol] = {}
-                grid_info_root = self.active_grids[symbol]
-                grid_info = grid_info_root.get('SELL', {})
+                sell_pendings = {round(o.price_open, 2): o for o in grid_pendings if o.magic == self.magic_sell}
+                sell_positions = {round(p.price_open, 2): p for p in grid_objs if p.magic == self.magic_sell}
                 
-                # Reset if no active orders or fresh start
-                if not grid_info or (not sell_pendings and not sell_positions):
-                    base_price = current_price
-                    first_idx = 0
-                    last_idx = 0
-                    logger.info(f"🕸️ Resetting SELL Grid for {symbol} at {base_price} (Reason: No active orders)")
-                else:
-                    base_price = grid_info.get('base_price', current_price)
-                    first_idx = grid_info.get('first_index', 0)
-                    last_idx = grid_info.get('last_index', 0)
-
-                # A. ROLLING (Front-end): Follow price moving DOWN
-                # Build SELL limits behind market as it drops
-                while True:
-                    front_price = base_price + ((first_idx + 1) * effective_spacing)
-                    if current_price < front_price - (effective_spacing * 1.01):
-                        new_idx = first_idx
-                        entry_price = base_price + (new_idx * effective_spacing)
-                        # Spread safety
-                        if entry_price <= current_price + (symbol_info.spread * symbol_info.point): break
-                        
-                        res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_SELL_LIMIT, self.lot_size, entry_price, self.magic_sell)
-                        if res['success']:
-                            first_idx -= 1
-                            logger.info(f"🚜 SELL Rolling: Added level at ${entry_price:.3f} (FirstIdx: {first_idx})")
-                        elif res.get('error') == 'MARKET_CLOSED':
-                            break # Silent halt
-                        else:
-                            break # Limit reached or order error
-                    else:
-                        break
-
-                # B. EXPANSION (Back-end): Market moves UP (against positions)
-                if len(sell_pendings) <= self.trigger_threshold and last_idx < self.total_target:
-                    num_to_place = self.batch_size
-                    success_count = 0
-                    start_price = base_price + ((last_idx + 1) * effective_spacing)
-                    for _ in range(num_to_place):
-                        last_idx += 1
-                        entry_price = base_price + (last_idx * effective_spacing)
-                        # Avoid placing right on top of market
-                        if entry_price <= current_price + (symbol_info.spread * symbol_info.point): continue
-                        res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_SELL_LIMIT, self.lot_size, entry_price, self.magic_sell)
-                        if res['success']: 
-                            success_count += 1
-                        elif res.get('error') == 'MARKET_CLOSED':
-                            break # Silent halt
+                # SNAP ANCHOR: Round to nearest whole spacing (e.g. $1 increments)
+                # This ensures rolling only occurs in $1 jumps, not 10-cent intervals.
+                anchor = round(current_price / self.spacing) * self.spacing
+                
+                # A. MAINTAIN GRID: Fill levels from anchor + 1 up to total_target
+                # This keeps the grid centered around the current price.
+                success_count = 0
+                for i in range(1, self.batch_size + 1):
+                    level_price = anchor + (i * self.spacing)
+                    level_price = round(round(level_price / symbol_info.trade_tick_size) * symbol_info.trade_tick_size, symbol_info.digits)
+                    r_price = round(level_price, 2)
                     
-                if symbol not in self.active_grids: self.active_grids[symbol] = {}
-                self.active_grids[symbol]['SELL'] = {'base_price': base_price, 'first_index': first_idx, 'last_index': last_idx}
-                self._save_state()
+                    if r_price in sell_pendings or r_price in sell_positions:
+                        continue
+                        
+                    # Avoid placing right on top of market
+                    if level_price <= current_price + (symbol_info.spread * symbol_info.point): continue
+                    
+                    res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_SELL_LIMIT, self.lot_size, level_price, self.magic_sell)
+                    if res['success']: success_count += 1
+                    elif res.get('error') == 'MARKET_CLOSED': break
+
+                # B. PRUNE: Remove orders too far from the current market anchor
+                # This prevents old orders at 4900 when the market is at 5200.
+                limit_dist = (self.batch_size + 5) * self.spacing
+                for p_price, order in sell_pendings.items():
+                    if abs(p_price - anchor) > limit_dist:
+                        await self.broker.cancel_order(order.ticket)
 
             # 4. Dynamic Grid Logic (BUY Side)
             if self.mode in ('BUY_ONLY', 'BOTH'):
-                buy_pendings = [o for o in grid_pendings if o.magic == self.magic_buy]
-                if symbol not in self.active_grids: self.active_grids[symbol] = {}
-                grid_info_root = self.active_grids[symbol]
-                grid_info = grid_info_root.get('BUY', {})
+                buy_pendings = {round(o.price_open, 2): o for o in grid_pendings if o.magic == self.magic_buy}
+                buy_positions = {round(p.price_open, 2): p for p in grid_objs if p.magic == self.magic_buy}
                 
-                if not grid_info or (not buy_pendings and not [p for p in grid_objs if p.magic == self.magic_buy]):
-                    base_price = current_price
-                    first_idx = 0
-                    last_idx = 0
-                    logger.info(f"🕸️ Resetting BUY Grid for {symbol} at {base_price} (Reason: No active orders)")
-                else:
-                    base_price = grid_info.get('base_price', current_price)
-                    first_idx = grid_info.get('first_index', 0)
-                    last_idx = grid_info.get('last_index', 0)
-
-                # A. ROLLING (Front-end): Follow price moving UP
-                # Build BUY limits behind market as it rises
-                while True:
-                    front_price = base_price - ((first_idx + 1) * effective_spacing)
-                    if current_price > front_price + (effective_spacing * 1.01):
-                        new_idx = first_idx
-                        entry_price = base_price - (new_idx * effective_spacing)
-                        # Spread safety
-                        if entry_price >= current_price - (symbol_info.spread * symbol_info.point): break
-                        res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_BUY_LIMIT, self.lot_size, entry_price, self.magic_buy)
-                        if res['success']:
-                            first_idx -= 1
-                            logger.info(f"🚜 BUY Rolling: Added level at ${entry_price:.3f} (FirstIdx: {first_idx})")
-                        elif res.get('error') == 'MARKET_CLOSED':
-                            break
-                        else:
-                            break
-                    else:
-                        break
-
-                # B. EXPANSION (Back-end): Market moves DOWN (against positions)
-                if len(buy_pendings) <= self.trigger_threshold and last_idx < self.total_target:
-                    num_to_place = self.batch_size
-                    for _ in range(num_to_place):
-                        last_idx += 1
-                        entry_price = base_price - (last_idx * effective_spacing)
-                        if entry_price >= current_price - (symbol_info.spread * symbol_info.point): continue
-                        res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_BUY_LIMIT, self.lot_size, entry_price, self.magic_buy)
-                        if res.get('error') == 'MARKET_CLOSED':
-                            break
+                # SNAP ANCHOR
+                anchor = round(current_price / self.spacing) * self.spacing
+                
+                # A. MAINTAIN GRID: Fill levels from anchor - 1 down
+                success_count = 0
+                for i in range(1, self.batch_size + 1):
+                    level_price = anchor - (i * self.spacing)
+                    level_price = round(round(level_price / symbol_info.trade_tick_size) * symbol_info.trade_tick_size, symbol_info.digits)
+                    r_price = round(level_price, 2)
                     
-                self.active_grids[symbol]['BUY'] = {'base_price': base_price, 'first_index': first_idx, 'last_index': last_idx}
-                self._save_state()
+                    if r_price in buy_pendings or r_price in buy_positions:
+                        continue
+                        
+                    if level_price >= current_price - (symbol_info.spread * symbol_info.point): continue
+                    
+                    res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_BUY_LIMIT, self.lot_size, level_price, self.magic_buy)
+                    if res['success']: success_count += 1
+                    elif res.get('error') == 'MARKET_CLOSED': break
+
+                # B. PRUNE: Remove far-away orders
+                limit_dist = (self.batch_size + 5) * self.spacing
+                for p_price, order in buy_pendings.items():
+                    if abs(p_price - anchor) > limit_dist:
+                        await self.broker.cancel_order(order.ticket)
+                    
+                # State saving no longer needed for Dynamic Snap-Grid
 
         except Exception as e:
             logger.error(f"Error in grid update: {e}")
@@ -884,7 +815,7 @@ class LiveTradingSystem:
     async def initialize(self) -> bool:
         """Initialize the trading system"""
         try:
-            logger.info("🧠 Initializing NEXT LEVEL TRADING SYSTEM Live Trading System...")
+            logger.info("🧠 Initializing NEXT LEVEL BRAIN Live Trading System...")
             
             # Connect to broker
             if not await self.broker.connect():
@@ -1045,7 +976,7 @@ class LiveTradingSystem:
                 daily_change = current_balance - self.start_balance
                 
                 print(f"\n{'='*50}")
-                print(f"🧠 NEXT LEVEL TRADING SYSTEM - LIVE TRADING STATUS")
+                print(f"🧠 NEXT LEVEL BRAIN - LIVE TRADING STATUS")
                 print(f"{'='*50}")
                 print(f"💰 Balance: ${current_balance:.2f}")
                 print(f"📈 Daily P&L: ${daily_change:.2f} (Start: ${self.start_balance:.2f})")
@@ -1197,8 +1128,9 @@ class LiveTradingSystem:
                         print(f"{'!'*50}\n")
                         logger.warning("🏁 GRAND BASKET TRAILING EXIT TRIGGERED! Closing everything.")
                         await self._close_all_universe()
-                        # Reset Layer 3 baseline after Layer 2 exit
-                        if acc: self.grid_manager.profit_ctrl.reset_equity_milestone(acc.equity)
+                        # Reset Layer 3 baseline after Layer 2 exit with FRESH equity
+                        fresh_acc = mt5.account_info()
+                        if fresh_acc: self.grid_manager.profit_ctrl.reset_equity_milestone(fresh_acc.equity)
 
                     # 4. LAYER 3: Equity Milestone Monitor ($100 Target)
                     if acc:
@@ -1209,7 +1141,9 @@ class LiveTradingSystem:
                             print(f"{'#'*50}\n")
                             logger.success("🏆 EQUITY MILESTONE HIT! Closing Universe.")
                             await self._close_all_universe()
-                            self.grid_manager.profit_ctrl.reset_equity_milestone(acc.equity)
+                            # Reset with FRESH equity
+                            fresh_acc = mt5.account_info()
+                            if fresh_acc: self.grid_manager.profit_ctrl.reset_equity_milestone(fresh_acc.equity)
 
                     # Analyze each symbol
                     for symbol in self.symbols:
@@ -1229,8 +1163,8 @@ class LiveTradingSystem:
                     if all_closed:
                         delay = 2.0 # Slow heartbeat when closed
                     else:
-                        # ULTRA SPEED for Grid/Smart strategies
-                        delay = 0.1 if ("Grid" in self.strategy or "Smart" in self.strategy or "Recycler" in self.strategy) else 5
+                        # ULTRA SPEED for Grid/Smart strategies (20 times per second)
+                        delay = 0.05 if ("Grid" in self.strategy or "Smart" in self.strategy or "Recycler" in self.strategy) else 5
                     
                     await asyncio.sleep(delay)
                     
@@ -1346,7 +1280,7 @@ class LiveTradingSystem:
             max_dd_pct = np.max(drawdown_pct) if len(drawdown_pct) > 0 else 0
             
             report = [
-                "# 🧠 NEXT LEVEL TRADING SYSTEM - LIVE PERFORMANCE REPORT",
+                "# 🧠 NEXT LEVEL BRAIN - LIVE PERFORMANCE REPORT",
                 f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
                 f"**Tracking Period:** Last 30 Days",
                 f"**Strategy:** {self.strategy}",
@@ -1378,7 +1312,7 @@ class LiveTradingSystem:
 def select_trade_setup():
     """Simplified setup selection as requested"""
     print("\n" + "="*60)
-    print("🚀 NEXT LEVEL TRADING SYSTEM - QUICK LAUNCH (GOLD ONLY)")
+    print("🚀 NEXT LEVEL BRAIN - QUICK LAUNCH (GOLD ONLY)")
     print("="*60)
     
     # 1. Strategy/Direction

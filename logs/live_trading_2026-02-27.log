@@ -2486,3 +2486,139 @@
 2026-02-27 14:59:45.727 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3514.57 | Baseline: $3519.97 | Progress: $-5.40/$100
 2026-02-27 15:00:45.844 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3515.30 | Baseline: $3519.97 | Progress: $-4.67/$100
 2026-02-27 15:01:45.928 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3515.20 | Baseline: $3519.97 | Progress: $-4.77/$100
+2026-02-27 17:05:21.916 | INFO     | live_trading:_load_memories:81 - 🧠 Loaded 28 training memories. AI is ready.
+2026-02-27 17:05:21.933 | INFO     | live_trading:_check_sentiment_bias:65 - 📡 Market Intelligence: ALLOW
+2026-02-27 17:05:21.938 | INFO     | profit_controller:_load_state:40 - 💾 GRID DYNAMIC recovered 1 trade states + Milestone logic from disk.
+2026-02-27 17:05:21.939 | INFO     | live_trading:_load_state:639 - 📁 Loaded Grid State from logs\grid_state.json
+2026-02-27 17:05:21.955 | INFO     | live_trading:initialize:887 - 🧠 Initializing NEXT LEVEL TRADING SYSTEM Live Trading System...
+2026-02-27 17:05:22.959 | INFO     | mt5_broker:connect:26 - Connecting to MT5 (Attempt 1/3)...
+2026-02-27 17:05:50.580 | INFO     | mt5_broker:connect:42 - Logging into Exness-MT5Trial15 (Account: 260150554)...
+2026-02-27 17:05:50.588 | INFO     | mt5_broker:connect:56 - Connected to MT5 - Balance: $3513.87
+2026-02-27 17:05:50.590 | INFO     | live_trading:initialize:897 - Account Balance: $3513.87
+2026-02-27 17:05:50.603 | INFO     | live_trading:initialize:903 - 🚀 Live Dashboard auto-opened.
+2026-02-27 17:05:50.605 | INFO     | live_trading:initialize:907 - ✅ System initialized successfully
+2026-02-27 17:05:50.739 | INFO     | live_trading:run:1121 - 🔄 Auto-Syncing Equity Baseline to current equity: $3493.66
+2026-02-27 17:05:50.830 | INFO     | profit_controller:reset_equity_milestone:303 - 🔄 Milestone Baseline RESET to $3493.66
+2026-02-27 17:05:50.912 | INFO     | live_trading:run:1123 - 📊 Equity Milestone Synced. Baseline: $3493.66 | Target: $3593.66
+2026-02-27 17:05:50.921 | INFO     | live_trading:run:1130 - 🚀 Starting live trading...
+2026-02-27 17:05:50.957 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3493.66 | Baseline: $3493.66 | Progress: $0.00/$100
+2026-02-27 17:05:51.222 | INFO     | live_trading:update:770 - 🚜 BUY Rolling: Added level at $5183.687 (FirstIdx: -3)
+2026-02-27 17:05:51.380 | INFO     | live_trading:update:770 - 🚜 BUY Rolling: Added level at $5185.476 (FirstIdx: -4)
+2026-02-27 17:05:51.565 | INFO     | live_trading:update:770 - 🚜 BUY Rolling: Added level at $5187.265 (FirstIdx: -5)
+2026-02-27 17:06:04.622 | INFO     | profit_controller:monitor_individual_trailing:201 - 💰 Ticket 1121352372 Trail Exit: PnL $0.49 < Lock $0.50 (Lot: 0.01)
+2026-02-27 17:06:04.624 | INFO     | live_trading:update:669 - 💰 Grid Trade 1121352372 closed via Individual Trailing.
+2026-02-27 17:06:04.975 | INFO     | live_trading:_recycle_level:822 - ♻️ Level Recycled: SELL Limit replaced at 5188.432
+2026-02-27 17:06:51.009 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3492.57 | Baseline: $3493.66 | Progress: $-1.09/$100
+2026-02-27 17:07:30.527 | INFO     | live_trading:update:770 - 🚜 BUY Rolling: Added level at $5189.054 (FirstIdx: -6)
+2026-02-27 17:07:46.944 | INFO     | profit_controller:monitor_individual_trailing:201 - 💰 Ticket 1121352396 Trail Exit: PnL $0.47 < Lock $0.50 (Lot: 0.01)
+2026-02-27 17:07:46.947 | INFO     | live_trading:update:669 - 💰 Grid Trade 1121352396 closed via Individual Trailing.
+2026-02-27 17:07:47.302 | INFO     | live_trading:_recycle_level:822 - ♻️ Level Recycled: SELL Limit replaced at 5190.219
+2026-02-27 17:07:51.130 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3489.94 | Baseline: $3493.66 | Progress: $-3.72/$100
+2026-02-27 17:08:14.970 | INFO     | profit_controller:monitor_individual_trailing:168 - 💰 Ticket 1121466457 Hard TP Hit: PnL $1.08 >= $1.00 (Lot: 0.01)
+2026-02-27 17:08:14.973 | INFO     | live_trading:update:669 - 💰 Grid Trade 1121466457 closed via Individual Trailing.
+2026-02-27 17:08:15.247 | INFO     | live_trading:_recycle_level:822 - ♻️ Level Recycled: SELL Limit replaced at 5190.219
+2026-02-27 17:08:41.501 | INFO     | profit_controller:monitor_individual_trailing:201 - 💰 Ticket 1121461898 Trail Exit: PnL $0.02 < Lock $0.10 (Lot: 0.01)
+2026-02-27 17:08:41.503 | INFO     | live_trading:update:669 - 💰 Grid Trade 1121461898 closed via Individual Trailing.
+2026-02-27 17:08:51.197 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3492.09 | Baseline: $3493.66 | Progress: $-1.57/$100
+2026-02-27 17:09:02.393 | INFO     | profit_controller:monitor_individual_trailing:168 - 💰 Ticket 1121447645 Hard TP Hit: PnL $1.00 >= $1.00 (Lot: 0.01)
+2026-02-27 17:09:02.395 | INFO     | live_trading:update:669 - 💰 Grid Trade 1121447645 closed via Individual Trailing.
+2026-02-27 17:09:02.738 | INFO     | live_trading:_recycle_level:822 - ♻️ Level Recycled: SELL Limit replaced at 5188.432
+2026-02-27 17:09:14.714 | INFO     | profit_controller:monitor_individual_trailing:168 - 💰 Ticket 1121352344 Hard TP Hit: PnL $1.05 >= $1.00 (Lot: 0.01)
+2026-02-27 17:09:14.716 | INFO     | live_trading:update:669 - 💰 Grid Trade 1121352344 closed via Individual Trailing.
+2026-02-27 17:09:15.079 | INFO     | live_trading:_recycle_level:822 - ♻️ Level Recycled: SELL Limit replaced at 5186.645
+2026-02-27 17:09:51.290 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3506.28 | Baseline: $3493.66 | Progress: $12.62/$100
+2026-02-27 17:10:01.263 | INFO     | profit_controller:monitor_individual_trailing:201 - 💰 Ticket 1121445625 Trail Exit: PnL $0.09 < Lock $0.10 (Lot: 0.01)
+2026-02-27 17:10:01.267 | INFO     | live_trading:update:669 - 💰 Grid Trade 1121445625 closed via Individual Trailing.
+2026-02-27 17:10:51.419 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3504.25 | Baseline: $3493.66 | Progress: $10.59/$100
+2026-02-27 17:11:51.465 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3504.33 | Baseline: $3493.66 | Progress: $10.67/$100
+2026-02-27 17:12:51.509 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3501.77 | Baseline: $3493.66 | Progress: $8.11/$100
+2026-02-27 17:13:50.707 | INFO     | live_trading:_check_sentiment_bias:65 - 📡 Market Intelligence: ALLOW
+2026-02-27 17:13:51.604 | INFO     | profit_controller:monitor_equity_milestone:273 - 📊 Milestone Track | Current: $3504.21 | Baseline: $3493.66 | Progress: $10.55/$100
+2026-02-27 17:14:06.655 | INFO     | live_trading:shutdown:1269 - 🛑 Shutting down trading system...
+2026-02-27 17:14:06.666 | INFO     | live_trading:shutdown:1275 - 📄 Final Session Report saved: logs\live_reports\live_performance_20260227_171406.md
+2026-02-27 17:14:06.667 | INFO     | live_trading:shutdown:1280 - ✅ Shutdown completed
+2026-02-27 17:34:15.581 | INFO     | __main__:select_trade_setup:1335 - 🚀 AUTO-LAUNCH: Grid BUY ONLY on XAUUSDm
+2026-02-27 17:34:15.586 | INFO     | __main__:_load_memories:82 - 🧠 Loaded 27 training memories. AI is ready.
+2026-02-27 17:34:15.586 | INFO     | __main__:_check_sentiment_bias:66 - 📡 Market Intelligence: ALLOW
+2026-02-27 17:34:15.589 | INFO     | profit_controller:_load_state:40 - 💾 GRID DYNAMIC recovered 4 trade states + Milestone logic from disk.
+2026-02-27 17:34:15.589 | INFO     | __main__:_load_state:615 - 📁 Loaded Grid State from logs\grid_state.json
+2026-02-27 17:34:15.600 | INFO     | __main__:initialize:819 - 🧠 Initializing NEXT LEVEL BRAIN Live Trading System...
+2026-02-27 17:34:16.611 | INFO     | mt5_broker:connect:26 - Connecting to MT5 (Attempt 1/3)...
+2026-02-27 17:34:16.613 | INFO     | mt5_broker:connect:42 - Logging into Exness-MT5Trial15 (Account: 260150554)...
+2026-02-27 17:34:16.613 | INFO     | mt5_broker:connect:56 - Connected to MT5 - Balance: $3517.91
+2026-02-27 17:34:16.616 | INFO     | __main__:initialize:829 - Account Balance: $3517.91
+2026-02-27 17:34:16.616 | INFO     | __main__:initialize:833 - 📡 Live Performance data feed is active.
+2026-02-27 17:34:16.616 | INFO     | __main__:initialize:835 - ✅ System initialized successfully
+2026-02-27 17:34:16.616 | INFO     | __main__:run:1054 - 📊 Equity Milestone Loaded. Baseline: $3493.66 | Target: $3593.66
+2026-02-27 17:34:16.616 | INFO     | __main__:run:1058 - 🚀 Starting live trading...
+2026-02-27 17:34:16.649 | INFO     | profit_controller:monitor_equity_milestone:283 - 📊 Milestone Track | Current: $3510.44 | Baseline: $3493.66 | Progress: $16.78/$100
+2026-02-27 17:34:16.721 | INFO     | profit_controller:monitor_individual_trailing:168 - 💰 Ticket 1121475214 Hard TP Hit: PnL $1.95 >= $1.00 (Lot: 0.01)
+2026-02-27 17:34:16.721 | INFO     | __main__:update:642 - 💰 Grid Trade 1121475214 closed via Individual Trailing.
+2026-02-27 17:34:17.013 | INFO     | __main__:_recycle_level:754 - ♻️ Level Recycled: SELL Limit replaced at 5188.432
+2026-02-27 17:34:17.015 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $0.64 (Lock: $0.00) | SELL: $-10.06 (Lock: $0.00)
+2026-02-27 17:34:20.281 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985534 canceled successfully.
+2026-02-27 17:34:20.349 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985552 canceled successfully.
+2026-02-27 17:34:20.421 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985560 canceled successfully.
+2026-02-27 17:34:20.489 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985571 canceled successfully.
+2026-02-27 17:34:20.551 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985594 canceled successfully.
+2026-02-27 17:34:20.623 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985605 canceled successfully.
+2026-02-27 17:34:20.689 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985610 canceled successfully.
+2026-02-27 17:34:20.756 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985621 canceled successfully.
+2026-02-27 17:34:20.821 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985629 canceled successfully.
+2026-02-27 17:34:20.891 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985652 canceled successfully.
+2026-02-27 17:34:20.957 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985658 canceled successfully.
+2026-02-27 17:34:21.021 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985679 canceled successfully.
+2026-02-27 17:34:21.091 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985693 canceled successfully.
+2026-02-27 17:34:21.156 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1120985701 canceled successfully.
+2026-02-27 17:34:27.941 | INFO     | profit_controller:monitor_individual_trailing:203 - 💰 Ticket 1121445618 Trail Exit: PnL $0.41 < Lock $0.50. Closing!
+2026-02-27 17:34:27.941 | INFO     | __main__:update:642 - 💰 Grid Trade 1121445618 closed via Individual Trailing.
+2026-02-27 17:34:28.263 | INFO     | __main__:_recycle_level:754 - ♻️ Level Recycled: BUY Limit replaced at 5185.476
+2026-02-27 17:34:29.951 | INFO     | profit_controller:monitor_individual_trailing:203 - 💰 Ticket 1121478278 Trail Exit: PnL $0.15 < Lock $0.25. Closing!
+2026-02-27 17:34:29.956 | INFO     | __main__:update:642 - 💰 Grid Trade 1121478278 closed via Individual Trailing.
+2026-02-27 17:34:30.286 | INFO     | __main__:_recycle_level:754 - ♻️ Level Recycled: SELL Limit replaced at 5186.645
+2026-02-27 17:34:32.093 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: Inactive | SELL: $-10.11 (Lock: $0.00)
+2026-02-27 17:34:47.191 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: Inactive | SELL: $-8.19 (Lock: $0.00)
+2026-02-27 17:35:02.191 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: Inactive | SELL: $-10.14 (Lock: $0.00)
+2026-02-27 17:35:16.733 | INFO     | profit_controller:monitor_equity_milestone:283 - 📊 Milestone Track | Current: $3509.98 | Baseline: $3493.66 | Progress: $16.32/$100
+2026-02-27 17:35:17.241 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: Inactive | SELL: $-10.50 (Lock: $0.00)
+2026-02-27 17:35:19.841 | INFO     | profit_controller:monitor_individual_trailing:203 - 💰 Ticket 1121613407 Trail Exit: PnL $0.16 < Lock $0.25. Closing!
+2026-02-27 17:35:19.841 | INFO     | __main__:update:642 - 💰 Grid Trade 1121613407 closed via Individual Trailing.
+2026-02-27 17:35:20.166 | INFO     | __main__:_recycle_level:754 - ♻️ Level Recycled: SELL Limit replaced at 5186.645
+2026-02-27 17:35:32.321 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.01 (Lock: $0.00) | SELL: $-9.84 (Lock: $0.00)
+2026-02-27 17:35:47.356 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $0.18 (Lock: $0.00) | SELL: $-10.53 (Lock: $0.00)
+2026-02-27 17:36:02.406 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $0.05 (Lock: $0.00) | SELL: $-10.02 (Lock: $0.00)
+2026-02-27 17:36:15.291 | INFO     | profit_controller:monitor_individual_trailing:203 - 💰 Ticket 1121616382 Trail Exit: PnL $0.13 < Lock $0.25. Closing!
+2026-02-27 17:36:15.292 | INFO     | __main__:update:642 - 💰 Grid Trade 1121616382 closed via Individual Trailing.
+2026-02-27 17:36:16.755 | INFO     | profit_controller:monitor_equity_milestone:283 - 📊 Milestone Track | Current: $3510.70 | Baseline: $3493.66 | Progress: $17.04/$100
+2026-02-27 17:36:17.450 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: Inactive | SELL: $-10.95 (Lock: $0.00)
+2026-02-27 17:36:32.471 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.43 (Lock: $0.00) | SELL: $-8.02 (Lock: $0.00)
+2026-02-27 17:36:32.570 | INFO     | profit_controller:monitor_individual_trailing:203 - 💰 Ticket 1121617648 Trail Exit: PnL $0.29 < Lock $0.50. Closing!
+2026-02-27 17:36:32.570 | INFO     | __main__:update:642 - 💰 Grid Trade 1121617648 closed via Individual Trailing.
+2026-02-27 17:36:32.891 | INFO     | __main__:_recycle_level:754 - ♻️ Level Recycled: SELL Limit replaced at 5186.645
+2026-02-27 17:36:47.481 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-2.71 (Lock: $0.00) | SELL: $-5.76 (Lock: $0.00)
+2026-02-27 17:37:02.532 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.73 (Lock: $0.00) | SELL: $-7.74 (Lock: $0.00)
+2026-02-27 17:37:16.863 | INFO     | profit_controller:monitor_equity_milestone:283 - 📊 Milestone Track | Current: $3512.60 | Baseline: $3493.66 | Progress: $18.94/$100
+2026-02-27 17:37:17.590 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-1.96 (Lock: $0.00) | SELL: $-6.48 (Lock: $0.00)
+2026-02-27 17:37:32.599 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-3.04 (Lock: $0.00) | SELL: $-5.43 (Lock: $0.00)
+2026-02-27 17:37:42.149 | INFO     | profit_controller:monitor_individual_trailing:203 - 💰 Ticket 1121352315 Trail Exit: PnL $0.18 < Lock $0.25. Closing!
+2026-02-27 17:37:42.151 | INFO     | __main__:update:642 - 💰 Grid Trade 1121352315 closed via Individual Trailing.
+2026-02-27 17:37:47.640 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-3.88 (Lock: $0.00) | SELL: $-4.85 (Lock: $0.00)
+2026-02-27 17:38:02.720 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-2.62 (Lock: $0.00) | SELL: $-5.61 (Lock: $0.00)
+2026-02-27 17:38:16.881 | INFO     | profit_controller:monitor_equity_milestone:283 - 📊 Milestone Track | Current: $3512.25 | Baseline: $3493.66 | Progress: $18.59/$100
+2026-02-27 17:38:17.790 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-4.78 (Lock: $0.00) | SELL: $-4.25 (Lock: $0.00)
+2026-02-27 17:38:32.823 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-4.18 (Lock: $0.00) | SELL: $-4.33 (Lock: $0.00)
+2026-02-27 17:38:44.390 | INFO     | profit_controller:monitor_individual_trailing:203 - 💰 Ticket 1121612633 Trail Exit: PnL $0.48 < Lock $0.50. Closing!
+2026-02-27 17:38:44.390 | INFO     | __main__:update:642 - 💰 Grid Trade 1121612633 closed via Individual Trailing.
+2026-02-27 17:38:44.705 | INFO     | __main__:_recycle_level:754 - ♻️ Level Recycled: BUY Limit replaced at 5185.000
+2026-02-27 17:38:47.840 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.80 (Lock: $0.00) | SELL: $-7.13 (Lock: $0.00)
+2026-02-27 17:39:01.240 | INFO     | profit_controller:monitor_individual_trailing:203 - 💰 Ticket 1121613260 Trail Exit: PnL $0.20 < Lock $0.25. Closing!
+2026-02-27 17:39:01.240 | INFO     | __main__:update:642 - 💰 Grid Trade 1121613260 closed via Individual Trailing.
+2026-02-27 17:39:01.599 | INFO     | __main__:_recycle_level:754 - ♻️ Level Recycled: BUY Limit replaced at 5185.476
+2026-02-27 17:39:02.919 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.30 (Lock: $0.00) | SELL: $-7.53 (Lock: $0.00)
+2026-02-27 17:39:16.946 | INFO     | profit_controller:monitor_equity_milestone:283 - 📊 Milestone Track | Current: $3514.03 | Baseline: $3493.66 | Progress: $20.37/$100
+2026-02-27 17:39:18.012 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.28 (Lock: $0.00) | SELL: $-7.63 (Lock: $0.00)
+2026-02-27 17:39:33.040 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.40 (Lock: $0.00) | SELL: $-7.37 (Lock: $0.00)
+2026-02-27 17:39:48.056 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.56 (Lock: $0.00) | SELL: $-7.05 (Lock: $0.00)
+2026-02-27 17:40:03.090 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-0.90 (Lock: $0.00) | SELL: $-7.03 (Lock: $0.00)
+2026-02-27 17:40:16.981 | INFO     | profit_controller:monitor_equity_milestone:283 - 📊 Milestone Track | Current: $3514.02 | Baseline: $3493.66 | Progress: $20.36/$100
+2026-02-27 17:40:18.189 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-1.66 (Lock: $0.00) | SELL: $-6.27 (Lock: $0.00)

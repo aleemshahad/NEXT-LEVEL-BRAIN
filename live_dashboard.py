@@ -13,7 +13,7 @@ from pathlib import Path
 class LivePortfolioDashboard:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("🧠 NEXT LEVEL TRADING SYSTEM - LIVE PERFORMANCE & CONTROL")
+        self.root.title("🧠 NEXT LEVEL BRAIN - LIVE PERFORMANCE & CONTROL")
         self.root.geometry("1200x850")
         self.root.configure(bg='#0a0a0a') # Deeper Dark Background
         
@@ -93,7 +93,7 @@ class LivePortfolioDashboard:
         header_frame = ttk.Frame(main_frame, style="TFrame")
         header_frame.pack(fill=tk.X, pady=(0, 15))
         
-        title = tk.Label(header_frame, text="🧠 NEXT LEVEL TRADING SYSTEM - LIVE PERFORMANCE", 
+        title = tk.Label(header_frame, text="🧠 NEXT LEVEL BRAIN - LIVE PERFORMANCE", 
                         bg="#0a0a0a", fg="#00e676", font=('Segoe UI', 22, 'bold'))
         title.pack(side=tk.LEFT)
         
@@ -187,93 +187,128 @@ class LivePortfolioDashboard:
         tk.Button(footer, text="📊 GENERATE FULL REPORT", command=self._generate_report, bg="#00e676", fg="black", font=('Segoe UI', 9, 'bold')).pack(side=tk.RIGHT, padx=5)
 
     def _delete_pendings(self):
-        if not messagebox.askyesno("Confirm", "Delete all pending orders?"): return
-        orders = mt5.orders_get()
-        if orders:
-            for o in orders:
-                mt5.order_send({"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket})
-            messagebox.showinfo("Success", f"Deleted {len(orders)} pending orders.")
-
-    def _reset_dashboard(self):
-        msg = ("⚠️ FULL SYSTEM RESET ⚠️\n\n"
-               "This will:\n"
-               "1. Close ALL active positions\n"
-               "2. Delete ALL pending orders\n"
-               "3. Reset all performance stats & time\n"
-               "4. Reset MILITE (Layer 3) baseline\n\n"
-               "Are you sure you want to proceed?")
-        
-        if not messagebox.askyesno("Confirm Full Reset", msg): 
+        if not messagebox.askyesno("Confirm", "Close ALL active positions and delete ALL pending orders?"):
             return
-        
+
         closed_pos = 0
         cancelled_orders = 0
-        
-        # Step 1: Close ALL active positions directly via MT5
+
+        # Close ALL active positions — each independently so one failure doesn't stop the rest
         try:
             positions = mt5.positions_get()
             if positions:
                 for pos in positions:
-                    sym_info = mt5.symbol_info(pos.symbol)
-                    if not sym_info: continue
-                    order_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
-                    tick = mt5.symbol_info_tick(pos.symbol)
-                    price = tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
-                    req = {
-                        "action": mt5.TRADE_ACTION_DEAL,
-                        "symbol": pos.symbol,
-                        "volume": pos.volume,
-                        "type": order_type,
-                        "position": pos.ticket,
-                        "price": price,
-                        "deviation": 50,
-                        "magic": pos.magic,
-                        "comment": "DASHBOARD_RESET",
-                        "type_time": mt5.ORDER_TIME_GTC,
-                        "type_filling": mt5.ORDER_FILLING_IOC,
-                    }
-                    res = mt5.order_send(req)
-                    if res and res.retcode == mt5.TRADE_RETCODE_DONE:
-                        closed_pos += 1
+                    try:
+                        sym_info = mt5.symbol_info(pos.symbol)
+                        if not sym_info: continue
+                        order_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
+                        tick = mt5.symbol_info_tick(pos.symbol)
+                        price = tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
+                        done = False
+                        for filling in (mt5.ORDER_FILLING_IOC, mt5.ORDER_FILLING_FOK, mt5.ORDER_FILLING_RETURN):
+                            req = {
+                                "action": mt5.TRADE_ACTION_DEAL,
+                                "symbol": pos.symbol,
+                                "volume": pos.volume,
+                                "type": order_type,
+                                "position": pos.ticket,
+                                "price": price,
+                                "deviation": 50,
+                                "magic": pos.magic,
+                                "comment": "DASHBOARD_CLOSE_ALL",
+                                "type_time": mt5.ORDER_TIME_GTC,
+                                "type_filling": filling,
+                            }
+                            res = mt5.order_send(req)
+                            if res and res.retcode == mt5.TRADE_RETCODE_DONE:
+                                closed_pos += 1
+                                done = True
+                                break
+                        if not done:
+                            print(f"Failed to close pos {pos.ticket} on all filling modes")
+                    except Exception as e:
+                        print(f"Error closing position {pos.ticket}: {e}")
         except Exception as e:
-            print(f"Error closing positions: {e}")
-        
-        # Step 2: Cancel ALL pending orders directly via MT5
+            print(f"Error getting positions: {e}")
+
+        # Cancel ALL pending orders — each independently so one failure doesn't stop the rest
         try:
             orders = mt5.orders_get()
             if orders:
-                for order in orders:
-                    req = {"action": mt5.TRADE_ACTION_REMOVE, "order": order.ticket}
-                    res = mt5.order_send(req)
-                    if res and res.retcode == mt5.TRADE_RETCODE_DONE:
-                        cancelled_orders += 1
+                for o in orders:
+                    try:
+                        res = mt5.order_send({"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket})
+                        if res and res.retcode == mt5.TRADE_RETCODE_DONE:
+                            cancelled_orders += 1
+                        else:
+                            print(f"Failed to cancel order {o.ticket}: {res.retcode if res else 'None'}")
+                    except Exception as e:
+                        print(f"Error cancelling order {o.ticket}: {e}")
         except Exception as e:
-            print(f"Error cancelling orders: {e}")
+            print(f"Error getting orders: {e}")
 
-        # Step 3: Signal the main script to also reset its internal state
+        messagebox.showinfo("Done", f"Closed: {closed_pos} positions\nCancelled: {cancelled_orders} pending orders.")
+
+    def _reset_dashboard(self):
+        msg = ("⚠️ RESET PERFORMANCE ⚠️\n\n"
+               "This will:\n"
+               "1. Reset all performance stats & time\n"
+               "2. Reset MILESTONE baseline\n\n"
+               "No positions or orders will be touched.\n\n"
+               "Are you sure you want to proceed?")
+
+        if not messagebox.askyesno("Confirm Performance Reset", msg):
+            return
+
+        # Signal the main script to reset its internal milestone state
         try:
             signal_file = Path("logs/global_reset.signal")
             signal_file.parent.mkdir(parents=True, exist_ok=True)
             with open(signal_file, 'w') as f:
                 f.write(str(datetime.now().timestamp()))
+            
+            # 🧹 CLEAN SWEEP: Delete state files that cause glitches on reset
+            files_to_del = [
+                "logs/grid_state.json",
+                "logs/recycler_state.json",
+                "logs/smart_trailing_state.json",
+                "logs/milestone_progress.json"
+            ]
+            
+            # Delete profit state files (all that match the pattern)
+            for ps in Path("logs").glob("profit_state_*.json"):
+                files_to_del.append(str(ps))
+                
+            for f in files_to_del:
+                fp = Path(f)
+                if fp.exists():
+                    fp.unlink()
+                    print(f"Deleted stale log: {f}")
+
+            # Optional: Clean live reports folder if you want a fresh start there too
+            report_dir = Path("logs/live_reports")
+            if report_dir.exists():
+                for f in report_dir.glob("*"):
+                    f.unlink()
+            
         except Exception as e:
-            print(f"Failed to write reset signal: {e}")
+            print(f"Failed to perform clean reset: {e}")
 
         reset_point = datetime.now().timestamp()
         reset_file = Path("logs/dashboard_reset.json")
         reset_file.parent.mkdir(parents=True, exist_ok=True)
-        
+
         with open(reset_file, 'w') as f:
             json.dump({'reset_timestamp': reset_point}, f)
-            
+
         self.trade_history = []
         # Reset Persistent Timer
         self.accumulated_seconds = 0
         self.start_time = time.time()
         self._save_session_stats()
-        
-        messagebox.showinfo("Reset Successful", 
-                           f"✅ Reset Complete!\n\nClosed: {closed_pos} positions\nCancelled: {cancelled_orders} pending orders\nStats & Timer reset.")
+
+        messagebox.showinfo("Reset Successful",
+                            "✅ Performance Reset Complete!\n\nStats & Timer reset.\nPositions and orders are untouched.")
     def _generate_report(self):
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         report_path = Path(f"logs/live_reports/dashboard_report_{timestamp}.json")
@@ -290,18 +325,13 @@ class LivePortfolioDashboard:
 
     def _update_loop(self):
         if not mt5.initialize():
-            messagebox.showerror("Error", "MT5 not running!")
+            self.root.after(0, lambda: messagebox.showerror("Error", "MT5 not running!"))
             self.running = False
             return
 
         while self.running:
             try:
                 acc = mt5.account_info()
-                if acc:
-                    self.cards['balance_val'].config(text=f"${acc.balance:,.2f}")
-                    self.cards['equity_val'].config(text=f"${acc.equity:,.2f}")
-                    margin_pct = f"{acc.margin_level:.1f}%" if acc.margin_level else "0%"
-                    self.cards['margin_val'].config(text=margin_pct)
 
                 # Auto-save duration every 30 seconds
                 current_session = time.time() - self.start_time
@@ -309,30 +339,8 @@ class LivePortfolioDashboard:
                     self._save_session_stats()
 
                 positions = mt5.positions_get()
-                self._update_positions_tree(positions)
-                self._update_full_history()
 
-                # 4. Milestone Progress Update
-                try:
-                    milestone_file = Path("logs/milestone_progress.json")
-                    if milestone_file.exists():
-                        with open(milestone_file, 'r') as f:
-                            data = json.load(f)
-                            # Staleness check: only show if data is fresh (within last 30 seconds)
-                            file_ts = data.get('timestamp', 0)
-                            is_fresh = (time.time() - file_ts) < 30
-                            if is_fresh:
-                                prog = data.get('progress', 0.0)
-                                target = data.get('target_inc', 100.0)
-                                color = "#e91e63" if prog >= 0 else "#ff5252"
-                                self.cards['milestone_val'].config(text=f"${prog:,.2f} / ${target:.0f}", fg=color)
-                            else:
-                                self.cards['milestone_val'].config(text="$0.00 / $100", fg="#e91e63")
-                    else:
-                        self.cards['milestone_val'].config(text="$0.00 / $100", fg="#e91e63")
-                except: pass
-
-                # Market Status Check (Visual Warning)
+                # Market status (read once per loop)
                 symbol = "XAUUSDm"
                 sym_info = mt5.symbol_info(symbol)
                 tick = mt5.symbol_info_tick(symbol)
@@ -343,13 +351,25 @@ class LivePortfolioDashboard:
                     tick_time = datetime.fromtimestamp(tick.time)
                     if (datetime.now() - tick_time).total_seconds() > 60:
                         market_closed = True
-                
-                if market_closed:
-                    self.status_label.config(text="● MARKET CLOSED (PAUSED)", fg="#ff5252")
-                else:
-                    self.status_label.config(text="● SYSTEM ACTIVE", fg="#00e676")
-                
-                time.sleep(2)
+
+                # ── Schedule ALL widget updates on the main (Tkinter) thread ──
+                def _apply_ui(acc=acc, positions=positions,
+                               market_closed=market_closed):
+                    try:
+                        if acc:
+                            self.cards['balance_val'].config(text=f"${acc.balance:,.2f}")
+                            self.cards['equity_val'].config(text=f"${acc.equity:,.2f}")
+                            margin_pct = f"{acc.margin_level:.1f}%" if acc.margin_level else "0%"
+                            self.cards['margin_val'].config(text=margin_pct)
+
+                        self._update_positions_tree(positions)
+                        self._update_full_history()
+                    except Exception as ui_err:
+                        print(f"UI apply error: {ui_err}")
+
+                self.root.after(0, _apply_ui)
+
+                time.sleep(1)
             except Exception as e:
                 print(f"UI Update error: {e}")
                 time.sleep(5)
@@ -370,6 +390,19 @@ class LivePortfolioDashboard:
                 uptime_str = f"{h:02d}:{m:02d}:{s:02d}"
                 
             self.cards['duration_val'].config(text=uptime_str)
+
+            # High-Frequency Equity Milestone Update
+            try:
+                milestone_file = Path("logs/milestone_progress.json")
+                if milestone_file.exists():
+                    with open(milestone_file, 'r') as f:
+                        data = json.load(f)
+                        prog = data.get('progress', 0.0)
+                        target = data.get('target_inc', 100.0)
+                        color = "#e91e63" if prog >= 0 else "#ff5252"
+                        text = f"${prog:,.2f} / ${target:.0f}"
+                        self.cards['milestone_val'].config(text=text, fg=color)
+            except Exception: pass
         except Exception: pass
         self.root.after(1000, self._tick_timer)
     def _update_positions_tree(self, positions):

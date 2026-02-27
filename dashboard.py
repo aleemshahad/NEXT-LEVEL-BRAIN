@@ -1,5 +1,5 @@
 """
-🧠 NEXT LEVEL TRADING SYSTEM — Operational Command Center
+🧠 NEXT LEVEL BRAIN — Operational Command Center
 Real buttons • Real actions • Run everything from here
 Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)
 """
@@ -20,7 +20,7 @@ os.chdir(str(PROJECT_ROOT))
 
 # ─── Page Config ─────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="🧠 NEXT LEVEL TRADING SYSTEM — Command Center",
+    page_title="🧠 NEXT LEVEL BRAIN — Command Center",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -322,7 +322,7 @@ with st.sidebar:
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-top: 10px; letter-spacing: -0.5px;">
-            NEXT LEVEL TRADING SYSTEM
+            NEXT LEVEL BRAIN
         </div>
         <div style="color: #475569; font-size: 0.72rem; margin-top: 6px; letter-spacing: 1.5px; text-transform: uppercase;">
             Command Center
@@ -371,7 +371,7 @@ with st.sidebar:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 if page == "🏠 Dashboard":
-    st.markdown("# 🧠 NEXT LEVEL TRADING SYSTEM")
+    st.markdown("# 🧠 NEXT LEVEL BRAIN")
     st.markdown('<div style="color:#64748b; margin:-12px 0 24px 0;">Yahan se sab kuch control karein — Backtesting, Live Trading, Market Intelligence</div>', unsafe_allow_html=True)
 
     # Quick stats
@@ -491,7 +491,7 @@ elif page == "📊 Backtesting":
             </div>
             """, unsafe_allow_html=True)
             if st.button("🖥️ Open Backtest GUI", key="bt_gui", use_container_width=True):
-                launch_in_new_terminal("backtesting.py", "NEXT LEVEL TRADING SYSTEM - Backtesting")
+                launch_in_new_terminal("backtesting.py", "NEXT LEVEL BRAIN - Backtesting")
                 st.success("✅ Backtesting GUI launch ho raha hai nayi window mein!")
                 st.info("👆 Nayi terminal window check karein")
 
@@ -662,7 +662,7 @@ strategy_map = {{"1": "Grid BUY ONLY", "2": "Grid SELL ONLY", "3": "Grid Both", 
 strategy = strategy_map["{strat_choice}"]
 
 print("=" * 60)
-print("🧠 NEXT LEVEL TRADING SYSTEM - LIVE TRADING")
+print("🧠 NEXT LEVEL BRAIN - LIVE TRADING")
 print("=" * 60)
 print(f"Symbol: {live_symbol}")
 print(f"Strategy: {{strategy}}")
@@ -680,7 +680,7 @@ asyncio.run(system.run())
             auto_helper.write_text(auto_code, encoding="utf-8")
 
             # Launch in new terminal
-            cmd = f'start "NEXT LEVEL TRADING SYSTEM - Live Trading" cmd /k "cd /d {PROJECT_ROOT} && python _auto_live.py"'
+            cmd = f'start "NEXT LEVEL BRAIN - Live Trading" cmd /k "cd /d {PROJECT_ROOT} && python _auto_live.py"'
             os.system(cmd)
 
             st.success("✅ Live Trading launch ho gaya nayi terminal window mein!")
@@ -1013,7 +1013,7 @@ st.markdown(f"""
 <div style="text-align:center; padding:32px 0 16px 0;">
     <div style="height:1px; background:linear-gradient(90deg, transparent, rgba(59,130,246,0.1), transparent); margin-bottom:20px;"></div>
     <div style="color:#1e293b; font-size:0.72rem;">
-        🧠 NEXT LEVEL TRADING SYSTEM v2.0 — Created by Aleem Shahzad | AI Partner: Claude (Anthropic)
+        🧠 NEXT LEVEL BRAIN v2.0 — Created by Aleem Shahzad | AI Partner: Claude (Anthropic)
     </div>
 </div>
 """, unsafe_allow_html=True)

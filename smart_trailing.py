@@ -46,16 +46,18 @@ class SmartTrailingHandler:
             return 'NONE'
             
         state = self.states[side]
-        current_lock = state['current_lock']
-
-        # 1. Update Absolute Peak (for floating trail)
-        if 'peak' not in state: state['peak'] = profit
-        if profit > state.get('peak', 0.0):
+        
+        # Initialize peak if it doesn't exist
+        if 'peak' not in state:
+            state['peak'] = profit
+        
+        # 1. Update Absolute Peak
+        if profit > state['peak']:
             state['peak'] = profit
 
-        # 2. Check for Progressive Lock Updates
+        current_lock = state.get('current_lock', 0.0)
 
-        # 2. Check for Lock Update (Aggressive Upgrade)
+        # 2. Check for Progressive Lock Updates
         new_lock = current_lock
         for threshold, lock_val in self.levels:
             if profit >= threshold:
@@ -64,26 +66,30 @@ class SmartTrailingHandler:
             else:
                 break # Thresholds are ordered
 
-        if new_lock > current_lock:
-            state['current_lock'] = new_lock
-            current_lock = new_lock # Update local for subsequent checks
-            logger.info(f"🛡️ [{side}] LOCK UPDATED: Profit ${profit:.2f}. New Lock: ${new_lock:.2f}")
-            self.save_state()
-
         # 3. Floating Trail (Unlimited Profit Capture)
         if profit >= self.floating_trigger:
-            peak = state.get('peak', profit)
-            floating_lock = peak * self.floating_trail_pct
-            if floating_lock > state['current_lock']:
-                state['current_lock'] = floating_lock
-                self.save_state()
+            floating_lock = state['peak'] * self.floating_trail_pct
+            if floating_lock > new_lock:
+                new_lock = floating_lock
+
+        if new_lock > current_lock:
+            state['current_lock'] = new_lock
+            logger.info(f"🛡️ [{side}] LOCK UPDATED: Profit ${profit:.2f}. New Lock: ${new_lock:.2f} (Peak: ${state['peak']:.2f})")
+            self.save_state()
 
         # 4. Trailing Exit (Profit falls below current lock)
-        # We only check exit if current_lock is active (> 0)
-        if current_lock > 0 and profit < current_lock:
-            logger.info(f"📉 [{side}] TRAILING EXIT: Profit dropped to ${profit:.2f} (Lock: ${current_lock:.2f}). Closing!")
-            self.reset(side)
-            return 'CLOSE'
+        # ⚠️ NO LOSS GUARD: Never close in loss even if lock is hit. 
+        # We require at least $0.05 profit to trigger a trailing exit.
+        final_lock = state.get('current_lock', 0.0)
+        if final_lock > 0 and profit < final_lock:
+            if profit >= 0.05:
+                logger.info(f"📉 [{side}] TRAILING EXIT: Profit dropped to ${profit:.2f} (Lock: ${final_lock:.2f}). Closing!")
+                self.reset(side)
+                return 'CLOSE'
+            else:
+                # If we hit the lock but profit is too low/negative, we wait (hoping for recovery or hard stop)
+                # This prevents closing in a loss during a sudden spike.
+                pass
 
         return 'NONE'
 
@@ -97,10 +103,10 @@ class SmartTrailingHandler:
     def reset(self, side: str = 'BOTH'):
         """Reset trailing state for one or both sides."""
         if side == 'BOTH':
-            self.states['BUY']['current_lock'] = 0.0
-            self.states['SELL']['current_lock'] = 0.0
+            for s in self.states:
+                self.states[s] = {'current_lock': 0.0, 'peak': 0.0}
         elif side.upper() in self.states:
-            self.states[side.upper()]['current_lock'] = 0.0
+            self.states[side.upper()] = {'current_lock': 0.0, 'peak': 0.0}
         self.save_state()
 
     def save_state(self):
@@ -118,12 +124,9 @@ class SmartTrailingHandler:
                     data = json.load(f)
                     for side in self.states:
                         if side in data:
-                            # Handle migration from old 'in_trail' schema if exists
-                            if 'in_trail' in data[side] and 'current_lock' not in data[side]:
-                                # If it was trailing before, assign it the $10 level lock as a starting point
-                                if data[side]['in_trail']:
-                                    self.states[side]['current_lock'] = 7.0
-                            else:
-                                self.states[side]['current_lock'] = data[side].get('current_lock', 0.0)
+                            self.states[side] = {
+                                'current_lock': data[side].get('current_lock', 0.0),
+                                'peak': data[side].get('peak', 0.0)
+                            }
             except Exception as e:
                 logger.error(f"Error loading smart trailing state: {e}")

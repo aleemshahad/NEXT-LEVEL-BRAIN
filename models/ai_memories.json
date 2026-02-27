@@ -349,18 +349,5 @@
       "rsi": 39.3050362876622,
       "trend": "bearish"
     }
-  },
-  {
-    "symbol": "XAUUSDm",
-    "entry_time": "2026-02-23 14:40:00",
-    "exit_time": "2026-02-26 14:45:00",
-    "type": "BUY",
-    "pnl": -187.92000000000374,
-    "success": "False",
-    "confidence": 0.6021084220941852,
-    "market_conditions": {
-      "rsi": 48.121326616287874,
-      "trend": "bullish"
-    }
   }
 ]

@@ -196,12 +196,18 @@ class ProfitController:
 
             state['lock'] = new_lock
 
-            # Exit logic
-            if new_lock > 0 and 0 <= pnl < new_lock:
-                logger.info(f"💰 Ticket {ticket} Trail Exit: PnL ${pnl:.2f} < Lock ${new_lock:.2f} (Lot: {volume})")
-                to_close.append(pos)
-                if ticket in self.ticket_states:
-                    del self.ticket_states[ticket]
+            # Exit logic (with strict NO LOSS GUARD)
+            min_exit_profit = 0.10 * multiplier # Minimum $0.10 profit buffer
+            if new_lock > 0 and pnl < new_lock:
+                if pnl >= min_exit_profit:
+                    logger.info(f"💰 Ticket {ticket} Trail Exit: PnL ${pnl:.2f} < Lock ${new_lock:.2f}. Closing!")
+                    to_close.append(pos)
+                    if ticket in self.ticket_states:
+                        del self.ticket_states[ticket]
+                else:
+                    # Logic is hit but price is too close to break-even/loss
+                    # We hold for better exit or hard TP
+                    pass
 
         # Sync states to disk (cleanup closed, save updated)
         active_tickets = [p.ticket for p in positions]
@@ -222,7 +228,7 @@ class ProfitController:
         if not hasattr(self, 'grand_basket_state'):
             self.grand_basket_state = {'peak': 0.0, 'lock': 0.0}
 
-        total_profit = sum(p['profit'] for p in positions)
+        total_profit = sum(p.get('profit', 0.0) + p.get('commission', 0.0) + p.get('swap', 0.0) for p in positions)
         state = self.grand_basket_state
 
         # Activate trailing when trigger hit
@@ -234,14 +240,18 @@ class ProfitController:
             new_lock = state['peak'] * 0.8
             if new_lock > state['lock']:
                 state['lock'] = new_lock
-                logger.info(f"🛡️  GRAND BASKET LOCK: Total Profit ${total_profit:.2f}. New Lock: ${new_lock:.2f}")
+                logger.info(f"🛡️  GRAND BASKET LOCK: Total Profit ${total_profit:.2f} (Inc. Fees). New Lock: ${new_lock:.2f}")
 
-        # Check for trailing exit
+        # Check for trailing exit (with NO LOSS GUARD)
         if state['lock'] > 0 and total_profit < state['lock']:
-            logger.info(f"🚀 GRAND BASKET EXIT: Combined Profit ${total_profit:.2f} < Lock ${state['lock']:.2f}. Closing Universe!")
-            self.grand_basket_state = {'peak': 0.0, 'lock': 0.0}
-            self._save_state() # Save reset state
-            return True
+            if total_profit >= 1.0: # Ensure at least $1 total profit for global exit
+                logger.info(f"🚀 GRAND BASKET EXIT: Combined Profit ${total_profit:.2f} < Lock ${state['lock']:.2f}. Closing Universe!")
+                self.grand_basket_state = {'peak': 0.0, 'lock': 0.0}
+                self._save_state() # Save reset state
+                return True
+            else:
+                # Profit dropped too fast, don't close in loss or near-zero
+                pass
 
         # Save state periodically to disk
         if time.time() - getattr(self, '_last_basket_save', 0) > 30:
