@@ -35,14 +35,37 @@ class LivePortfolioDashboard:
             'max_drawdown': 0.0
         }
         
+        self.session_stats_file = Path("logs/dashboard_session_stats.json")
+        self.accumulated_seconds = self._load_session_stats()
+        self.start_time = time.time()
         self._create_widgets()
-        
         # Start background update thread
         self.update_thread = threading.Thread(target=self._update_loop, daemon=True)
         self.update_thread.start()
         
+        # Start high-frequency timer tick (Every 1 second)
+        self._tick_timer()
+        
         self.root.protocol("WM_DELETE_WINDOW", self._on_closing)
 
+    def _load_session_stats(self):
+        """Load accumulated trading time from disk"""
+        try:
+            if self.session_stats_file.exists():
+                with open(self.session_stats_file, 'r') as f:
+                    return json.load(f).get('accumulated_seconds', 0)
+        except Exception: pass
+        return 0
+
+    def _save_session_stats(self):
+        """Save total trading time to disk"""
+        try:
+            self.session_stats_file.parent.mkdir(parents=True, exist_ok=True)
+            current_session = time.time() - self.start_time
+            total = self.accumulated_seconds + current_session
+            with open(self.session_stats_file, 'w') as f:
+                json.dump({'accumulated_seconds': total}, f)
+        except Exception: pass
     def _setup_styles(self):
         self.style.configure("TFrame", background="#0a0a0a")
         self.style.configure("Card.TFrame", background="#151515", relief="flat", borderwidth=0)
@@ -108,7 +131,8 @@ class LivePortfolioDashboard:
             ("ACCOUNT BALANCE", "balance_val", "#ffffff"),
             ("FLOATING EQUITY", "equity_val", "#00e676"),
             ("SESSION PNL", "session_val", "#00e676"),
-            ("MARGIN LEVEL", "margin_val", "#03a9f4")
+            ("MARGIN LEVEL", "margin_val", "#03a9f4"),
+            ("SESSION TIME", "duration_val", "#ffeb3b")
         ]
         
         for i, (label, key, color) in enumerate(items):
@@ -157,6 +181,7 @@ class LivePortfolioDashboard:
         footer = ttk.Frame(main_frame, style="TFrame")
         footer.pack(fill=tk.X, pady=5)
         
+        tk.Button(footer, text="🔄 RESET PERFORMANCE", command=self._reset_dashboard, bg="#2196f3", fg="white", font=('Segoe UI', 9, 'bold')).pack(side=tk.RIGHT, padx=5)
         tk.Button(footer, text="🧹 DELETE ALL PENDINGS", command=self._delete_pendings, bg="#ff5252", fg="white", font=('Segoe UI', 9, 'bold')).pack(side=tk.RIGHT, padx=5)
         tk.Button(footer, text="📊 GENERATE FULL REPORT", command=self._generate_report, bg="#00e676", fg="black", font=('Segoe UI', 9, 'bold')).pack(side=tk.RIGHT, padx=5)
 
@@ -168,6 +193,42 @@ class LivePortfolioDashboard:
                 mt5.order_send({"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket})
             messagebox.showinfo("Success", f"Deleted {len(orders)} pending orders.")
 
+    def _reset_dashboard(self):
+        msg = ("⚠️ FULL SYSTEM RESET ⚠️\n\n"
+               "This will:\n"
+               "1. Close ALL active positions\n"
+               "2. Delete ALL pending orders\n"
+               "3. Reset all performance stats & time\n"
+               "4. Reset MILITE (Layer 3) baseline\n\n"
+               "Are you sure you want to proceed?")
+        
+        if not messagebox.askyesno("Confirm Full Reset", msg): 
+            return
+        
+        # Signal the main script to wipe everything
+        try:
+            signal_file = Path("logs/global_reset.signal")
+            signal_file.parent.mkdir(parents=True, exist_ok=True)
+            with open(signal_file, 'w') as f:
+                f.write(str(datetime.now().timestamp()))
+        except Exception as e:
+            # logger not defined in this file, use print
+            print(f"Failed to write reset signal: {e}")
+
+        reset_point = datetime.now().timestamp()
+        reset_file = Path("logs/dashboard_reset.json")
+        reset_file.parent.mkdir(parents=True, exist_ok=True)
+        
+        with open(reset_file, 'w') as f:
+            json.dump({'reset_timestamp': reset_point}, f)
+            
+        self.trade_history = []
+        # Reset Persistent Timer
+        self.accumulated_seconds = 0
+        self.start_time = time.time()
+        self._save_session_stats()
+        
+        messagebox.showinfo("Reset Successful", "Performance metrics and Session Timer have been reset.")
     def _generate_report(self):
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         report_path = Path(f"logs/live_reports/dashboard_report_{timestamp}.json")
@@ -197,15 +258,55 @@ class LivePortfolioDashboard:
                     margin_pct = f"{acc.margin_level:.1f}%" if acc.margin_level else "0%"
                     self.cards['margin_val'].config(text=margin_pct)
 
+                # Auto-save duration every 30 seconds
+                current_session = time.time() - self.start_time
+                if int(current_session) % 30 == 0:
+                    self._save_session_stats()
+
                 positions = mt5.positions_get()
                 self._update_positions_tree(positions)
                 self._update_full_history()
+
+                # Market Status Check (Visual Warning)
+                symbol = "XAUUSDm"
+                sym_info = mt5.symbol_info(symbol)
+                tick = mt5.symbol_info_tick(symbol)
+                market_closed = False
+                if sym_info and sym_info.trade_mode in [mt5.SYMBOL_TRADE_MODE_DISABLED, mt5.SYMBOL_TRADE_MODE_CLOSEONLY]:
+                    market_closed = True
+                if not market_closed and tick:
+                    tick_time = datetime.fromtimestamp(tick.time)
+                    if (datetime.now() - tick_time).total_seconds() > 60:
+                        market_closed = True
+                
+                if market_closed:
+                    self.status_label.config(text="● MARKET CLOSED (PAUSED)", fg="#ff5252")
+                else:
+                    self.status_label.config(text="● SYSTEM ACTIVE", fg="#00e676")
                 
                 time.sleep(2)
             except Exception as e:
                 print(f"UI Update error: {e}")
                 time.sleep(5)
 
+    def _tick_timer(self):
+        """Dedicated high-frequency update for the session timer (1s refresh)"""
+        if not self.running: return
+        try:
+            total_seconds = int(self.accumulated_seconds + (time.time() - self.start_time))
+            
+            d, r = divmod(total_seconds, 86400)
+            h, r = divmod(r, 3600)
+            m, s = divmod(r, 60)
+            
+            if d > 0:
+                uptime_str = f"{d}d {h:02d}:{m:02d}:{s:02d}"
+            else:
+                uptime_str = f"{h:02d}:{m:02d}:{s:02d}"
+                
+            self.cards['duration_val'].config(text=uptime_str)
+        except Exception: pass
+        self.root.after(1000, self._tick_timer)
     def _update_positions_tree(self, positions):
         # Selected items tracking if needed
         for i in self.pos_tree.get_children():
@@ -226,7 +327,16 @@ class LivePortfolioDashboard:
         
         deals = mt5.history_deals_get(from_date, to_date)
         if deals:
-            closed_deals = [d for d in deals if d.entry == 1]
+            # Persistent Reset Logic
+            reset_file = Path("logs/dashboard_reset.json")
+            reset_ts = 0
+            if reset_file.exists():
+                try:
+                    with open(reset_file, 'r') as f:
+                        reset_ts = json.load(f).get('reset_timestamp', 0)
+                except: pass
+
+            closed_deals = [d for d in deals if d.entry == 1 and d.time > reset_ts]
             
             new_history = []
             for d in closed_deals:
@@ -284,9 +394,18 @@ class LivePortfolioDashboard:
                 session_pnl = sum(h['profit'] for h in self.trade_history if (now - datetime.strptime(h['time'], '%Y-%m-%d %H:%M')).total_seconds() < 86400)
                 session_color = "#00e676" if session_pnl >= 0 else "#ff5252"
                 self.cards['session_val'].config(text=f"${session_pnl:,.2f}", fg=session_color)
+            else:
+                # Reset labels to zero/empty
+                self.metric_labels['total_trades'].config(text="0")
+                self.metric_labels['win_rate'].config(text="0.0%")
+                self.metric_labels['total_pnl'].config(text="$0.00", foreground="#ffffff")
+                self.metric_labels['profit_factor'].config(text="0.00")
+                self.metric_labels['max_drawdown'].config(text="0.00%")
+                self.cards['session_val'].config(text="$0.00", fg="#ffffff")
 
     def _on_closing(self):
         self.running = False
+        self._save_session_stats() # Final save on close
         self.root.destroy()
 
     def run(self):
