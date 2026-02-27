@@ -13,7 +13,7 @@ from pathlib import Path
 class LivePortfolioDashboard:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("🧠 NEXT LEVEL BRAIN - LIVE PERFORMANCE & CONTROL")
+        self.root.title("🧠 NEXT LEVEL TRADING SYSTEM - LIVE PERFORMANCE & CONTROL")
         self.root.geometry("1200x850")
         self.root.configure(bg='#0a0a0a') # Deeper Dark Background
         
@@ -93,7 +93,7 @@ class LivePortfolioDashboard:
         header_frame = ttk.Frame(main_frame, style="TFrame")
         header_frame.pack(fill=tk.X, pady=(0, 15))
         
-        title = tk.Label(header_frame, text="🧠 NEXT LEVEL BRAIN - LIVE PERFORMANCE", 
+        title = tk.Label(header_frame, text="🧠 NEXT LEVEL TRADING SYSTEM - LIVE PERFORMANCE", 
                         bg="#0a0a0a", fg="#00e676", font=('Segoe UI', 22, 'bold'))
         title.pack(side=tk.LEFT)
         
@@ -132,7 +132,8 @@ class LivePortfolioDashboard:
             ("FLOATING EQUITY", "equity_val", "#00e676"),
             ("SESSION PNL", "session_val", "#00e676"),
             ("MARGIN LEVEL", "margin_val", "#03a9f4"),
-            ("SESSION TIME", "duration_val", "#ffeb3b")
+            ("SESSION TIME", "duration_val", "#ffeb3b"),
+            ("EQUITY MILESTONE", "milestone_val", "#e91e63")
         ]
         
         for i, (label, key, color) in enumerate(items):
@@ -205,14 +206,57 @@ class LivePortfolioDashboard:
         if not messagebox.askyesno("Confirm Full Reset", msg): 
             return
         
-        # Signal the main script to wipe everything
+        closed_pos = 0
+        cancelled_orders = 0
+        
+        # Step 1: Close ALL active positions directly via MT5
+        try:
+            positions = mt5.positions_get()
+            if positions:
+                for pos in positions:
+                    sym_info = mt5.symbol_info(pos.symbol)
+                    if not sym_info: continue
+                    order_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
+                    tick = mt5.symbol_info_tick(pos.symbol)
+                    price = tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
+                    req = {
+                        "action": mt5.TRADE_ACTION_DEAL,
+                        "symbol": pos.symbol,
+                        "volume": pos.volume,
+                        "type": order_type,
+                        "position": pos.ticket,
+                        "price": price,
+                        "deviation": 50,
+                        "magic": pos.magic,
+                        "comment": "DASHBOARD_RESET",
+                        "type_time": mt5.ORDER_TIME_GTC,
+                        "type_filling": mt5.ORDER_FILLING_IOC,
+                    }
+                    res = mt5.order_send(req)
+                    if res and res.retcode == mt5.TRADE_RETCODE_DONE:
+                        closed_pos += 1
+        except Exception as e:
+            print(f"Error closing positions: {e}")
+        
+        # Step 2: Cancel ALL pending orders directly via MT5
+        try:
+            orders = mt5.orders_get()
+            if orders:
+                for order in orders:
+                    req = {"action": mt5.TRADE_ACTION_REMOVE, "order": order.ticket}
+                    res = mt5.order_send(req)
+                    if res and res.retcode == mt5.TRADE_RETCODE_DONE:
+                        cancelled_orders += 1
+        except Exception as e:
+            print(f"Error cancelling orders: {e}")
+
+        # Step 3: Signal the main script to also reset its internal state
         try:
             signal_file = Path("logs/global_reset.signal")
             signal_file.parent.mkdir(parents=True, exist_ok=True)
             with open(signal_file, 'w') as f:
                 f.write(str(datetime.now().timestamp()))
         except Exception as e:
-            # logger not defined in this file, use print
             print(f"Failed to write reset signal: {e}")
 
         reset_point = datetime.now().timestamp()
@@ -228,7 +272,8 @@ class LivePortfolioDashboard:
         self.start_time = time.time()
         self._save_session_stats()
         
-        messagebox.showinfo("Reset Successful", "Performance metrics and Session Timer have been reset.")
+        messagebox.showinfo("Reset Successful", 
+                           f"✅ Reset Complete!\n\nClosed: {closed_pos} positions\nCancelled: {cancelled_orders} pending orders\nStats & Timer reset.")
     def _generate_report(self):
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         report_path = Path(f"logs/live_reports/dashboard_report_{timestamp}.json")
@@ -266,6 +311,26 @@ class LivePortfolioDashboard:
                 positions = mt5.positions_get()
                 self._update_positions_tree(positions)
                 self._update_full_history()
+
+                # 4. Milestone Progress Update
+                try:
+                    milestone_file = Path("logs/milestone_progress.json")
+                    if milestone_file.exists():
+                        with open(milestone_file, 'r') as f:
+                            data = json.load(f)
+                            # Staleness check: only show if data is fresh (within last 30 seconds)
+                            file_ts = data.get('timestamp', 0)
+                            is_fresh = (time.time() - file_ts) < 30
+                            if is_fresh:
+                                prog = data.get('progress', 0.0)
+                                target = data.get('target_inc', 100.0)
+                                color = "#e91e63" if prog >= 0 else "#ff5252"
+                                self.cards['milestone_val'].config(text=f"${prog:,.2f} / ${target:.0f}", fg=color)
+                            else:
+                                self.cards['milestone_val'].config(text="$0.00 / $100", fg="#e91e63")
+                    else:
+                        self.cards['milestone_val'].config(text="$0.00 / $100", fg="#e91e63")
+                except: pass
 
                 # Market Status Check (Visual Warning)
                 symbol = "XAUUSDm"

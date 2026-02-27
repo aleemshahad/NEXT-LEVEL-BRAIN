@@ -23,7 +23,7 @@ class GridRecycler:
         self.broker = broker
         
         grid_cfg = config.get('grid', {})
-        self.spacing = grid_cfg.get('spacing', 1.0)          # Distance between levels ($)
+        self.spacing = grid_cfg.get('spacing', 1.0)          # Base spacing ($) calibrated for Gold ~$2900
         self.lot_size = grid_cfg.get('lot_size', 0.01)
         self.batch_size = 20                                 # Orders per batch
         self.trigger_threshold = 5                           # Expand if <= 5 pendings left
@@ -40,6 +40,27 @@ class GridRecycler:
         self.state_file = Path("logs/recycler_state.json")
         self.load_state()
 
+    def _get_effective_spacing(self, symbol: str, current_price: float) -> float:
+        """
+        Auto-scale grid spacing based on asset price.
+        Base: $1.0 spacing for Gold (~$2900) = ~0.035% of price.
+        For cheaper assets (e.g. Oil ~$51), spacing scales down proportionally.
+        """
+        REFERENCE_PRICE = 2900.0  # Gold baseline
+        SPACING_PCT = self.spacing / REFERENCE_PRICE
+        
+        effective = current_price * SPACING_PCT
+        
+        symbol_info = mt5.symbol_info(symbol)
+        if symbol_info:
+            tick_size = getattr(symbol_info, 'trade_tick_size', 0.0)
+            min_spacing = tick_size * 5 if tick_size > 0 else 0.01
+            effective = max(effective, min_spacing)
+            if tick_size > 0:
+                effective = round(round(effective / tick_size) * tick_size, symbol_info.digits)
+        
+        return effective
+
     # ─────────────────────────────────────────────────────────────────────────
     # Setup
     # ─────────────────────────────────────────────────────────────────────────
@@ -51,10 +72,12 @@ class GridRecycler:
             logger.error(f"Symbol {symbol} not found for recycler grid.")
             return 0
 
+        effective_spacing = self._get_effective_spacing(symbol, base_price)
+
         placed = 0
         for i in range(1, count + 1):
             k = start_index + i
-            level_price = base_price - (k * self.spacing) if side == 'BUY' else base_price + (k * self.spacing)
+            level_price = base_price - (k * effective_spacing) if side == 'BUY' else base_price + (k * effective_spacing)
 
             # Normalize price
             tick_size = getattr(symbol_info, 'trade_tick_size', 0.0)
@@ -96,7 +119,7 @@ class GridRecycler:
             self.active_grids[symbol]['SELL']['last_index'] = placed
             
         self.save_state()
-        logger.info(f"🚀 Recycler Initialized for {symbol} | Mode: {self.mode} | Spacing: {self.spacing}")
+        logger.info(f"🚀 Recycler Initialized for {symbol} | Mode: {self.mode} | Spacing: {self._get_effective_spacing(symbol, current_price):.4f} (dynamic)")
 
     # ─────────────────────────────────────────────────────────────────────────
     # Core Update Loop
@@ -142,9 +165,10 @@ class GridRecycler:
                 base_p = progress['base_price']
                 
                 # Check for "Rolling" towards Market (Add orders near current price)
-                dist_to_front = abs(current_price - (base_p - (first_idx * self.spacing) if side == 'BUY' else base_p + (first_idx * self.spacing)))
+                effective_spacing = self._get_effective_spacing(symbol, current_price)
+                dist_to_front = abs(current_price - (base_p - (first_idx * effective_spacing) if side == 'BUY' else base_p + (first_idx * effective_spacing)))
                 
-                if dist_to_front > (1.1 * self.spacing):
+                if dist_to_front > (1.1 * effective_spacing):
                     slots = self.broker.get_available_slots()
                     if slots < 10:
                         await self._prune_furthest(symbol, side, active_pendings)
@@ -244,7 +268,7 @@ class GridRecycler:
                 # Update our tracking if possible
                 progress = self.active_grids[symbol][side]
                 # If we pruned the 'last' one
-                if furthest.price == (progress['base_price'] - (progress['last_index'] * self.spacing) if side == 'BUY' else progress['base_price'] + (progress['last_index'] * self.spacing)):
+                if furthest.price == (progress['base_price'] - (progress['last_index'] * self._get_effective_spacing(symbol, mkt)) if side == 'BUY' else progress['base_price'] + (progress['last_index'] * self._get_effective_spacing(symbol, mkt))):
                      progress['last_index'] -= 1
                 
                 logger.info(f"✂️ Pruned furthest {side} order at {furthest.price:.3f} to save slots.")

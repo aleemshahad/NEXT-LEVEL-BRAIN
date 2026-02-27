@@ -273,6 +273,21 @@ class ProfitController:
             logger.info(f"📊 Milestone Track | Current: ${current_equity:.2f} | Baseline: ${state['baseline_equity']:.2f} | Progress: ${diff:.2f}/$100")
             self._last_milestone_log = now
 
+        # Update dashboard bridge file
+        try:
+            progress_file = Path("logs/milestone_progress.json")
+            progress_file.parent.mkdir(parents=True, exist_ok=True)
+            with open(progress_file, 'w') as f:
+                json.dump({
+                    'current': current_equity,
+                    'baseline': state['baseline_equity'],
+                    'target': target_equity,
+                    'progress': current_equity - state['baseline_equity'],
+                    'target_inc': target_increase,
+                    'timestamp': time.time()
+                }, f)
+        except: pass
+
         if current_equity >= target_equity:
             logger.info(f"🚀 EQUITY MILESTONE HIT! Equity ${current_equity:.2f} >= Target ${target_equity:.2f}. Closing Universe!")
             # Reset will be handled by the caller or specialized method
@@ -286,6 +301,21 @@ class ProfitController:
             self.equity_milestone_state['baseline_equity'] = current_equity
             self._save_state()
             logger.info(f"🔄 Milestone Baseline RESET to ${current_equity:.2f}")
+
+            # Clear dashboard bridge file on reset
+            try:
+                progress_file = Path("logs/milestone_progress.json")
+                if progress_file.exists():
+                    with open(progress_file, 'w') as f:
+                        json.dump({
+                            'current': current_equity,
+                            'baseline': current_equity,
+                            'target': current_equity + 100.0,
+                            'progress': 0.0,
+                            'target_inc': 100.0,
+                            'timestamp': time.time()
+                        }, f)
+            except: pass
 
     def reset(self, side: str = 'BOTH'):
         self.trailing.reset(side)

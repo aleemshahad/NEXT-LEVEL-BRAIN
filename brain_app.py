@@ -1,10 +1,10 @@
 """
-🧠 NEXT LEVEL BRAIN — Desktop Command Center
+🧠 NEXT LEVEL TRADING SYSTEM — Desktop Command Center
 Standalone desktop trading software
 Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)
 
 Run:   python brain_app.py
-Build: pyinstaller --onefile --windowed --icon=brain.ico --name="NEXT LEVEL BRAIN" brain_app.py
+Build: pyinstaller --onefile --windowed --icon=brain.ico --name="NEXT LEVEL TRADING SYSTEM" brain_app.py
 """
 
 import customtkinter as ctk
@@ -16,6 +16,8 @@ import os
 import json
 import threading
 import time
+import asyncio
+import io
 from pathlib import Path
 from datetime import datetime, timedelta
 
@@ -75,14 +77,14 @@ class OutputRedirector:
             pass
 
 
-class NextLevelBrainApp(ctk.CTk):
+class NextLevelTradingApp(ctk.CTk):
     """Main Desktop Application."""
 
     def __init__(self):
         super().__init__()
 
         # ── Window Setup ──
-        self.title("🧠 NEXT LEVEL BRAIN — Command Center")
+        self.title("🧠 NEXT LEVEL TRADING SYSTEM — Command Center")
         self.geometry("1280x780")
         self.minsize(1000, 650)
         self.configure(fg_color=COLORS["bg_dark"])
@@ -95,6 +97,13 @@ class NextLevelBrainApp(ctk.CTk):
         # ── State ──
         self.running_processes = {}
         self.current_page = "dashboard"
+
+        # ── Live Trading State ──
+        self._trading_system = None
+        self._trading_thread = None
+        self._trading_running = False
+        self._log_queue = []
+        self._log_lock = threading.Lock()
 
         # ── Build UI ──
         self._build_sidebar()
@@ -119,7 +128,7 @@ class NextLevelBrainApp(ctk.CTk):
         logo_frame.pack(pady=(28, 5), padx=16)
 
         ctk.CTkLabel(logo_frame, text="🧠", font=("Segoe UI Emoji", 40)).pack()
-        ctk.CTkLabel(logo_frame, text="NEXT LEVEL\nBRAIN",
+        ctk.CTkLabel(logo_frame, text="NEXT LEVEL\nTRADING SYSTEM",
                      font=("Segoe UI", 18, "bold"),
                      text_color=COLORS["accent_blue"]).pack(pady=(5, 0))
         ctk.CTkLabel(logo_frame, text="Command Center",
@@ -277,7 +286,7 @@ class NextLevelBrainApp(ctk.CTk):
 
         threading.Thread(target=worker, daemon=True).start()
 
-    def _launch_terminal(self, script, title="NEXT LEVEL BRAIN"):
+    def _launch_terminal(self, script, title="NEXT LEVEL TRADING SYSTEM"):
         """Launch script in new CMD window."""
         try:
             cmd = f'start "{title}" cmd /k "cd /d {PROJECT_ROOT} && python {script}"'
@@ -315,7 +324,7 @@ class NextLevelBrainApp(ctk.CTk):
         env_path = PROJECT_ROOT / ".env"
         if not env_path.exists():
             # Create a basic .env if it doesn't exist
-            content = "# NEXT LEVEL BRAIN - Environment Variables\n"
+            content = "# NEXT LEVEL TRADING SYSTEM - Environment Variables\n"
         else:
             content = env_path.read_text(encoding="utf-8", errors="replace")
 
@@ -343,7 +352,7 @@ class NextLevelBrainApp(ctk.CTk):
     # ═══════════════════════════════════════════════════════════════════════════
 
     def _page_dashboard(self):
-        self._make_title(self.scroll, "🧠 NEXT LEVEL BRAIN",
+        self._make_title(self.scroll, "🧠 NEXT LEVEL TRADING SYSTEM",
                          "Yahan se sab kuch control karein — Backtesting, Live Trading, Intelligence")
 
         # Stats row
@@ -702,9 +711,39 @@ else:
 
     def _page_live_trading(self):
         self._make_title(self.scroll, "🔴 Live Trading System",
-                         "Strategy choose karein aur nayi window mein trading start karein")
+                         "Sab kuch ek hi jagah — setup, start, monitor")
 
-        # Setup card
+        # ── Live Stats Row (always visible, auto-refreshing) ──
+        stats_card = self._make_card(self.scroll)
+        stats_inner = ctk.CTkFrame(stats_card, fg_color="transparent")
+        stats_inner.pack(fill="x", padx=16, pady=12)
+
+        # Status indicator
+        self._live_status_dot = ctk.CTkLabel(stats_inner, text="⚫", font=("Segoe UI", 14))
+        self._live_status_dot.pack(side="left", padx=(0, 6))
+        self._live_status_text = ctk.CTkLabel(stats_inner, text="STOPPED",
+                                               font=("Segoe UI", 13, "bold"),
+                                               text_color=COLORS["text_muted"])
+        self._live_status_text.pack(side="left", padx=(0, 20))
+
+        # Stat boxes
+        for attr, label, color in [("_lv_balance", "Balance", COLORS["accent_blue"]),
+                                    ("_lv_equity", "Equity", COLORS["accent_green"]),
+                                    ("_lv_profit", "Profit", COLORS["accent_amber"]),
+                                    ("_lv_positions", "Positions", COLORS["accent_purple"])]:
+            box = ctk.CTkFrame(stats_inner, fg_color=COLORS["bg_dark"],
+                               corner_radius=10, border_width=1, border_color=COLORS["border"],
+                               width=140, height=52)
+            box.pack(side="left", padx=4)
+            box.pack_propagate(False)
+            val_lbl = ctk.CTkLabel(box, text="---", font=("Segoe UI", 16, "bold"),
+                                   text_color=color)
+            val_lbl.pack(pady=(6, 0))
+            ctk.CTkLabel(box, text=label, font=("Segoe UI", 8),
+                         text_color=COLORS["text_muted"]).pack()
+            setattr(self, attr, val_lbl)
+
+        # ── Setup Card ──
         card = self._make_card(self.scroll)
         ctk.CTkLabel(card, text="🎯 Trading Setup",
                      font=("Segoe UI", 14, "bold"),
@@ -716,8 +755,9 @@ else:
         ctk.CTkLabel(row1, text="🎯 Strategy", font=("Segoe UI", 11),
                      text_color=COLORS["text_secondary"]).pack(side="left", padx=(0, 8))
         self.live_strategy = ctk.CTkComboBox(
-            row1, values=["Grid BUY ONLY", "Grid SELL ONLY", "Grid BOTH", "ICT SMC"],
-            width=200, fg_color=COLORS["bg_input"])
+            row1, values=["Grid BUY ONLY", "Grid SELL ONLY", "Grid BOTH", "ICT SMC",
+                          "Recycler BUY ONLY", "Recycler SELL ONLY", "Recycler BOTH"],
+            width=220, fg_color=COLORS["bg_input"])
         self.live_strategy.pack(side="left", padx=(0, 20))
         self.live_strategy.set("Grid BUY ONLY")
 
@@ -736,76 +776,199 @@ else:
 
         ctk.CTkLabel(row2, text="🪙 Symbol", font=("Segoe UI", 11),
                      text_color=COLORS["text_secondary"]).pack(side="left", padx=(0, 8))
-        self.live_symbol = ctk.CTkComboBox(row2, values=symbols, width=140,
-                                            fg_color=COLORS["bg_input"])
+        self.live_symbol = ctk.CTkComboBox(row2, values=symbols + ["USOILm", "BTCUSDm", "EURUSDm", "GBPUSDm"],
+                                            width=140, fg_color=COLORS["bg_input"])
         self.live_symbol.pack(side="left")
         self.live_symbol.set(symbols[0])
 
-        # Warning
-        warn = ctk.CTkFrame(card, fg_color="#1c1917", corner_radius=10,
-                             border_width=1, border_color="#854d0e")
-        warn.pack(fill="x", padx=16, pady=10)
-        ctk.CTkLabel(warn, text="⚠️  Live Trading nayi terminal window mein start hogi. Band karne ke liye Ctrl+C dabayein.",
-                     font=("Segoe UI", 11), text_color="#fbbf24",
-                     wraplength=600).pack(padx=12, pady=10)
+        # Buttons Row
+        btn_row = ctk.CTkFrame(card, fg_color="transparent")
+        btn_row.pack(fill="x", padx=16, pady=(10, 14))
 
-        # Launch button
-        ctk.CTkButton(card, text="🚀  START LIVE TRADING",
-                      font=("Segoe UI", 16, "bold"), height=50,
-                      fg_color="#dc2626", hover_color="#b91c1c",
+        self._btn_start = ctk.CTkButton(btn_row, text="🚀  START TRADING",
+                      font=("Segoe UI", 15, "bold"), height=50,
+                      fg_color="#16a34a", hover_color="#15803d",
                       corner_radius=12,
-                      command=self._start_live_trading).pack(padx=16, pady=(4, 14))
+                      command=self._start_live_trading)
+        self._btn_start.pack(side="left", fill="x", expand=True, padx=(0, 6))
 
-        # Live Dashboard button
-        card2 = self._make_card(self.scroll)
-        ctk.CTkLabel(card2, text="📈 Live Portfolio Dashboard",
+        self._btn_stop = ctk.CTkButton(btn_row, text="⏹  STOP TRADING",
+                      font=("Segoe UI", 15, "bold"), height=50,
+                      fg_color="#dc2626", hover_color="#b91c1c",
+                      corner_radius=12, state="disabled",
+                      command=self._stop_live_trading)
+        self._btn_stop.pack(side="left", fill="x", expand=True, padx=(6, 0))
+
+        # ── Live Log Output ──
+        log_card = self._make_card(self.scroll)
+        ctk.CTkLabel(log_card, text="📋 Live Trading Logs",
                      font=("Segoe UI", 14, "bold"),
-                     text_color=COLORS["text_primary"]).pack(anchor="w", padx=16, pady=(14, 6))
-        ctk.CTkLabel(card2, text="Real-time positions, equity, trade history monitor",
-                     font=("Segoe UI", 11), text_color=COLORS["text_muted"]).pack(anchor="w", padx=16)
-        ctk.CTkButton(card2, text="📈  Open Live Dashboard",
-                      font=("Segoe UI", 13, "bold"), height=42,
-                      fg_color=COLORS["accent_green"], hover_color="#15803d",
-                      corner_radius=10,
-                      command=lambda: self._launch_terminal("live_dashboard.py", "Live Dashboard")).pack(
-                          padx=16, pady=(10, 14))
+                     text_color=COLORS["text_primary"]).pack(anchor="w", padx=16, pady=(14, 4))
+        self._live_log_box = ctk.CTkTextbox(log_card, height=350,
+                              fg_color="#0a0e14", text_color="#4ade80",
+                              font=("Consolas", 10), corner_radius=10,
+                              border_width=1, border_color=COLORS["border"],
+                              state="disabled", wrap="word")
+        self._live_log_box.pack(fill="x", padx=16, pady=(8, 16))
+
+        # Start the stats refresh timer
+        self._refresh_live_stats()
 
     def _start_live_trading(self):
+        """Start the trading engine inside this process (background thread)."""
+        if self._trading_running:
+            messagebox.showwarning("Already Running", "Trading already chal raha hai!")
+            return
+
         strategy = self.live_strategy.get()
         tf = self.live_tf.get()
         symbol = self.live_symbol.get()
 
         strat_map = {"Grid BUY ONLY": "Grid BUY ONLY", "Grid SELL ONLY": "Grid SELL ONLY",
-                     "Grid BOTH": "Grid Both", "ICT SMC": "ICT SMC"}
+                     "Grid BOTH": "Grid Both", "ICT SMC": "ICT SMC",
+                     "Recycler BUY ONLY": "Recycler BUY ONLY",
+                     "Recycler SELL ONLY": "Recycler SELL ONLY",
+                     "Recycler BOTH": "Recycler BOTH"}
         strat = strat_map.get(strategy, strategy)
 
-        helper = PROJECT_ROOT / "_auto_live.py"
-        code = f'''
-import sys, os, asyncio
-sys.path.insert(0, r"{PROJECT_ROOT}")
-os.chdir(r"{PROJECT_ROOT}")
-from pathlib import Path
-for d in ["logs","charts","models"]: Path(d).mkdir(exist_ok=True)
-from live_trading import LiveTradingSystem
+        # Ensure dirs exist
+        for d in ["logs", "charts", "models"]:
+            Path(d).mkdir(exist_ok=True)
 
-print("=" * 60)
-print("🧠 NEXT LEVEL BRAIN - LIVE TRADING")
-print("=" * 60)
-print(f"Symbol: {symbol}")
-print(f"Strategy: {strat}")
-print(f"Timeframe: {tf}")
-print("=" * 60)
-print()
+        # Clear log
+        try:
+            self._live_log_box.configure(state="normal")
+            self._live_log_box.delete("1.0", "end")
+            self._live_log_box.configure(state="disabled")
+        except: pass
 
-system = LiveTradingSystem()
-system.symbols = ["{symbol}"]
-system.strategy = "{strat}"
-system.timeframe = "{tf}"
-asyncio.run(system.run())
-'''
-        helper.write_text(code, encoding="utf-8")
-        self._launch_terminal("_auto_live.py", f"Live Trading — {symbol} — {strat}")
-        messagebox.showinfo("Live Trading", f"✅ Trading started!\n\nSymbol: {symbol}\nStrategy: {strat}\nTimeframe: {tf}\n\nNayi terminal window check karein.")
+        self._append_live_log(f"{'='*60}\n")
+        self._append_live_log(f"🧠 NEXT LEVEL TRADING SYSTEM - LIVE TRADING\n")
+        self._append_live_log(f"{'='*60}\n")
+        self._append_live_log(f"Symbol: {symbol}  |  Strategy: {strat}  |  TF: {tf}\n")
+        self._append_live_log(f"{'='*60}\n\n")
+
+        def _trading_worker():
+            """Background worker that runs the async trading loop."""
+            try:
+                from live_trading import LiveTradingSystem
+
+                system = LiveTradingSystem()
+                system.symbols = [symbol]
+                system.strategy = strat
+                system.timeframe = tf
+                self._trading_system = system
+                self._trading_running = True
+
+                # Redirect loguru to our GUI
+                try:
+                    from loguru import logger as loguru_logger
+                    loguru_logger.add(self._loguru_sink, format="{time:HH:mm:ss} | {level} | {message}",
+                                     level="INFO", filter=lambda r: self._trading_running)
+                except: pass
+
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                loop.run_until_complete(system.run())
+            except Exception as e:
+                self._append_live_log(f"\n❌ Trading Error: {e}\n")
+            finally:
+                self._trading_running = False
+                self._trading_system = None
+                self._append_live_log(f"\n{'='*60}\n⏹ Trading Stopped.\n{'='*60}\n")
+
+        self._trading_thread = threading.Thread(target=_trading_worker, daemon=True)
+        self._trading_thread.start()
+
+        # Update UI
+        try:
+            self._btn_start.configure(state="disabled", fg_color=COLORS["text_muted"])
+            self._btn_stop.configure(state="normal", fg_color="#dc2626")
+            self._live_status_dot.configure(text="🟢")
+            self._live_status_text.configure(text="RUNNING", text_color=COLORS["accent_green"])
+        except: pass
+
+    def _loguru_sink(self, message):
+        """Custom loguru sink that sends log lines to the GUI."""
+        self._append_live_log(str(message))
+
+    def _append_live_log(self, text):
+        """Thread-safe log append to the text widget."""
+        with self._log_lock:
+            self._log_queue.append(text)
+        # Schedule UI update on main thread
+        try:
+            self.after(0, self._flush_log_queue)
+        except: pass
+
+    def _flush_log_queue(self):
+        """Flush queued log messages to the textbox (runs on main thread)."""
+        with self._log_lock:
+            lines = self._log_queue[:]
+            self._log_queue.clear()
+        if not lines:
+            return
+        try:
+            if not self._live_log_box.winfo_exists():
+                return
+            self._live_log_box.configure(state="normal")
+            for line in lines:
+                self._live_log_box.insert("end", line)
+            # Keep only last ~5000 chars to avoid memory bloat
+            content = self._live_log_box.get("1.0", "end")
+            if len(content) > 50000:
+                self._live_log_box.delete("1.0", f"{len(content)-40000}.0")
+            self._live_log_box.see("end")
+            self._live_log_box.configure(state="disabled")
+        except: pass
+
+    def _stop_live_trading(self):
+        """Stop the live trading engine gracefully."""
+        if self._trading_system:
+            self._trading_system.running = False
+            self._append_live_log("\n⏹ Stop signal sent... closing positions and shutting down...\n")
+        self._trading_running = False
+        try:
+            self._btn_start.configure(state="normal", fg_color="#16a34a")
+            self._btn_stop.configure(state="disabled", fg_color=COLORS["text_muted"])
+            self._live_status_dot.configure(text="🔴")
+            self._live_status_text.configure(text="STOPPING...", text_color=COLORS["accent_amber"])
+        except: pass
+
+    def _refresh_live_stats(self):
+        """Refresh live account stats in the GUI every 2 seconds."""
+        try:
+            if not hasattr(self, '_lv_balance') or not self._lv_balance.winfo_exists():
+                return  # Page not visible
+
+            if self._trading_running:
+                try:
+                    import MetaTrader5 as mt5
+                    acc = mt5.account_info()
+                    if acc:
+                        self._lv_balance.configure(text=f"${acc.balance:.2f}")
+                        self._lv_equity.configure(text=f"${acc.equity:.2f}")
+                        pnl = acc.equity - acc.balance
+                        pnl_color = COLORS["accent_green"] if pnl >= 0 else COLORS["accent_rose"]
+                        self._lv_profit.configure(text=f"${pnl:+.2f}", text_color=pnl_color)
+
+                        positions = mt5.positions_total()
+                        self._lv_positions.configure(text=str(positions or 0))
+                except: pass
+            else:
+                # Update status if trading stopped
+                if not self._trading_running and hasattr(self, '_live_status_text'):
+                    try:
+                        current = self._live_status_text.cget("text")
+                        if current == "STOPPING...":
+                            self._live_status_dot.configure(text="⚫")
+                            self._live_status_text.configure(text="STOPPED", text_color=COLORS["text_muted"])
+                            self._btn_start.configure(state="normal", fg_color="#16a34a")
+                            self._btn_stop.configure(state="disabled")
+                    except: pass
+
+            self.after(2000, self._refresh_live_stats)
+        except: pass
 
     # ═══════════════════════════════════════════════════════════════════════════
     # PAGE: INTELLIGENCE
@@ -1184,16 +1347,16 @@ mt5.shutdown()
     # ═══════════════════════════════════════════════════════════════════════════
 
     def _on_close(self):
+        # Stop trading if running
+        if self._trading_running and self._trading_system:
+            self._trading_system.running = False
+            self._trading_running = False
+
         # Clean temp files
-        for tmp in PROJECT_ROOT.glob("_quick_bt.py"):
-            try: tmp.unlink()
-            except: pass
-        for tmp in PROJECT_ROOT.glob("_auto_live.py"):
-            try: tmp.unlink()
-            except: pass
-        for tmp in PROJECT_ROOT.glob("_del_pend.py"):
-            try: tmp.unlink()
-            except: pass
+        for pattern in ["_quick_bt.py", "_auto_live.py", "_del_pend.py", "_temp_check_mt5.py"]:
+            for tmp in PROJECT_ROOT.glob(pattern):
+                try: tmp.unlink()
+                except: pass
 
         self.destroy()
 
@@ -1203,5 +1366,5 @@ mt5.shutdown()
 # ═══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
-    app = NextLevelBrainApp()
+    app = NextLevelTradingApp()
     app.mainloop()

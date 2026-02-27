@@ -1,4 +1,4 @@
-# 🧠 NEXT LEVEL BRAIN - USAGE GUIDE
+# 🧠 NEXT LEVEL TRADING SYSTEM - USAGE GUIDE
 
 **Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)**
 
@@ -8,7 +8,7 @@
 
 ### **STEP 1: Train Your AI Brain** 🧠
 ```bash
-python backtest_and_train.py
+python backtesting.py
 ```
 **What this does:**
 - Backtests historical data to generate training trades
@@ -24,7 +24,7 @@ python backtest_and_train.py
 
 ### **STEP 2: Start Live Trading** 📈
 ```bash
-python main.py
+python live_trading.py
 ```
 **What this does:**
 - Shows pair selection menu (Gold, Bitcoin, Forex, etc.)
@@ -82,7 +82,7 @@ XAUUSDm:
 ✅ Ready for live trading with AI enhancement
 ```
 
-### **🚀 Live Trading (main.py)**
+### **🚀 Live Trading (live_trading.py)**
 
 **Purpose:** Run live trading with AI-enhanced decision making
 
@@ -118,34 +118,34 @@ XAUUSDm:
 ### **For New Users:**
 ```bash
 # 1. Train AI with sample data (fastest)
-python backtest_and_train.py
+python backtesting.py
 # Choose option 5: "AI Training Only"
 
 # 2. Start live trading
-python main.py
+python live_trading.py
 # Choose your preferred pair (Gold recommended for beginners)
 ```
 
 ### **For Experienced Users:**
 ```bash
 # 1. Full historical training (best performance)
-python backtest_and_train.py
+python backtesting.py
 # Choose option 3: "Full Historical (365 days)"
 # Select "ALL" symbols for comprehensive training
 
 # 2. Start live trading
-python main.py
+python live_trading.py
 # Choose option 8: "Trade All Pairs" for diversification
 ```
 
 ### **For Testing:**
 ```bash
 # 1. Quick training
-python backtest_and_train.py
+python backtesting.py
 # Choose option 1: "Quick Training (30 days)"
 
 # 2. Test with single pair
-python main.py
+python live_trading.py
 # Choose option 3: "BTCUSDm" for 24/7 testing
 ```
 
@@ -198,7 +198,7 @@ multi_timeframe:
 - ✅ Professional trading = patience
 
 **"AI not learning"**
-- Run training first: `python backtest_and_train.py`
+- Run training first: `python backtesting.py`
 - Check AI status in dashboard
 - Ensure learning_enabled: true in config
 
@@ -240,7 +240,7 @@ multi_timeframe:
 
 ---
 
-## 🚀 **NEXT LEVEL BRAIN IS READY!**
+## 🚀 **NEXT LEVEL TRADING SYSTEM IS READY!**
 
 **Your AI-powered trading system is now complete with:**
 - ✅ **Professional ICT/SMC strategies**

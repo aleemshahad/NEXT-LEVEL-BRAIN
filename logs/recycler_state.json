@@ -1,0 +1,4428 @@
+{
+  "levels": {
+    "5179.515": {
+      "side": "BUY",
+      "ticket": 833293962,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5178.515": {
+      "side": "BUY",
+      "ticket": 833293979,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5177.515": {
+      "side": "BUY",
+      "ticket": 833294004,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5176.515": {
+      "side": "BUY",
+      "ticket": 833294023,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5175.515": {
+      "side": "BUY",
+      "ticket": 833294040,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5174.515": {
+      "side": "BUY",
+      "ticket": 833294054,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5173.515": {
+      "side": "BUY",
+      "ticket": 833294081,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5172.515": {
+      "side": "BUY",
+      "ticket": 833294103,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5171.515": {
+      "side": "BUY",
+      "ticket": 833294124,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5170.515": {
+      "side": "BUY",
+      "ticket": 833294219,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5169.515": {
+      "side": "BUY",
+      "ticket": 833294256,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5168.515": {
+      "side": "BUY",
+      "ticket": 833294276,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5167.515": {
+      "side": "BUY",
+      "ticket": 833294305,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5166.515": {
+      "side": "BUY",
+      "ticket": 833294314,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5165.515": {
+      "side": "BUY",
+      "ticket": 833294330,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5164.515": {
+      "side": "BUY",
+      "ticket": 833294339,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5163.515": {
+      "side": "BUY",
+      "ticket": 833294365,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5162.515": {
+      "side": "BUY",
+      "ticket": 833294371,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5161.515": {
+      "side": "BUY",
+      "ticket": 833294378,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5160.515": {
+      "side": "BUY",
+      "ticket": 833294385,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5159.515": {
+      "side": "BUY",
+      "ticket": 833294412,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5158.515": {
+      "side": "BUY",
+      "ticket": 833294424,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5157.515": {
+      "side": "BUY",
+      "ticket": 833294443,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5156.515": {
+      "side": "BUY",
+      "ticket": 833294451,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5155.515": {
+      "side": "BUY",
+      "ticket": 833294458,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5154.515": {
+      "side": "BUY",
+      "ticket": 833294466,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5153.515": {
+      "side": "BUY",
+      "ticket": 833294485,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5152.515": {
+      "side": "BUY",
+      "ticket": 833294493,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5151.515": {
+      "side": "BUY",
+      "ticket": 833294504,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5150.515": {
+      "side": "BUY",
+      "ticket": 833294510,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5149.515": {
+      "side": "BUY",
+      "ticket": 833294532,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5148.515": {
+      "side": "BUY",
+      "ticket": 833294537,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5147.515": {
+      "side": "BUY",
+      "ticket": 833294546,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5146.515": {
+      "side": "BUY",
+      "ticket": 833294550,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5145.515": {
+      "side": "BUY",
+      "ticket": 833294567,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5144.515": {
+      "side": "BUY",
+      "ticket": 833294588,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5143.515": {
+      "side": "BUY",
+      "ticket": 833294598,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5142.515": {
+      "side": "BUY",
+      "ticket": 833294622,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5141.515": {
+      "side": "BUY",
+      "ticket": 833294629,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5140.515": {
+      "side": "BUY",
+      "ticket": 833294667,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5139.515": {
+      "side": "BUY",
+      "ticket": 833294679,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5138.515": {
+      "side": "BUY",
+      "ticket": 833294694,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5137.515": {
+      "side": "BUY",
+      "ticket": 833294704,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5136.515": {
+      "side": "BUY",
+      "ticket": 833294757,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5135.515": {
+      "side": "BUY",
+      "ticket": 833294785,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5134.515": {
+      "side": "BUY",
+      "ticket": 833294790,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5133.515": {
+      "side": "BUY",
+      "ticket": 833294795,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5132.515": {
+      "side": "BUY",
+      "ticket": 833294804,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5131.515": {
+      "side": "BUY",
+      "ticket": 833294816,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5130.515": {
+      "side": "BUY",
+      "ticket": 833294825,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5129.515": {
+      "side": "BUY",
+      "ticket": 833294836,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5128.515": {
+      "side": "BUY",
+      "ticket": 833294842,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5127.515": {
+      "side": "BUY",
+      "ticket": 833294864,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5126.515": {
+      "side": "BUY",
+      "ticket": 833294884,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5125.515": {
+      "side": "BUY",
+      "ticket": 833294893,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5124.515": {
+      "side": "BUY",
+      "ticket": 833294948,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5123.515": {
+      "side": "BUY",
+      "ticket": 833294970,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5122.515": {
+      "side": "BUY",
+      "ticket": 833294979,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5121.515": {
+      "side": "BUY",
+      "ticket": 833294985,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5120.515": {
+      "side": "BUY",
+      "ticket": 833294994,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5119.515": {
+      "side": "BUY",
+      "ticket": 833295012,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5118.515": {
+      "side": "BUY",
+      "ticket": 833295024,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5117.515": {
+      "side": "BUY",
+      "ticket": 833295027,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5116.515": {
+      "side": "BUY",
+      "ticket": 833295028,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5115.515": {
+      "side": "BUY",
+      "ticket": 833295036,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5114.515": {
+      "side": "BUY",
+      "ticket": 833295055,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5113.515": {
+      "side": "BUY",
+      "ticket": 833295066,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5112.515": {
+      "side": "BUY",
+      "ticket": 833295074,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5111.515": {
+      "side": "BUY",
+      "ticket": 833295093,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5110.515": {
+      "side": "BUY",
+      "ticket": 833295100,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5109.515": {
+      "side": "BUY",
+      "ticket": 833295107,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5108.515": {
+      "side": "BUY",
+      "ticket": 833295131,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5107.515": {
+      "side": "BUY",
+      "ticket": 833295150,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5106.515": {
+      "side": "BUY",
+      "ticket": 833295216,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5105.515": {
+      "side": "BUY",
+      "ticket": 833295255,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5104.515": {
+      "side": "BUY",
+      "ticket": 833295288,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5103.515": {
+      "side": "BUY",
+      "ticket": 833295314,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5102.515": {
+      "side": "BUY",
+      "ticket": 833295331,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5101.515": {
+      "side": "BUY",
+      "ticket": 833295459,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5100.515": {
+      "side": "BUY",
+      "ticket": 833295593,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5099.515": {
+      "side": "BUY",
+      "ticket": 833295673,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5098.515": {
+      "side": "BUY",
+      "ticket": 833295680,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5097.515": {
+      "side": "BUY",
+      "ticket": 833295685,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5096.515": {
+      "side": "BUY",
+      "ticket": 833295697,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5095.515": {
+      "side": "BUY",
+      "ticket": 833295727,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5094.515": {
+      "side": "BUY",
+      "ticket": 833295730,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5093.515": {
+      "side": "BUY",
+      "ticket": 833295736,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5092.515": {
+      "side": "BUY",
+      "ticket": 833295764,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5091.515": {
+      "side": "BUY",
+      "ticket": 833295772,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5090.515": {
+      "side": "BUY",
+      "ticket": 833295776,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5089.515": {
+      "side": "BUY",
+      "ticket": 833295781,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5088.515": {
+      "side": "BUY",
+      "ticket": 833295789,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5087.515": {
+      "side": "BUY",
+      "ticket": 833295802,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5086.515": {
+      "side": "BUY",
+      "ticket": 833295808,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5085.515": {
+      "side": "BUY",
+      "ticket": 833295841,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5084.515": {
+      "side": "BUY",
+      "ticket": 833295847,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5083.515": {
+      "side": "BUY",
+      "ticket": 833295854,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5082.515": {
+      "side": "BUY",
+      "ticket": 833295877,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5081.515": {
+      "side": "BUY",
+      "ticket": 833295894,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5080.515": {
+      "side": "BUY",
+      "ticket": 833295917,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5079.515": {
+      "side": "BUY",
+      "ticket": 833295928,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5078.515": {
+      "side": "BUY",
+      "ticket": 833295938,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5077.515": {
+      "side": "BUY",
+      "ticket": 833295961,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5076.515": {
+      "side": "BUY",
+      "ticket": 833295979,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5075.515": {
+      "side": "BUY",
+      "ticket": 833295988,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5074.515": {
+      "side": "BUY",
+      "ticket": 833295998,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5073.515": {
+      "side": "BUY",
+      "ticket": 833296005,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5072.515": {
+      "side": "BUY",
+      "ticket": 833296010,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5071.515": {
+      "side": "BUY",
+      "ticket": 833296017,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5070.515": {
+      "side": "BUY",
+      "ticket": 833296022,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5069.515": {
+      "side": "BUY",
+      "ticket": 833296042,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5068.515": {
+      "side": "BUY",
+      "ticket": 833296057,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5067.515": {
+      "side": "BUY",
+      "ticket": 833296070,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5066.515": {
+      "side": "BUY",
+      "ticket": 833296074,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5065.515": {
+      "side": "BUY",
+      "ticket": 833296085,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5064.515": {
+      "side": "BUY",
+      "ticket": 833296094,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5063.515": {
+      "side": "BUY",
+      "ticket": 833296103,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5062.515": {
+      "side": "BUY",
+      "ticket": 833296106,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5061.515": {
+      "side": "BUY",
+      "ticket": 833296120,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5060.515": {
+      "side": "BUY",
+      "ticket": 833296132,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5059.515": {
+      "side": "BUY",
+      "ticket": 833296136,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5058.515": {
+      "side": "BUY",
+      "ticket": 833296143,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5057.515": {
+      "side": "BUY",
+      "ticket": 833296152,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5056.515": {
+      "side": "BUY",
+      "ticket": 833296170,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5055.515": {
+      "side": "BUY",
+      "ticket": 833296177,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5054.515": {
+      "side": "BUY",
+      "ticket": 833296181,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5053.515": {
+      "side": "BUY",
+      "ticket": 833296189,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5052.515": {
+      "side": "BUY",
+      "ticket": 833296196,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5051.515": {
+      "side": "BUY",
+      "ticket": 833296202,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5050.515": {
+      "side": "BUY",
+      "ticket": 833296206,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5049.515": {
+      "side": "BUY",
+      "ticket": 833296214,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5048.515": {
+      "side": "BUY",
+      "ticket": 833296220,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5047.515": {
+      "side": "BUY",
+      "ticket": 833296230,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5046.515": {
+      "side": "BUY",
+      "ticket": 833296254,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5045.515": {
+      "side": "BUY",
+      "ticket": 833296267,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5044.515": {
+      "side": "BUY",
+      "ticket": 833296273,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5043.515": {
+      "side": "BUY",
+      "ticket": 833296280,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5042.515": {
+      "side": "BUY",
+      "ticket": 833296288,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5041.515": {
+      "side": "BUY",
+      "ticket": 833296296,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5040.515": {
+      "side": "BUY",
+      "ticket": 833296313,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5039.515": {
+      "side": "BUY",
+      "ticket": 833296317,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5038.515": {
+      "side": "BUY",
+      "ticket": 833296319,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5037.515": {
+      "side": "BUY",
+      "ticket": 833296324,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5036.515": {
+      "side": "BUY",
+      "ticket": 833296339,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5035.515": {
+      "side": "BUY",
+      "ticket": 833296352,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5034.515": {
+      "side": "BUY",
+      "ticket": 833296367,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5033.515": {
+      "side": "BUY",
+      "ticket": 833296377,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5032.515": {
+      "side": "BUY",
+      "ticket": 833296391,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5031.515": {
+      "side": "BUY",
+      "ticket": 833296398,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5030.515": {
+      "side": "BUY",
+      "ticket": 833296409,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5029.515": {
+      "side": "BUY",
+      "ticket": 833296417,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5028.515": {
+      "side": "BUY",
+      "ticket": 833296422,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5027.515": {
+      "side": "BUY",
+      "ticket": 833296427,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5026.515": {
+      "side": "BUY",
+      "ticket": 833296433,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5025.515": {
+      "side": "BUY",
+      "ticket": 833296491,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5024.515": {
+      "side": "BUY",
+      "ticket": 833296525,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5023.515": {
+      "side": "BUY",
+      "ticket": 833296533,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5022.515": {
+      "side": "BUY",
+      "ticket": 833296549,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5021.515": {
+      "side": "BUY",
+      "ticket": 833296576,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5020.515": {
+      "side": "BUY",
+      "ticket": 833296580,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5019.515": {
+      "side": "BUY",
+      "ticket": 833296611,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5018.515": {
+      "side": "BUY",
+      "ticket": 833296987,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5017.515": {
+      "side": "BUY",
+      "ticket": 833297005,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5016.515": {
+      "side": "BUY",
+      "ticket": 833297012,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5015.515": {
+      "side": "BUY",
+      "ticket": 833297035,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5014.515": {
+      "side": "BUY",
+      "ticket": 833297043,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5013.515": {
+      "side": "BUY",
+      "ticket": 833297054,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5012.515": {
+      "side": "BUY",
+      "ticket": 833297072,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5011.515": {
+      "side": "BUY",
+      "ticket": 833297087,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5010.515": {
+      "side": "BUY",
+      "ticket": 833297111,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5009.515": {
+      "side": "BUY",
+      "ticket": 833297166,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5008.515": {
+      "side": "BUY",
+      "ticket": 833297186,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5007.515": {
+      "side": "BUY",
+      "ticket": 833297213,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5006.515": {
+      "side": "BUY",
+      "ticket": 833297276,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5005.515": {
+      "side": "BUY",
+      "ticket": 833297297,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5004.515": {
+      "side": "BUY",
+      "ticket": 833297316,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5003.515": {
+      "side": "BUY",
+      "ticket": 833297378,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5002.515": {
+      "side": "BUY",
+      "ticket": 833297437,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5001.515": {
+      "side": "BUY",
+      "ticket": 833297444,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5000.515": {
+      "side": "BUY",
+      "ticket": 833297477,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4999.515": {
+      "side": "BUY",
+      "ticket": 833297519,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4998.515": {
+      "side": "BUY",
+      "ticket": 833297542,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4997.515": {
+      "side": "BUY",
+      "ticket": 833297574,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4996.515": {
+      "side": "BUY",
+      "ticket": 833297616,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4995.515": {
+      "side": "BUY",
+      "ticket": 833297668,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4994.515": {
+      "side": "BUY",
+      "ticket": 833297871,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4993.515": {
+      "side": "BUY",
+      "ticket": 833297891,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4992.515": {
+      "side": "BUY",
+      "ticket": 833297903,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4991.515": {
+      "side": "BUY",
+      "ticket": 833297914,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4990.515": {
+      "side": "BUY",
+      "ticket": 833297968,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4989.515": {
+      "side": "BUY",
+      "ticket": 833297984,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4988.515": {
+      "side": "BUY",
+      "ticket": 833297990,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4987.515": {
+      "side": "BUY",
+      "ticket": 833297999,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4986.515": {
+      "side": "BUY",
+      "ticket": 833298006,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4985.515": {
+      "side": "BUY",
+      "ticket": 833298032,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4984.515": {
+      "side": "BUY",
+      "ticket": 833298122,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4983.515": {
+      "side": "BUY",
+      "ticket": 833298319,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4982.515": {
+      "side": "BUY",
+      "ticket": 833298350,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4981.515": {
+      "side": "BUY",
+      "ticket": 833298358,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4980.515": {
+      "side": "BUY",
+      "ticket": 833298365,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4979.515": {
+      "side": "BUY",
+      "ticket": 833298386,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4978.515": {
+      "side": "BUY",
+      "ticket": 833298391,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4977.515": {
+      "side": "BUY",
+      "ticket": 833298396,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4976.515": {
+      "side": "BUY",
+      "ticket": 833298402,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4975.515": {
+      "side": "BUY",
+      "ticket": 833298410,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4974.515": {
+      "side": "BUY",
+      "ticket": 833298413,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4973.515": {
+      "side": "BUY",
+      "ticket": 833298429,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4972.515": {
+      "side": "BUY",
+      "ticket": 833298444,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4971.515": {
+      "side": "BUY",
+      "ticket": 833298449,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4970.515": {
+      "side": "BUY",
+      "ticket": 833298452,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4969.515": {
+      "side": "BUY",
+      "ticket": 833298469,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4968.515": {
+      "side": "BUY",
+      "ticket": 833298481,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4967.515": {
+      "side": "BUY",
+      "ticket": 833298486,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4966.515": {
+      "side": "BUY",
+      "ticket": 833298491,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4965.515": {
+      "side": "BUY",
+      "ticket": 833298502,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4964.515": {
+      "side": "BUY",
+      "ticket": 833298512,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4963.515": {
+      "side": "BUY",
+      "ticket": 833298516,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4962.515": {
+      "side": "BUY",
+      "ticket": 833298524,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4961.515": {
+      "side": "BUY",
+      "ticket": 833298543,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4960.515": {
+      "side": "BUY",
+      "ticket": 833298570,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4959.515": {
+      "side": "BUY",
+      "ticket": 833298589,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4958.515": {
+      "side": "BUY",
+      "ticket": 833298599,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4957.515": {
+      "side": "BUY",
+      "ticket": 833298603,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4956.515": {
+      "side": "BUY",
+      "ticket": 833298609,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4955.515": {
+      "side": "BUY",
+      "ticket": 833298630,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4954.515": {
+      "side": "BUY",
+      "ticket": 833298648,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4953.515": {
+      "side": "BUY",
+      "ticket": 833298660,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4952.515": {
+      "side": "BUY",
+      "ticket": 833298668,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4951.515": {
+      "side": "BUY",
+      "ticket": 833298697,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4950.515": {
+      "side": "BUY",
+      "ticket": 833298716,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4949.515": {
+      "side": "BUY",
+      "ticket": 833298725,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4948.515": {
+      "side": "BUY",
+      "ticket": 833298735,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4947.515": {
+      "side": "BUY",
+      "ticket": 833298765,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4946.515": {
+      "side": "BUY",
+      "ticket": 833298790,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4945.515": {
+      "side": "BUY",
+      "ticket": 833298804,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4944.515": {
+      "side": "BUY",
+      "ticket": 833298817,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4943.515": {
+      "side": "BUY",
+      "ticket": 833298826,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4942.515": {
+      "side": "BUY",
+      "ticket": 833298836,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4941.515": {
+      "side": "BUY",
+      "ticket": 833298847,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4940.515": {
+      "side": "BUY",
+      "ticket": 833298866,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4939.515": {
+      "side": "BUY",
+      "ticket": 833298875,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4938.515": {
+      "side": "BUY",
+      "ticket": 833298883,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4937.515": {
+      "side": "BUY",
+      "ticket": 833298891,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4936.515": {
+      "side": "BUY",
+      "ticket": 833298908,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4935.515": {
+      "side": "BUY",
+      "ticket": 833298923,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4934.515": {
+      "side": "BUY",
+      "ticket": 833298933,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4933.515": {
+      "side": "BUY",
+      "ticket": 833298941,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4932.515": {
+      "side": "BUY",
+      "ticket": 833298966,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4931.515": {
+      "side": "BUY",
+      "ticket": 833298977,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4930.515": {
+      "side": "BUY",
+      "ticket": 833298990,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4929.515": {
+      "side": "BUY",
+      "ticket": 833298999,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4928.515": {
+      "side": "BUY",
+      "ticket": 833299008,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4927.515": {
+      "side": "BUY",
+      "ticket": 833299036,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4926.515": {
+      "side": "BUY",
+      "ticket": 833299055,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4925.515": {
+      "side": "BUY",
+      "ticket": 833299064,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4924.515": {
+      "side": "BUY",
+      "ticket": 833299073,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4923.515": {
+      "side": "BUY",
+      "ticket": 833299095,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4922.515": {
+      "side": "BUY",
+      "ticket": 833299122,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4921.515": {
+      "side": "BUY",
+      "ticket": 833299131,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4920.515": {
+      "side": "BUY",
+      "ticket": 833299148,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4919.515": {
+      "side": "BUY",
+      "ticket": 833299170,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4918.515": {
+      "side": "BUY",
+      "ticket": 833299183,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4917.515": {
+      "side": "BUY",
+      "ticket": 833299191,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4916.515": {
+      "side": "BUY",
+      "ticket": 833299198,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4915.515": {
+      "side": "BUY",
+      "ticket": 833299206,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4914.515": {
+      "side": "BUY",
+      "ticket": 833299219,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4913.515": {
+      "side": "BUY",
+      "ticket": 833299226,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4912.515": {
+      "side": "BUY",
+      "ticket": 833299248,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4911.515": {
+      "side": "BUY",
+      "ticket": 833299258,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4910.515": {
+      "side": "BUY",
+      "ticket": 833299267,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4909.515": {
+      "side": "BUY",
+      "ticket": 833299282,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4908.515": {
+      "side": "BUY",
+      "ticket": 833299302,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4907.515": {
+      "side": "BUY",
+      "ticket": 833299315,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4906.515": {
+      "side": "BUY",
+      "ticket": 833299338,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4905.515": {
+      "side": "BUY",
+      "ticket": 833299407,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4904.515": {
+      "side": "BUY",
+      "ticket": 833299419,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4903.515": {
+      "side": "BUY",
+      "ticket": 833299437,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4902.515": {
+      "side": "BUY",
+      "ticket": 833299463,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4901.515": {
+      "side": "BUY",
+      "ticket": 833299479,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4900.515": {
+      "side": "BUY",
+      "ticket": 833299483,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4899.515": {
+      "side": "BUY",
+      "ticket": 833299487,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4898.515": {
+      "side": "BUY",
+      "ticket": 833299512,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4897.515": {
+      "side": "BUY",
+      "ticket": 833299531,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4896.515": {
+      "side": "BUY",
+      "ticket": 833299557,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4895.515": {
+      "side": "BUY",
+      "ticket": 833299567,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4894.515": {
+      "side": "BUY",
+      "ticket": 833299576,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4893.515": {
+      "side": "BUY",
+      "ticket": 833299594,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4892.515": {
+      "side": "BUY",
+      "ticket": 833299621,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4891.515": {
+      "side": "BUY",
+      "ticket": 833299633,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4890.515": {
+      "side": "BUY",
+      "ticket": 833299645,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4889.515": {
+      "side": "BUY",
+      "ticket": 833299661,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4888.515": {
+      "side": "BUY",
+      "ticket": 833299683,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4887.515": {
+      "side": "BUY",
+      "ticket": 833299690,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4886.515": {
+      "side": "BUY",
+      "ticket": 833299695,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4885.515": {
+      "side": "BUY",
+      "ticket": 833299705,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4884.515": {
+      "side": "BUY",
+      "ticket": 833299723,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4883.515": {
+      "side": "BUY",
+      "ticket": 833299734,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4882.515": {
+      "side": "BUY",
+      "ticket": 833299739,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4881.515": {
+      "side": "BUY",
+      "ticket": 833299747,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "4880.515": {
+      "side": "BUY",
+      "ticket": 833299771,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5184.921": {
+      "side": "BUY",
+      "ticket": 833388643,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5183.921": {
+      "side": "BUY",
+      "ticket": 833388653,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5182.921": {
+      "side": "BUY",
+      "ticket": 833388667,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5181.921": {
+      "side": "BUY",
+      "ticket": 833388682,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5180.921": {
+      "side": "BUY",
+      "ticket": 833388694,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5179.921": {
+      "side": "BUY",
+      "ticket": 833388711,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5178.921": {
+      "side": "BUY",
+      "ticket": 833388753,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5177.921": {
+      "side": "BUY",
+      "ticket": 833388774,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5176.921": {
+      "side": "BUY",
+      "ticket": 833388809,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5175.921": {
+      "side": "BUY",
+      "ticket": 833388835,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5174.921": {
+      "side": "BUY",
+      "ticket": 833388861,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5173.921": {
+      "side": "BUY",
+      "ticket": 833388883,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5172.921": {
+      "side": "BUY",
+      "ticket": 833388901,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5171.921": {
+      "side": "BUY",
+      "ticket": 833388917,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5170.921": {
+      "side": "BUY",
+      "ticket": 833388934,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5169.921": {
+      "side": "BUY",
+      "ticket": 833388951,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5168.921": {
+      "side": "BUY",
+      "ticket": 833388970,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5167.921": {
+      "side": "BUY",
+      "ticket": 833388979,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5166.921": {
+      "side": "BUY",
+      "ticket": 833389000,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5165.921": {
+      "side": "BUY",
+      "ticket": 833389015,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5186.921": {
+      "side": "SELL",
+      "ticket": 833389030,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5187.921": {
+      "side": "SELL",
+      "ticket": 833389109,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5188.921": {
+      "side": "SELL",
+      "ticket": 833389162,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5189.921": {
+      "side": "SELL",
+      "ticket": 833389174,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5190.921": {
+      "side": "SELL",
+      "ticket": 833389185,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5191.921": {
+      "side": "SELL",
+      "ticket": 833389205,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5192.921": {
+      "side": "SELL",
+      "ticket": 833389221,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5193.921": {
+      "side": "SELL",
+      "ticket": 833389229,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5194.921": {
+      "side": "SELL",
+      "ticket": 833389246,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5195.921": {
+      "side": "SELL",
+      "ticket": 833389269,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5196.921": {
+      "side": "SELL",
+      "ticket": 833389278,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5197.921": {
+      "side": "SELL",
+      "ticket": 833389288,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5198.921": {
+      "side": "SELL",
+      "ticket": 833389333,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5199.921": {
+      "side": "SELL",
+      "ticket": 833389348,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5200.921": {
+      "side": "SELL",
+      "ticket": 833389369,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5201.921": {
+      "side": "SELL",
+      "ticket": 833389377,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5202.921": {
+      "side": "SELL",
+      "ticket": 833389395,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5203.921": {
+      "side": "SELL",
+      "ticket": 833389408,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5204.921": {
+      "side": "SELL",
+      "ticket": 833389415,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5205.921": {
+      "side": "SELL",
+      "ticket": 833389429,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5164.921": {
+      "side": "BUY",
+      "ticket": 833446430,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5163.921": {
+      "side": "BUY",
+      "ticket": 833446443,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5162.921": {
+      "side": "BUY",
+      "ticket": 833446466,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5161.921": {
+      "side": "BUY",
+      "ticket": 833446483,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5160.921": {
+      "side": "BUY",
+      "ticket": 833446514,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5159.921": {
+      "side": "BUY",
+      "ticket": 833446530,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5158.921": {
+      "side": "BUY",
+      "ticket": 833446597,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5157.921": {
+      "side": "BUY",
+      "ticket": 833446614,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5156.921": {
+      "side": "BUY",
+      "ticket": 833446626,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5155.921": {
+      "side": "BUY",
+      "ticket": 833446643,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5154.921": {
+      "side": "BUY",
+      "ticket": 833446670,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5153.921": {
+      "side": "BUY",
+      "ticket": 833446691,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5152.921": {
+      "side": "BUY",
+      "ticket": 833446717,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5151.921": {
+      "side": "BUY",
+      "ticket": 833446739,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5150.921": {
+      "side": "BUY",
+      "ticket": 833446755,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5149.921": {
+      "side": "BUY",
+      "ticket": 833446804,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5148.921": {
+      "side": "BUY",
+      "ticket": 833446825,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5147.921": {
+      "side": "BUY",
+      "ticket": 833446841,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5146.921": {
+      "side": "BUY",
+      "ticket": 833446853,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5145.921": {
+      "side": "BUY",
+      "ticket": 833446878,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5206.921": {
+      "side": "SELL",
+      "ticket": 833446900,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5207.921": {
+      "side": "SELL",
+      "ticket": 833446924,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5208.921": {
+      "side": "SELL",
+      "ticket": 833446948,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5209.921": {
+      "side": "SELL",
+      "ticket": 833446970,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5210.921": {
+      "side": "SELL",
+      "ticket": 833446994,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5211.921": {
+      "side": "SELL",
+      "ticket": 833447062,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5212.921": {
+      "side": "SELL",
+      "ticket": 833447109,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5213.921": {
+      "side": "SELL",
+      "ticket": 833447135,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5214.921": {
+      "side": "SELL",
+      "ticket": 833447152,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5215.921": {
+      "side": "SELL",
+      "ticket": 833447166,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5216.921": {
+      "side": "SELL",
+      "ticket": 833447182,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5217.921": {
+      "side": "SELL",
+      "ticket": 833447192,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5218.921": {
+      "side": "SELL",
+      "ticket": 833447198,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5219.921": {
+      "side": "SELL",
+      "ticket": 833447218,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5220.921": {
+      "side": "SELL",
+      "ticket": 833447229,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5221.921": {
+      "side": "SELL",
+      "ticket": 833447238,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5222.921": {
+      "side": "SELL",
+      "ticket": 833447249,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5223.921": {
+      "side": "SELL",
+      "ticket": 833447268,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5224.921": {
+      "side": "SELL",
+      "ticket": 833447288,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5225.921": {
+      "side": "SELL",
+      "ticket": 833447310,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5144.921": {
+      "side": "BUY",
+      "ticket": 833459552,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5143.921": {
+      "side": "BUY",
+      "ticket": 833459588,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5142.921": {
+      "side": "BUY",
+      "ticket": 833459778,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5141.921": {
+      "side": "BUY",
+      "ticket": 833459855,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5140.921": {
+      "side": "BUY",
+      "ticket": 833459888,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5139.921": {
+      "side": "BUY",
+      "ticket": 833459938,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5138.921": {
+      "side": "BUY",
+      "ticket": 833459970,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5137.921": {
+      "side": "BUY",
+      "ticket": 833460015,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5136.921": {
+      "side": "BUY",
+      "ticket": 833460042,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5135.921": {
+      "side": "BUY",
+      "ticket": 833460063,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5134.921": {
+      "side": "BUY",
+      "ticket": 833460081,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5133.921": {
+      "side": "BUY",
+      "ticket": 833460125,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5132.921": {
+      "side": "BUY",
+      "ticket": 833460152,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5131.921": {
+      "side": "BUY",
+      "ticket": 833460171,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5130.921": {
+      "side": "BUY",
+      "ticket": 833460181,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5129.921": {
+      "side": "BUY",
+      "ticket": 833460200,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5128.921": {
+      "side": "BUY",
+      "ticket": 833460252,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5127.921": {
+      "side": "BUY",
+      "ticket": 833460324,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5126.921": {
+      "side": "BUY",
+      "ticket": 833460372,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5125.921": {
+      "side": "BUY",
+      "ticket": 833460386,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5226.921": {
+      "side": "SELL",
+      "ticket": 833460437,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5227.921": {
+      "side": "SELL",
+      "ticket": 833460463,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5228.921": {
+      "side": "SELL",
+      "ticket": 833460492,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5229.921": {
+      "side": "SELL",
+      "ticket": 833460550,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5230.921": {
+      "side": "SELL",
+      "ticket": 833460575,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5231.921": {
+      "side": "SELL",
+      "ticket": 833460595,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5232.921": {
+      "side": "SELL",
+      "ticket": 833460650,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5233.921": {
+      "side": "SELL",
+      "ticket": 833460672,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5234.921": {
+      "side": "SELL",
+      "ticket": 833460690,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5235.921": {
+      "side": "SELL",
+      "ticket": 833460728,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5236.921": {
+      "side": "SELL",
+      "ticket": 833460742,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5237.921": {
+      "side": "SELL",
+      "ticket": 833460752,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5238.921": {
+      "side": "SELL",
+      "ticket": 833460772,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5239.921": {
+      "side": "SELL",
+      "ticket": 833460798,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5240.921": {
+      "side": "SELL",
+      "ticket": 833460817,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5241.921": {
+      "side": "SELL",
+      "ticket": 833460836,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5242.921": {
+      "side": "SELL",
+      "ticket": 833460854,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5243.921": {
+      "side": "SELL",
+      "ticket": 833460891,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5244.921": {
+      "side": "SELL",
+      "ticket": 833460987,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5245.921": {
+      "side": "SELL",
+      "ticket": 833461002,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5186.192": {
+      "side": "BUY",
+      "ticket": 833667790,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5185.192": {
+      "side": "BUY",
+      "ticket": 833667799,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5184.192": {
+      "side": "BUY",
+      "ticket": 833667811,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5183.192": {
+      "side": "BUY",
+      "ticket": 833667825,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5182.192": {
+      "side": "BUY",
+      "ticket": 833667832,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5181.192": {
+      "side": "BUY",
+      "ticket": 833667910,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5180.192": {
+      "side": "BUY",
+      "ticket": 833667931,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5179.192": {
+      "side": "BUY",
+      "ticket": 833667948,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5178.192": {
+      "side": "BUY",
+      "ticket": 833667972,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5177.192": {
+      "side": "BUY",
+      "ticket": 833667983,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5176.192": {
+      "side": "BUY",
+      "ticket": 833668022,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5175.192": {
+      "side": "BUY",
+      "ticket": 833668070,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5174.192": {
+      "side": "BUY",
+      "ticket": 833668089,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5173.192": {
+      "side": "BUY",
+      "ticket": 833668099,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5172.192": {
+      "side": "BUY",
+      "ticket": 833668111,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5171.192": {
+      "side": "BUY",
+      "ticket": 833668128,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5170.192": {
+      "side": "BUY",
+      "ticket": 833668193,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5169.192": {
+      "side": "BUY",
+      "ticket": 833668253,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5168.192": {
+      "side": "BUY",
+      "ticket": 833668261,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5167.192": {
+      "side": "BUY",
+      "ticket": 833668277,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5188.192": {
+      "side": "SELL",
+      "ticket": 833668306,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5189.192": {
+      "side": "SELL",
+      "ticket": 833668325,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5190.192": {
+      "side": "SELL",
+      "ticket": 833668342,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5191.192": {
+      "side": "SELL",
+      "ticket": 833668352,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5192.192": {
+      "side": "SELL",
+      "ticket": 833668386,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5193.192": {
+      "side": "SELL",
+      "ticket": 833668397,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5194.192": {
+      "side": "SELL",
+      "ticket": 833668482,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5195.192": {
+      "side": "SELL",
+      "ticket": 833668488,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5196.192": {
+      "side": "SELL",
+      "ticket": 833668538,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5197.192": {
+      "side": "SELL",
+      "ticket": 833668562,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5198.192": {
+      "side": "SELL",
+      "ticket": 833668599,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5199.192": {
+      "side": "SELL",
+      "ticket": 833668635,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5200.192": {
+      "side": "SELL",
+      "ticket": 833668660,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5201.192": {
+      "side": "SELL",
+      "ticket": 833668801,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5202.192": {
+      "side": "SELL",
+      "ticket": 833668831,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5203.192": {
+      "side": "SELL",
+      "ticket": 833668849,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5204.192": {
+      "side": "SELL",
+      "ticket": 833668886,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5205.192": {
+      "side": "SELL",
+      "ticket": 833668931,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5206.192": {
+      "side": "SELL",
+      "ticket": 833668946,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5207.192": {
+      "side": "SELL",
+      "ticket": 833669001,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5187.572": {
+      "side": "BUY",
+      "ticket": 833672381,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5186.572": {
+      "side": "BUY",
+      "ticket": 833672393,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5185.572": {
+      "side": "BUY",
+      "ticket": 833672400,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5184.572": {
+      "side": "BUY",
+      "ticket": 833672408,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5183.572": {
+      "side": "BUY",
+      "ticket": 833672412,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5182.572": {
+      "side": "BUY",
+      "ticket": 833672422,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5181.572": {
+      "side": "BUY",
+      "ticket": 833672428,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5180.572": {
+      "side": "BUY",
+      "ticket": 833672462,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5179.572": {
+      "side": "BUY",
+      "ticket": 833672478,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5178.572": {
+      "side": "BUY",
+      "ticket": 833672572,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5177.572": {
+      "side": "BUY",
+      "ticket": 833672685,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5176.572": {
+      "side": "BUY",
+      "ticket": 833672713,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5175.572": {
+      "side": "BUY",
+      "ticket": 833672809,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5174.572": {
+      "side": "BUY",
+      "ticket": 833673033,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5173.572": {
+      "side": "BUY",
+      "ticket": 833673048,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5172.572": {
+      "side": "BUY",
+      "ticket": 833673107,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5171.572": {
+      "side": "BUY",
+      "ticket": 833673178,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5170.572": {
+      "side": "BUY",
+      "ticket": 833673200,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5169.572": {
+      "side": "BUY",
+      "ticket": 833673220,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5168.572": {
+      "side": "BUY",
+      "ticket": 833673254,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5189.778": {
+      "side": "BUY",
+      "ticket": 833682431,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5188.778": {
+      "side": "BUY",
+      "ticket": 833682447,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5187.778": {
+      "side": "BUY",
+      "ticket": 833682485,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5186.778": {
+      "side": "BUY",
+      "ticket": 833682526,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5185.778": {
+      "side": "BUY",
+      "ticket": 833682564,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5184.778": {
+      "side": "BUY",
+      "ticket": 833682584,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5183.778": {
+      "side": "BUY",
+      "ticket": 833682604,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5182.778": {
+      "side": "BUY",
+      "ticket": 833682622,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5181.778": {
+      "side": "BUY",
+      "ticket": 833682632,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5180.778": {
+      "side": "BUY",
+      "ticket": 833682648,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5179.778": {
+      "side": "BUY",
+      "ticket": 833682664,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5178.778": {
+      "side": "BUY",
+      "ticket": 833682696,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5177.778": {
+      "side": "BUY",
+      "ticket": 833682736,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5176.778": {
+      "side": "BUY",
+      "ticket": 833682757,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5175.778": {
+      "side": "BUY",
+      "ticket": 833682769,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5174.778": {
+      "side": "BUY",
+      "ticket": 833682795,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5173.778": {
+      "side": "BUY",
+      "ticket": 833682812,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5172.778": {
+      "side": "BUY",
+      "ticket": 833682829,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5171.778": {
+      "side": "BUY",
+      "ticket": 833682850,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5170.778": {
+      "side": "BUY",
+      "ticket": 833682878,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5187.004": {
+      "side": "BUY",
+      "ticket": 833765717,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5186.004": {
+      "side": "BUY",
+      "ticket": 833765746,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5185.004": {
+      "side": "BUY",
+      "ticket": 833765776,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5184.004": {
+      "side": "BUY",
+      "ticket": 833765822,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5183.004": {
+      "side": "BUY",
+      "ticket": 833765875,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5182.004": {
+      "side": "BUY",
+      "ticket": 833765907,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5181.004": {
+      "side": "BUY",
+      "ticket": 833765937,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5180.004": {
+      "side": "BUY",
+      "ticket": 833766048,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5179.004": {
+      "side": "BUY",
+      "ticket": 833766095,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5178.004": {
+      "side": "BUY",
+      "ticket": 833766127,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5177.004": {
+      "side": "BUY",
+      "ticket": 833766165,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5176.004": {
+      "side": "BUY",
+      "ticket": 833766208,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5175.004": {
+      "side": "BUY",
+      "ticket": 833766287,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5174.004": {
+      "side": "BUY",
+      "ticket": 833766306,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5173.004": {
+      "side": "BUY",
+      "ticket": 833766324,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5172.004": {
+      "side": "BUY",
+      "ticket": 833766360,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5171.004": {
+      "side": "BUY",
+      "ticket": 833766380,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5170.004": {
+      "side": "BUY",
+      "ticket": 833766412,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5169.004": {
+      "side": "BUY",
+      "ticket": 833766464,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5168.004": {
+      "side": "BUY",
+      "ticket": 833766510,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5208.192": {
+      "side": "SELL",
+      "ticket": 833766546,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5209.192": {
+      "side": "SELL",
+      "ticket": 833766566,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5210.192": {
+      "side": "SELL",
+      "ticket": 833766598,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5211.192": {
+      "side": "SELL",
+      "ticket": 833766643,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5212.192": {
+      "side": "SELL",
+      "ticket": 833766668,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5213.192": {
+      "side": "SELL",
+      "ticket": 833766688,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5214.192": {
+      "side": "SELL",
+      "ticket": 833766746,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5215.192": {
+      "side": "SELL",
+      "ticket": 833766784,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5216.192": {
+      "side": "SELL",
+      "ticket": 833766815,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5217.192": {
+      "side": "SELL",
+      "ticket": 833766855,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5218.192": {
+      "side": "SELL",
+      "ticket": 833766919,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5219.192": {
+      "side": "SELL",
+      "ticket": 833766976,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5220.192": {
+      "side": "SELL",
+      "ticket": 833767016,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5221.192": {
+      "side": "SELL",
+      "ticket": 833767042,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5222.192": {
+      "side": "SELL",
+      "ticket": 833767079,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5223.192": {
+      "side": "SELL",
+      "ticket": 833767135,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5224.192": {
+      "side": "SELL",
+      "ticket": 833767199,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5225.192": {
+      "side": "SELL",
+      "ticket": 833767377,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5226.192": {
+      "side": "SELL",
+      "ticket": 833767509,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5227.192": {
+      "side": "SELL",
+      "ticket": 833767563,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5188.368": {
+      "side": "BUY",
+      "ticket": 833773305,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5187.368": {
+      "side": "BUY",
+      "ticket": 833773326,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5186.368": {
+      "side": "BUY",
+      "ticket": 833773344,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5185.368": {
+      "side": "BUY",
+      "ticket": 833773362,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5184.368": {
+      "side": "BUY",
+      "ticket": 833773401,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5183.368": {
+      "side": "BUY",
+      "ticket": 833773427,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5182.368": {
+      "side": "BUY",
+      "ticket": 833773438,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5181.368": {
+      "side": "BUY",
+      "ticket": 833773456,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5180.368": {
+      "side": "BUY",
+      "ticket": 833773466,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5179.368": {
+      "side": "BUY",
+      "ticket": 833773501,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5178.368": {
+      "side": "BUY",
+      "ticket": 833773521,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5177.368": {
+      "side": "BUY",
+      "ticket": 833773545,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5176.368": {
+      "side": "BUY",
+      "ticket": 833773558,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5175.368": {
+      "side": "BUY",
+      "ticket": 833773580,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5174.368": {
+      "side": "BUY",
+      "ticket": 833773629,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5173.368": {
+      "side": "BUY",
+      "ticket": 833773668,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5172.368": {
+      "side": "BUY",
+      "ticket": 833773702,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5171.368": {
+      "side": "BUY",
+      "ticket": 833773742,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5170.368": {
+      "side": "BUY",
+      "ticket": 833773756,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5169.368": {
+      "side": "BUY",
+      "ticket": 833773767,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5190.368": {
+      "side": "BUY",
+      "ticket": 833907164,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5191.368": {
+      "side": "SELL",
+      "ticket": 833773939,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5192.368": {
+      "side": "SELL",
+      "ticket": 833773962,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5193.368": {
+      "side": "SELL",
+      "ticket": 833774005,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5194.368": {
+      "side": "SELL",
+      "ticket": 833774020,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5195.368": {
+      "side": "SELL",
+      "ticket": 833774035,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5196.368": {
+      "side": "SELL",
+      "ticket": 833774051,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5197.368": {
+      "side": "SELL",
+      "ticket": 833774062,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5198.368": {
+      "side": "SELL",
+      "ticket": 833774077,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5199.368": {
+      "side": "SELL",
+      "ticket": 833774096,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5200.368": {
+      "side": "SELL",
+      "ticket": 833774112,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5201.368": {
+      "side": "SELL",
+      "ticket": 833774130,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5202.368": {
+      "side": "SELL",
+      "ticket": 833774194,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5203.368": {
+      "side": "SELL",
+      "ticket": 833774209,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5204.368": {
+      "side": "SELL",
+      "ticket": 833774227,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5205.368": {
+      "side": "SELL",
+      "ticket": 833774245,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5206.368": {
+      "side": "SELL",
+      "ticket": 833774258,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5207.368": {
+      "side": "SELL",
+      "ticket": 833774272,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5208.368": {
+      "side": "SELL",
+      "ticket": 833774295,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5209.368": {
+      "side": "SELL",
+      "ticket": 833774334,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5187.465": {
+      "side": "SELL",
+      "ticket": 833782084,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5188.465": {
+      "side": "SELL",
+      "ticket": 833782098,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5189.465": {
+      "side": "SELL",
+      "ticket": 833782138,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5190.465": {
+      "side": "SELL",
+      "ticket": 833782166,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5191.465": {
+      "side": "SELL",
+      "ticket": 833782176,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5192.465": {
+      "side": "SELL",
+      "ticket": 833782191,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5193.465": {
+      "side": "SELL",
+      "ticket": 833782225,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5194.465": {
+      "side": "SELL",
+      "ticket": 833782247,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5195.465": {
+      "side": "SELL",
+      "ticket": 833782269,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5196.465": {
+      "side": "SELL",
+      "ticket": 833782308,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5197.465": {
+      "side": "SELL",
+      "ticket": 833782356,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5198.465": {
+      "side": "SELL",
+      "ticket": 833782382,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5199.465": {
+      "side": "SELL",
+      "ticket": 833782399,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5200.465": {
+      "side": "SELL",
+      "ticket": 833782422,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5201.465": {
+      "side": "SELL",
+      "ticket": 833782436,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5202.465": {
+      "side": "SELL",
+      "ticket": 833782454,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5203.465": {
+      "side": "SELL",
+      "ticket": 833782472,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5204.465": {
+      "side": "SELL",
+      "ticket": 833782483,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5205.465": {
+      "side": "SELL",
+      "ticket": 833782511,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5206.465": {
+      "side": "SELL",
+      "ticket": 833782545,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5168.368": {
+      "side": "BUY",
+      "ticket": 833881610,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5167.368": {
+      "side": "BUY",
+      "ticket": 833881622,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5166.368": {
+      "side": "BUY",
+      "ticket": 833881641,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5165.368": {
+      "side": "BUY",
+      "ticket": 833881655,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5164.368": {
+      "side": "BUY",
+      "ticket": 833881667,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5163.368": {
+      "side": "BUY",
+      "ticket": 833881676,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5162.368": {
+      "side": "BUY",
+      "ticket": 833881700,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5161.368": {
+      "side": "BUY",
+      "ticket": 833881710,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5160.368": {
+      "side": "BUY",
+      "ticket": 833881727,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5159.368": {
+      "side": "BUY",
+      "ticket": 833881749,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5158.368": {
+      "side": "BUY",
+      "ticket": 833881774,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5157.368": {
+      "side": "BUY",
+      "ticket": 833881799,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5156.368": {
+      "side": "BUY",
+      "ticket": 833881837,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5155.368": {
+      "side": "BUY",
+      "ticket": 833881841,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5154.368": {
+      "side": "BUY",
+      "ticket": 833882100,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5153.368": {
+      "side": "BUY",
+      "ticket": 833882181,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5152.368": {
+      "side": "BUY",
+      "ticket": 833882191,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5151.368": {
+      "side": "BUY",
+      "ticket": 833882201,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5150.368": {
+      "side": "BUY",
+      "ticket": 833882209,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5149.368": {
+      "side": "BUY",
+      "ticket": 833882218,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5186.465": {
+      "side": "SELL",
+      "ticket": 833882240,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5207.465": {
+      "side": "SELL",
+      "ticket": 833882252,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5208.465": {
+      "side": "SELL",
+      "ticket": 833882259,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5209.465": {
+      "side": "SELL",
+      "ticket": 833882343,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5210.465": {
+      "side": "SELL",
+      "ticket": 833882355,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5211.465": {
+      "side": "SELL",
+      "ticket": 833882367,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5212.465": {
+      "side": "SELL",
+      "ticket": 833882385,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5213.465": {
+      "side": "SELL",
+      "ticket": 833882394,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5214.465": {
+      "side": "SELL",
+      "ticket": 833882510,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5215.465": {
+      "side": "SELL",
+      "ticket": 833882533,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5216.465": {
+      "side": "SELL",
+      "ticket": 833882558,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5217.465": {
+      "side": "SELL",
+      "ticket": 833882588,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5218.465": {
+      "side": "SELL",
+      "ticket": 833882608,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5219.465": {
+      "side": "SELL",
+      "ticket": 833882648,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5220.465": {
+      "side": "SELL",
+      "ticket": 833882687,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5221.465": {
+      "side": "SELL",
+      "ticket": 833882730,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5222.465": {
+      "side": "SELL",
+      "ticket": 833882736,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5223.465": {
+      "side": "SELL",
+      "ticket": 833882759,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5224.465": {
+      "side": "SELL",
+      "ticket": 833882773,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5225.465": {
+      "side": "SELL",
+      "ticket": 833882829,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5226.465": {
+      "side": "SELL",
+      "ticket": 833882839,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5148.368": {
+      "side": "BUY",
+      "ticket": 833894985,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5147.368": {
+      "side": "BUY",
+      "ticket": 833895006,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5146.368": {
+      "side": "BUY",
+      "ticket": 833895016,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5145.368": {
+      "side": "BUY",
+      "ticket": 833895047,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5144.368": {
+      "side": "BUY",
+      "ticket": 833895066,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5143.368": {
+      "side": "BUY",
+      "ticket": 833895086,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5142.368": {
+      "side": "BUY",
+      "ticket": 833895105,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5141.368": {
+      "side": "BUY",
+      "ticket": 833895123,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5140.368": {
+      "side": "BUY",
+      "ticket": 833895133,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5139.368": {
+      "side": "BUY",
+      "ticket": 833895163,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5138.368": {
+      "side": "BUY",
+      "ticket": 833895181,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5137.368": {
+      "side": "BUY",
+      "ticket": 833895208,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5136.368": {
+      "side": "BUY",
+      "ticket": 833895215,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5135.368": {
+      "side": "BUY",
+      "ticket": 833895227,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5134.368": {
+      "side": "BUY",
+      "ticket": 833895246,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5133.368": {
+      "side": "BUY",
+      "ticket": 833895262,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5132.368": {
+      "side": "BUY",
+      "ticket": 833895281,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5131.368": {
+      "side": "BUY",
+      "ticket": 833895294,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5130.368": {
+      "side": "BUY",
+      "ticket": 833895312,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5129.368": {
+      "side": "BUY",
+      "ticket": 833895404,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5227.465": {
+      "side": "SELL",
+      "ticket": 833895492,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5228.465": {
+      "side": "SELL",
+      "ticket": 833895529,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5229.465": {
+      "side": "SELL",
+      "ticket": 833895575,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5230.465": {
+      "side": "SELL",
+      "ticket": 833895623,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5231.465": {
+      "side": "SELL",
+      "ticket": 833895664,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5232.465": {
+      "side": "SELL",
+      "ticket": 833895725,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5233.465": {
+      "side": "SELL",
+      "ticket": 833895761,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5234.465": {
+      "side": "SELL",
+      "ticket": 833895782,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5235.465": {
+      "side": "SELL",
+      "ticket": 833895838,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5236.465": {
+      "side": "SELL",
+      "ticket": 833895859,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5237.465": {
+      "side": "SELL",
+      "ticket": 833895950,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5238.465": {
+      "side": "SELL",
+      "ticket": 833896030,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5239.465": {
+      "side": "SELL",
+      "ticket": 833896104,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5240.465": {
+      "side": "SELL",
+      "ticket": 833896133,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5241.465": {
+      "side": "SELL",
+      "ticket": 833896178,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5242.465": {
+      "side": "SELL",
+      "ticket": 833896236,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5243.465": {
+      "side": "SELL",
+      "ticket": 833896295,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5244.465": {
+      "side": "SELL",
+      "ticket": 833896303,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5245.465": {
+      "side": "SELL",
+      "ticket": 833896309,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5246.465": {
+      "side": "SELL",
+      "ticket": 833896318,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5189.368": {
+      "side": "BUY",
+      "ticket": 833898883,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5185.465": {
+      "side": "SELL",
+      "ticket": 833939903,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5184.465": {
+      "side": "SELL",
+      "ticket": 833948786,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5128.368": {
+      "side": "BUY",
+      "ticket": 834020166,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5127.368": {
+      "side": "BUY",
+      "ticket": 834020283,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5126.368": {
+      "side": "BUY",
+      "ticket": 834020295,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5125.368": {
+      "side": "BUY",
+      "ticket": 834020333,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5124.368": {
+      "side": "BUY",
+      "ticket": 834020361,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5123.368": {
+      "side": "BUY",
+      "ticket": 834020389,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5122.368": {
+      "side": "BUY",
+      "ticket": 834020415,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5121.368": {
+      "side": "BUY",
+      "ticket": 834020477,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5120.368": {
+      "side": "BUY",
+      "ticket": 834020518,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5119.368": {
+      "side": "BUY",
+      "ticket": 834020568,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5118.368": {
+      "side": "BUY",
+      "ticket": 834020588,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5117.368": {
+      "side": "BUY",
+      "ticket": 834020622,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5116.368": {
+      "side": "BUY",
+      "ticket": 834020659,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5115.368": {
+      "side": "BUY",
+      "ticket": 834020726,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5114.368": {
+      "side": "BUY",
+      "ticket": 834020751,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5113.368": {
+      "side": "BUY",
+      "ticket": 834020787,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5112.368": {
+      "side": "BUY",
+      "ticket": 834020826,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5111.368": {
+      "side": "BUY",
+      "ticket": 834020855,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5110.368": {
+      "side": "BUY",
+      "ticket": 834020874,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5109.368": {
+      "side": "BUY",
+      "ticket": 834020898,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5183.465": {
+      "side": "SELL",
+      "ticket": 834020928,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5247.465": {
+      "side": "SELL",
+      "ticket": 834020968,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5248.465": {
+      "side": "SELL",
+      "ticket": 834020983,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5249.465": {
+      "side": "SELL",
+      "ticket": 834021020,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5250.465": {
+      "side": "SELL",
+      "ticket": 834021069,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5251.465": {
+      "side": "SELL",
+      "ticket": 834021098,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5252.465": {
+      "side": "SELL",
+      "ticket": 834021131,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5253.465": {
+      "side": "SELL",
+      "ticket": 834021168,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5254.465": {
+      "side": "SELL",
+      "ticket": 834021203,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5255.465": {
+      "side": "SELL",
+      "ticket": 834021264,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5256.465": {
+      "side": "SELL",
+      "ticket": 834021285,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5257.465": {
+      "side": "SELL",
+      "ticket": 834021297,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5258.465": {
+      "side": "SELL",
+      "ticket": 834021327,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5259.465": {
+      "side": "SELL",
+      "ticket": 834021380,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5260.465": {
+      "side": "SELL",
+      "ticket": 834021471,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5261.465": {
+      "side": "SELL",
+      "ticket": 834021505,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5262.465": {
+      "side": "SELL",
+      "ticket": 834021523,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5263.465": {
+      "side": "SELL",
+      "ticket": 834021557,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5264.465": {
+      "side": "SELL",
+      "ticket": 834021594,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5265.465": {
+      "side": "SELL",
+      "ticket": 834021691,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5266.465": {
+      "side": "SELL",
+      "ticket": 834021835,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5182.465": {
+      "side": "SELL",
+      "ticket": 834023857,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5181.465": {
+      "side": "SELL",
+      "ticket": 834026935,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5180.465": {
+      "side": "SELL",
+      "ticket": 834031267,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5179.465": {
+      "side": "SELL",
+      "ticket": 834040299,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5178.465": {
+      "side": "SELL",
+      "ticket": 834051309,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5177.465": {
+      "side": "SELL",
+      "ticket": 834061376,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5176.465": {
+      "side": "SELL",
+      "ticket": 834067732,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5175.465": {
+      "side": "SELL",
+      "ticket": 834102960,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5174.465": {
+      "side": "SELL",
+      "ticket": 834108103,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    },
+    "5173.465": {
+      "side": "SELL",
+      "ticket": 834120518,
+      "status": "pending",
+      "symbol": "XAUUSDm"
+    }
+  },
+  "grid_progress": {
+    "XAUUSDm": {
+      "BUY": {
+        "base_price": 5189.368,
+        "last_index": 80,
+        "first_index": -1
+      },
+      "SELL": {
+        "base_price": 5186.465,
+        "last_index": 80,
+        "first_index": -13
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@ class MT5Broker:
             mt5.shutdown()
             await asyncio.sleep(1)
             
-            terminal_path = os.getenv("MT5_TERMINAL_PATH", r"C:\Program Files\MetaTrader 5 EXNESS\terminal64.exe")
+            terminal_path = os.getenv("MT5_TERMINAL_PATH", r"C:/Program Files/MetaTrader 5 EXNESS/terminal64.exe")
             
             success = False
             for i in range(3):

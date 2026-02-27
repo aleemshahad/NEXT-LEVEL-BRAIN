@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NEXT LEVEL BRAIN - Live Trading System (CLI only)
+NEXT LEVEL TRADING SYSTEM - Live Trading System (CLI only)
 All-in-one live trading with AI enhancement
 Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)
 """
@@ -570,7 +570,7 @@ class GridManager:
         self.magic_buy = 777001
         self.magic_sell = 777002
         self.grid_size = grid_config.get('size', 300)
-        self.spacing = grid_config.get('spacing', 1.0)  # Spacing in $
+        self.spacing = grid_config.get('spacing', 1.0)  # Base spacing in $ (calibrated for Gold ~$2900)
         self.lot_size = grid_config.get('lot_size', 0.01)
         self.per_trade_profit = 1.0                     # $ profit per trade target
         self.mode = grid_config.get('mode', 'BOTH') 
@@ -586,6 +586,31 @@ class GridManager:
         # State Persistence
         self.state_file = Path("logs/grid_state.json")
         self._load_state()
+
+    def _get_effective_spacing(self, symbol: str, current_price: float) -> float:
+        """
+        Auto-scale grid spacing based on asset price.
+        Base: $1.0 spacing for Gold (~$2900) = ~0.035% of price.
+        For cheaper assets (e.g. Oil ~$51), spacing scales down proportionally
+        so orders stay at the same % distance from price.
+        Minimum spacing enforced via symbol tick_size.
+        """
+        REFERENCE_PRICE = 2900.0  # Gold baseline
+        SPACING_PCT = self.spacing / REFERENCE_PRICE  # ~0.000345 (0.035%)
+        
+        effective = current_price * SPACING_PCT
+        
+        # Enforce minimum spacing = 5 * tick_size to avoid "too close" rejections
+        symbol_info = mt5.symbol_info(symbol)
+        if symbol_info:
+            tick_size = getattr(symbol_info, 'trade_tick_size', 0.0)
+            min_spacing = tick_size * 5 if tick_size > 0 else 0.01
+            effective = max(effective, min_spacing)
+            # Round to tick_size
+            if tick_size > 0:
+                effective = round(round(effective / tick_size) * tick_size, symbol_info.digits)
+        
+        return effective
 
     def _save_state(self):
         """Save grid progress to file"""
@@ -628,6 +653,9 @@ class GridManager:
             if not symbol_info:
                 logger.error(f"Cannot update grid: Symbol {symbol} not found")
                 return
+
+            # Dynamic spacing based on asset price
+            effective_spacing = self._get_effective_spacing(symbol, current_price)
 
             # 1. Update Grid Positions (Raw objects for ProfitController)
             raw_positions = mt5.positions_get(symbol=symbol)
@@ -672,10 +700,10 @@ class GridManager:
                 # A. ROLLING (Front-end): Follow price moving DOWN
                 # Build SELL limits behind market as it drops
                 while True:
-                    front_price = base_price + ((first_idx + 1) * self.spacing)
-                    if current_price < front_price - (self.spacing * 1.01):
+                    front_price = base_price + ((first_idx + 1) * effective_spacing)
+                    if current_price < front_price - (effective_spacing * 1.01):
                         new_idx = first_idx
-                        entry_price = base_price + (new_idx * self.spacing)
+                        entry_price = base_price + (new_idx * effective_spacing)
                         # Spread safety
                         if entry_price <= current_price + (symbol_info.spread * symbol_info.point): break
                         
@@ -694,10 +722,10 @@ class GridManager:
                 if len(sell_pendings) <= self.trigger_threshold and last_idx < self.total_target:
                     num_to_place = self.batch_size
                     success_count = 0
-                    start_price = base_price + ((last_idx + 1) * self.spacing)
+                    start_price = base_price + ((last_idx + 1) * effective_spacing)
                     for _ in range(num_to_place):
                         last_idx += 1
-                        entry_price = base_price + (last_idx * self.spacing)
+                        entry_price = base_price + (last_idx * effective_spacing)
                         # Avoid placing right on top of market
                         if entry_price <= current_price + (symbol_info.spread * symbol_info.point): continue
                         res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_SELL_LIMIT, self.lot_size, entry_price, self.magic_sell)
@@ -730,10 +758,10 @@ class GridManager:
                 # A. ROLLING (Front-end): Follow price moving UP
                 # Build BUY limits behind market as it rises
                 while True:
-                    front_price = base_price - ((first_idx + 1) * self.spacing)
-                    if current_price > front_price + (self.spacing * 1.01):
+                    front_price = base_price - ((first_idx + 1) * effective_spacing)
+                    if current_price > front_price + (effective_spacing * 1.01):
                         new_idx = first_idx
-                        entry_price = base_price - (new_idx * self.spacing)
+                        entry_price = base_price - (new_idx * effective_spacing)
                         # Spread safety
                         if entry_price >= current_price - (symbol_info.spread * symbol_info.point): break
                         res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_BUY_LIMIT, self.lot_size, entry_price, self.magic_buy)
@@ -752,7 +780,7 @@ class GridManager:
                     num_to_place = self.batch_size
                     for _ in range(num_to_place):
                         last_idx += 1
-                        entry_price = base_price - (last_idx * self.spacing)
+                        entry_price = base_price - (last_idx * effective_spacing)
                         if entry_price >= current_price - (symbol_info.spread * symbol_info.point): continue
                         res = await self.broker.place_pending_order(symbol, mt5.ORDER_TYPE_BUY_LIMIT, self.lot_size, entry_price, self.magic_buy)
                         if res.get('error') == 'MARKET_CLOSED':
@@ -856,7 +884,7 @@ class LiveTradingSystem:
     async def initialize(self) -> bool:
         """Initialize the trading system"""
         try:
-            logger.info("🧠 Initializing NEXT LEVEL BRAIN Live Trading System...")
+            logger.info("🧠 Initializing NEXT LEVEL TRADING SYSTEM Live Trading System...")
             
             # Connect to broker
             if not await self.broker.connect():
@@ -871,7 +899,7 @@ class LiveTradingSystem:
             # Cleanup removed: User handles this manually via Choice 6
             try:
                 import subprocess
-                subprocess.Popen([sys.executable, "live_dashboard.py"], creationflags=subprocess.CREATE_NEW_CONSOLE if os.name == 'nt' else 0)
+                subprocess.Popen([sys.executable, "live_dashboard.py"], creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
                 logger.info("🚀 Live Dashboard auto-opened.")
             except Exception as e:
                 logger.warning(f"Failed to auto-open dashboard: {e}")
@@ -1017,7 +1045,7 @@ class LiveTradingSystem:
                 daily_change = current_balance - self.start_balance
                 
                 print(f"\n{'='*50}")
-                print(f"🧠 NEXT LEVEL BRAIN - LIVE TRADING STATUS")
+                print(f"🧠 NEXT LEVEL TRADING SYSTEM - LIVE TRADING STATUS")
                 print(f"{'='*50}")
                 print(f"💰 Balance: ${current_balance:.2f}")
                 print(f"📈 Daily P&L: ${daily_change:.2f} (Start: ${self.start_balance:.2f})")
@@ -1055,18 +1083,47 @@ class LiveTradingSystem:
             
             self.running = True
             try:
+                # On every fresh startup: write new dashboard_reset.json so history starts from NOW
+                try:
+                    dash_reset_file = Path("logs/dashboard_reset.json")
+                    dash_reset_file.parent.mkdir(parents=True, exist_ok=True)
+                    with open(dash_reset_file, 'w') as f:
+                        json.dump({'reset_timestamp': time.time()}, f)
+                except: pass
+
                 # Sync Equity Milestone Baseline on Startup
                 acc = mt5.account_info()
                 if acc:
                     ctrl = self.grid_manager.profit_ctrl
                     stored_baseline = ctrl.equity_milestone_state.get('baseline_equity', 0)
-                    # If no baseline or baseline is significantly HIGHER than current (meaning we had a loss)
-                    # Auto-sync it so the $100 target starts from current reality
-                    if stored_baseline <= 0 or acc.equity < (stored_baseline - 10):
-                        logger.info(f"🔄 Auto-Syncing Equity Baseline to current equity: ${acc.equity:.2f}")
-                    # Auto-Sync Baseline if not set or significantly different
-                    ctrl.reset_equity_milestone(acc.equity)
-                    logger.info(f"📊 Equity Milestone Synced. Baseline: ${acc.equity:.2f} | Target: ${acc.equity+100:.2f}")
+                    
+                    # Check if a reset signal is pending (dashboard reset was just done)
+                    reset_signal = Path("logs/global_reset.signal")
+                    has_pending_reset = reset_signal.exists()
+                    
+                    # If reset is pending: immediately zero out the dashboard bridge file
+                    # so the dashboard shows $0.00 right away (BEFORE main loop detects the signal)
+                    if has_pending_reset:
+                        try:
+                            progress_file = Path("logs/milestone_progress.json")
+                            progress_file.parent.mkdir(parents=True, exist_ok=True)
+                            with open(progress_file, 'w') as f:
+                                json.dump({'current': acc.equity, 'baseline': acc.equity,
+                                           'target': acc.equity + 100.0, 'progress': 0.0,
+                                           'target_inc': 100.0, 'timestamp': time.time()}, f)
+                        except: pass
+                    
+                    # Only auto-sync if: no baseline set, or equity dropped significantly below baseline
+                    # Do NOT auto-sync if a pending reset exists (reset flow will handle it)
+                    # Do NOT auto-sync if baseline is valid and close to current equity
+                    if not has_pending_reset:
+                        if stored_baseline <= 0 or acc.equity < (stored_baseline - 10):
+                            logger.info(f"🔄 Auto-Syncing Equity Baseline to current equity: ${acc.equity:.2f}")
+                            ctrl.reset_equity_milestone(acc.equity)
+                            logger.info(f"📊 Equity Milestone Synced. Baseline: ${acc.equity:.2f} | Target: ${acc.equity+100:.2f}")
+                        else:
+                            # Baseline is valid, just log it
+                            logger.info(f"📊 Equity Milestone Loaded. Baseline: ${stored_baseline:.2f} | Target: ${stored_baseline+100:.2f}")
             except Exception as e:
                 logger.error(f"Error during equity baseline sync: {e}")
 
@@ -1106,7 +1163,17 @@ class LiveTradingSystem:
 
                         try:
                             reset_signal.unlink() # Delete signal
+                            # Update dashboard reset timestamp so history shows 0 on fresh restart
+                            try:
+                                dash_reset_file = Path("logs/dashboard_reset.json")
+                                dash_reset_file.parent.mkdir(parents=True, exist_ok=True)
+                                with open(dash_reset_file, 'w') as f:
+                                    json.dump({'reset_timestamp': time.time()}, f)
+                            except: pass
                             logger.success("✅ Global Reset Complete. System Clean.")
+                            # Set fresh baseline from current equity so restart loads correct data
+                            if acc:
+                                self.grid_manager.profit_ctrl.reset_equity_milestone(acc.equity)
                         except Exception as e:
                             logger.error(f"Failed to delete reset signal: {e}")
                         
@@ -1279,7 +1346,7 @@ class LiveTradingSystem:
             max_dd_pct = np.max(drawdown_pct) if len(drawdown_pct) > 0 else 0
             
             report = [
-                "# 🧠 NEXT LEVEL BRAIN - LIVE PERFORMANCE REPORT",
+                "# 🧠 NEXT LEVEL TRADING SYSTEM - LIVE PERFORMANCE REPORT",
                 f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
                 f"**Tracking Period:** Last 30 Days",
                 f"**Strategy:** {self.strategy}",
@@ -1311,7 +1378,7 @@ class LiveTradingSystem:
 def select_trade_setup():
     """Simplified setup selection as requested"""
     print("\n" + "="*60)
-    print("🚀 NEXT LEVEL BRAIN - QUICK LAUNCH (GOLD ONLY)")
+    print("🚀 NEXT LEVEL TRADING SYSTEM - QUICK LAUNCH (GOLD ONLY)")
     print("="*60)
     
     # 1. Strategy/Direction
@@ -1341,7 +1408,7 @@ def select_trade_setup():
         if choice == "4":
             print(" Opening Live Dashboard...")
             import subprocess
-            subprocess.Popen([sys.executable, "live_dashboard.py"], creationflags=subprocess.CREATE_NEW_CONSOLE if os.name == 'nt' else 0)
+            subprocess.Popen([sys.executable, "live_dashboard.py"], creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
             print("✅ Dashboard launched. Continuing...")
             continue
         if choice == "5":

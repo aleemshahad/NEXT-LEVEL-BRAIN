@@ -1,9 +1,9 @@
 """
-🧠 NEXT LEVEL BRAIN — EXE Builder
+🧠 NEXT LEVEL TRADING SYSTEM — EXE Builder
 Run this script to create a portable .exe file
 
 Usage:  python build_exe.py
-Output: dist/NEXT_LEVEL_BRAIN.exe
+Output: dist/NEXT_LEVEL_TRADING_SYSTEM.exe
 """
 
 import subprocess
@@ -15,7 +15,7 @@ PROJECT_ROOT = Path(__file__).parent.resolve()
 
 def main():
     print("=" * 60)
-    print("🧠 NEXT LEVEL BRAIN — EXE Builder")
+    print("🧠 NEXT LEVEL TRADING SYSTEM — EXE Builder")
     print("=" * 60)
     print()
 
@@ -38,7 +38,7 @@ def main():
         sys.executable, "-m", "PyInstaller",
         "--onedir",                 # One directory (faster, more reliable)
         "--windowed",               # No console window (GUI app)
-        "--name", "NEXT_LEVEL_BRAIN",
+        "--name", "NEXT_LEVEL_TRADING_SYSTEM",
         "--add-data", f"config.yaml;.",         # Include config
         "--hidden-import", "customtkinter",
         "--hidden-import", "yaml",
@@ -64,7 +64,7 @@ def main():
         print(f"   🎨 Icon: {icon}")
 
     print(f"   📁 Source: brain_app.py")
-    print(f"   📁 Output: dist/NEXT_LEVEL_BRAIN/")
+    print(f"   📁 Output: dist/NEXT_LEVEL_TRADING_SYSTEM/")
     print()
 
     result = subprocess.run(cmd, cwd=str(PROJECT_ROOT))
@@ -75,12 +75,12 @@ def main():
         print("✅ BUILD SUCCESSFUL!")
         print("=" * 60)
         print()
-        print(f"📁 EXE Location: {PROJECT_ROOT / 'dist' / 'NEXT_LEVEL_BRAIN'}")
+        print(f"📁 EXE Location: {PROJECT_ROOT / 'dist' / 'NEXT_LEVEL_TRADING_SYSTEM'}")
         print()
         print("📋 Distribution Instructions:")
-        print("   1. 'dist/NEXT_LEVEL_BRAIN/' folder ko ZIP karo")
+        print("   1. 'dist/NEXT_LEVEL_TRADING_SYSTEM/' folder ko ZIP karo")
         print("   2. ZIP file bhejo recipient ko")
-        print("   3. Recipient extract karega aur NEXT_LEVEL_BRAIN.exe chalayega")
+        print("   3. Recipient extract karega aur NEXT_LEVEL_TRADING_SYSTEM.exe chalayega")
         print()
         print("⚠️ Requirements for recipient:")
         print("   - MetaTrader 5 installed hona chahiye")
@@ -88,7 +88,7 @@ def main():
         print()
 
         # Copy config files to dist
-        dist_dir = PROJECT_ROOT / "dist" / "NEXT_LEVEL_BRAIN"
+        dist_dir = PROJECT_ROOT / "dist" / "NEXT_LEVEL_TRADING_SYSTEM"
         if dist_dir.exists():
             import shutil
             trading_files = [
@@ -110,7 +110,7 @@ def main():
                 (dist_dir / d).mkdir(exist_ok=True)
 
             print()
-            print(f"🎉 Ready! Run: {dist_dir / 'NEXT_LEVEL_BRAIN.exe'}")
+            print(f"🎉 Ready! Run: {dist_dir / 'NEXT_LEVEL_TRADING_SYSTEM.exe'}")
     else:
         print()
         print("❌ Build failed! Check errors above.")
