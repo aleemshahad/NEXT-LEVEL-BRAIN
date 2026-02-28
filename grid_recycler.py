@@ -134,16 +134,16 @@ class GridRecycler:
                 if self.mode != "BOTH" and side != self.mode.replace("_ONLY", ""):
                     continue
                     
-                side_pendings = {round(o.price_open, 2): o for o in active_pendings if (o.magic == self.magic_buy if side == 'BUY' else o.magic == self.magic_sell)}
-                side_positions = {round(p.price_open, 2): p for p in recycler_objs if (p.magic == self.magic_buy if side == 'BUY' else p.magic == self.magic_sell)}
-                
+                # BTC Optimization: Use $50 spacing instead of default $1 for Bitcoin
+                spacing = 50.0 if "BTC" in symbol.upper() else self.spacing
+
                 # SNAP ANCHOR: Round to nearest whole spacing (e.g. $1 increments)
-                anchor = round(current_price / self.spacing) * self.spacing
+                anchor = round(current_price / spacing) * spacing
                 
                 # A. MAINTAIN GRID: Fill levels relative to anchor
-                # We maintain a window of [batch_size] orders centered $1 away from market
+                # We maintain a window of [batch_size] orders centered away from market
                 for i in range(1, self.batch_size + 1):
-                    level_price = anchor - (i * self.spacing) if side == 'BUY' else anchor + (i * self.spacing)
+                    level_price = anchor - (i * spacing) if side == 'BUY' else anchor + (i * spacing)
                     level_price = round(round(level_price / symbol_info.trade_tick_size) * symbol_info.trade_tick_size, symbol_info.digits)
                     r_price = round(level_price, 2)
                     
@@ -159,7 +159,7 @@ class GridRecycler:
                     await self.broker.place_pending_order(symbol, order_type, self.lot_size, level_price, magic)
 
                 # B. PRUNE: Remove far-away orders to save slots
-                limit_dist = (self.batch_size + 10) * self.spacing
+                limit_dist = (self.batch_size + 10) * spacing
                 for p_price, order in side_pendings.items():
                     if abs(p_price - anchor) > limit_dist:
                         await self.broker.cancel_order(order.ticket)

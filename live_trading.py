@@ -87,39 +87,83 @@ class TradingBrain:
         except Exception as e:
             logger.error(f"Failed to load memories: {e}")
 
+    def _save_memories(self):
+        """Persist memories to disk"""
+        try:
+            memory_file = Path("models/ai_memories.json")
+            memory_file.parent.mkdir(parents=True, exist_ok=True)
+            import json
+            with open(memory_file, 'w') as f:
+                # Store datetime as string for JSON
+                json.dump(self.memories, f, default=str, indent=2)
+        except Exception as e:
+            logger.error(f"Failed to save memories: {e}")
+
+    def _get_ai_adjustment(self, symbol: str, action: str) -> Tuple[float, str]:
+        """
+        Analyze past memories to adjust current confidence.
+        Returns: (adjustment_val, reasoning)
+        """
+        if not self.memories:
+            return 0.0, ""
+
+        # Filter relevant memories (last 100 for this symbol/action)
+        relevant = [m for m in self.memories if m.get('symbol') == symbol and m.get('action') == action]
+        if not relevant:
+            return 0.0, ""
+
+        recent = relevant[-20:] # Last 20 trades
+        wins = [m for m in recent if m.get('success', False)]
+        win_rate = len(wins) / len(recent)
+
+        if win_rate >= 0.7:
+            return 0.2, f"AI Learning: High win rate on {symbol} {action} ({win_rate:.0%})"
+        elif win_rate <= 0.3:
+            return -0.3, f"AI Learning: Low success on {symbol} {action} ({win_rate:.0%})"
+        
+        return 0.0, ""
+
     def _is_silver_bullet_time(self, timestamp: datetime) -> bool:
         """
-        Check if time is within ICT Silver Bullet windows (EST based).
-        Windows: 3-4 AM (London), 10-11 AM (NY AM), 2-3 PM (NY PM).
-        
-        We assume NY time for these windows.
+        ICT Silver Bullet Windows (New York EST = UTC-5).
+        Windows:
+          - 3:00 AM - 4:00 AM EST  (London Open)
+          - 10:00 AM - 11:00 AM EST (NY AM Session)
+          - 2:00 PM - 3:00 PM EST  (NY PM Session)
+
+        MT5_SERVER_TIME_OFFSET in .env:
+          Set this to convert your system time to EST.
+          Pakistan (PKT) = UTC+5, EST = UTC-5 => offset = -10
+          MT5 Server (EET/UTC+2) => offset = -7
         """
-        # If user has not configured timezone, we assume current system time is NY or MT5 Server time.
-        # To be safe, we check 'MT5_SERVER_TIME_OFFSET' if defined in .env
-        offset = int(os.getenv("MT5_SERVER_TIME_OFFSET", 0))
+        offset = int(os.getenv("MT5_SERVER_TIME_OFFSET", -10))  # default PKT -> EST
         adj_time = timestamp + timedelta(hours=offset)
         h = adj_time.hour
-        
-        if h in [3, 10, 14]:
-            return True
+        m = adj_time.minute
+
+        # Full Silver Bullet window ranges (start inclusive, end exclusive)
+        windows = [(3, 4), (10, 11), (14, 15)]
+        for (start, end) in windows:
+            if start <= h < end:
+                return True
         return False
 
     def analyze_market(self, symbol: str, data: pd.DataFrame) -> Dict:
         """ICT/SMC AI market analysis"""
         try:
-            if len(data) < 50:
+            # BTC/ETH: More data for volatility, wider lookback
+            lookback = 100 if "BTC" in symbol or "ETH" in symbol else 50
+            if len(data) < lookback:
                 return {'action': 'HOLD', 'bias': 'NEUTRAL', 'confidence': 0.0, 'reasoning': 'Insufficient data'}
             
-            # Add technical indicators
             data = self._add_indicators(data)
-            index = len(data) - 1  # Current bar index
+            index = len(data) - 1
             
-            # ALWAYS determine market bias for systems like Grid
-            market_bias = self._determine_market_bias(data, index)
+            market_bias = self._determine_market_bias(data, index, symbol)
             
-            # Check Silver Bullet Time (Only blocks ICT execution, not bias detection)
+            # Silver Bullet / Killzone Time
             current_time = datetime.now()
-            is_sb_time = self._is_silver_bullet_time(current_time)
+            is_sb_time = True if ("BTC" in symbol or "ETH" in symbol) else self._is_silver_bullet_time(current_time)
             
             # Update sentiment from file regularly
             self._check_sentiment_bias()
@@ -165,10 +209,10 @@ class TradingBrain:
                 signals_present.append(f"Order Block ({order_block['type']})")
                 signal_strengths.append(order_block['strength'])
             
-            # BULLISH SETUP - Need at least 2 of 3 main signals
+            # BULLISH SETUP - Need at least 1.5 confluence score
             if market_bias == 'BULLISH':
                 bullish_conditions = 0
-                
+
                 if liquidity_sweep.get('type') == 'BELOW_LOW':
                     bullish_conditions += 1
                 if fvg.get('type') == 'BULLISH':
@@ -179,20 +223,27 @@ class TradingBrain:
                     bullish_conditions += 0.5
                 if ote_level['valid']:
                     bullish_conditions += 0.5
-                
-                if bullish_conditions >= 2.0:
+
+                if bullish_conditions >= 1.5:
                     confidence = self._calculate_confluence_score(signal_strengths)
-                    
+
+                    # AI Memory Adjustment
+                    ai_adj, ai_reason = self._get_ai_adjustment(symbol, 'BUY')
+                    confidence = max(0.0, min(1.0, confidence + ai_adj))
+                    final_reasoning = f'ICT Bullish: {", ".join(signals_present)} (Score: {bullish_conditions:.1f})'
+                    if ai_reason:
+                        final_reasoning += f" | {ai_reason}"
+
                     if liquidity_sweep['detected']:
                         stop_loss = liquidity_sweep['swept_level'] - (current['close'] * 0.001)
                     else:
                         stop_loss = current['close'] * 0.98
-                    
+
                     return {
                         'action': 'BUY',
                         'bias': 'BULLISH',
                         'confidence': confidence,
-                        'reasoning': f'ICT Bullish: {", ".join(signals_present)} (Score: {bullish_conditions:.1f})',
+                        'reasoning': final_reasoning,
                         'entry_price': current['close'],
                         'stop_loss': stop_loss,
                         'take_profit': self._find_next_liquidity_pool(data, index, 'UP')
@@ -214,8 +265,15 @@ class TradingBrain:
                 if ote_level['valid']:
                     bearish_conditions += 0.5
                 
-                if bearish_conditions >= 2.0:
+                if bearish_conditions >= 1.5:
                     confidence = self._calculate_confluence_score(signal_strengths)
+
+                    # AI Memory Adjustment
+                    ai_adj, ai_reason = self._get_ai_adjustment(symbol, 'SELL')
+                    confidence = max(0.0, min(1.0, confidence + ai_adj))
+                    final_reasoning = f'ICT Bearish: {", ".join(signals_present)} (Score: {bearish_conditions:.1f})'
+                    if ai_reason:
+                        final_reasoning += f" | {ai_reason}"
                     
                     if liquidity_sweep['detected']:
                         stop_loss = liquidity_sweep['swept_level'] + (current['close'] * 0.001)
@@ -226,7 +284,7 @@ class TradingBrain:
                         'action': 'SELL',
                         'bias': 'BEARISH',
                         'confidence': confidence,
-                        'reasoning': f'ICT Bearish: {", ".join(signals_present)} (Score: {bearish_conditions:.1f})',
+                        'reasoning': final_reasoning,
                         'entry_price': current['close'],
                         'stop_loss': stop_loss,
                         'take_profit': self._find_next_liquidity_pool(data, index, 'DOWN')
@@ -273,27 +331,22 @@ class TradingBrain:
             logger.error(f"Error adding indicators: {e}")
             return df
     
-    def _determine_market_bias(self, df: pd.DataFrame, index: int) -> str:
-        """Determine market bias using MSS (Market Structure Shift)"""
+    def _determine_market_bias(self, df: pd.DataFrame, index: int, symbol: str = "") -> str:
+        """MSS Sensitive Bias Detection"""
         try:
-            lookback = 50  # More lookback for M5 timeframe
-            if index < lookback:
-                return 'NEUTRAL'
+            is_crypto = "BTC" in symbol or "ETH" in symbol
+            lookback = 60 if is_crypto else 40
+            sens = 0.0002 if is_crypto else 0.0005 # Sensitivity
             
             recent_data = df.iloc[index-lookback:index+1]
-            highs = recent_data['high'].rolling(3, center=True).max()  # Smaller window for M5
-            lows = recent_data['low'].rolling(3, center=True).min()
+            highs = recent_data['high'].rolling(4, center=True).max()
+            lows = recent_data['low'].rolling(4, center=True).min()
             current_price = df.iloc[index]['close']
             
-            recent_high = highs.max()
-            recent_low = lows.min()
-            
-            if current_price > recent_high * 0.9995:  # More sensitive for M5
-                return 'BULLISH'
-            elif current_price < recent_low * 1.0005:  # More sensitive for M5
-                return 'BEARISH'
-            else:
-                return 'NEUTRAL'
+            # Simplified Flow: If price breaks range high/low significantly
+            if current_price > highs.max() * (1 - sens): return 'BULLISH'
+            if current_price < lows.min() * (1 + sens): return 'BEARISH'
+            return 'NEUTRAL'
         except Exception:
             return 'NEUTRAL'
     
@@ -361,22 +414,22 @@ class TradingBrain:
         except Exception:
             return {'zone': 'NEUTRAL'}
     
-    def _detect_order_block(self, df: pd.DataFrame, index: int, bias: str) -> Dict:
-        """Detect institutional order blocks"""
+    def _detect_order_block(self, df: pd.DataFrame, index: int, bias: str, symbol: str = "") -> Dict:
+        """Enhanced Order Block Detection for High Price Symbols"""
         try:
-            lookback = 15
-            if index < lookback:
-                return {'detected': False}
+            is_crypto = "BTC" in symbol or "ETH" in symbol
+            lookback = 12
+            threshold = 0.0008 if is_crypto else 0.0015 # More sensitive for BTC
             
             for i in range(index-lookback, index-1):
                 bar = df.iloc[i]
                 next_bar = df.iloc[i+1]
                 price_change = abs(next_bar['close'] - bar['close']) / bar['close']
                 
-                if bias == 'BULLISH' and price_change > 0.002 and next_bar['close'] > bar['close']:  # 0.2% for M5
-                    return {'detected': True, 'type': 'BULLISH', 'high': bar['high'], 'low': bar['low'], 'strength': min(price_change * 10, 1.0)}
-                elif bias == 'BEARISH' and price_change > 0.002 and next_bar['close'] < bar['close']:  # 0.2% for M5
-                    return {'detected': True, 'type': 'BEARISH', 'high': bar['high'], 'low': bar['low'], 'strength': min(price_change * 10, 1.0)}
+                if bias == 'BULLISH' and price_change > threshold and next_bar['close'] > bar['close']:
+                    return {'detected': True, 'type': 'BULLISH', 'high': bar['high'], 'low': bar['low'], 'strength': min(price_change * 20, 1.0)}
+                elif bias == 'BEARISH' and price_change > threshold and next_bar['close'] < bar['close']:
+                    return {'detected': True, 'type': 'BEARISH', 'high': bar['high'], 'low': bar['low'], 'strength': min(price_change * 20, 1.0)}
             
             return {'detected': False}
         except Exception:
@@ -431,16 +484,19 @@ class TradingBrain:
     def remember_trade(self, trade_data: Dict):
         """Store trade in memory for learning"""
         self.memories.append({
-            'timestamp': datetime.now(),
+            'timestamp': str(datetime.now()),
             'symbol': trade_data.get('symbol'),
             'action': trade_data.get('action'),
-            'success': trade_data.get('pnl', 0) > 0,
-            'pnl': trade_data.get('pnl', 0)
+            'success': trade_data.get('success', False),
+            'pnl': trade_data.get('pnl', 0),
+            'confidence': trade_data.get('confidence', 0.0)
         })
         
         # Keep only last 1000 memories
         if len(self.memories) > 1000:
             self.memories = self.memories[-1000:]
+            
+        self._save_memories()
 
 class ICTAnalyzer:
     """ICT/SMC Strategy Implementation"""
@@ -632,6 +688,9 @@ class GridManager:
                 logger.error(f"Cannot update grid: Symbol {symbol} not found")
                 return
 
+            # BTC Optimization: Use $50 spacing instead of default $1 for Bitcoin's higher price
+            spacing = 50.0 if "BTC" in symbol.upper() else self.spacing
+
             # 1. Update Grid Positions (Raw objects for ProfitController)
             raw_positions = mt5.positions_get(symbol=symbol)
             if raw_positions is None: raw_positions = []
@@ -663,14 +722,14 @@ class GridManager:
                 sell_positions = {round(p.price_open, 2): p for p in grid_objs if p.magic == self.magic_sell}
                 
                 # SNAP ANCHOR: Round to nearest whole spacing (e.g. $1 increments)
-                # This ensures rolling only occurs in $1 jumps, not 10-cent intervals.
-                anchor = round(current_price / self.spacing) * self.spacing
+                # This ensures rolling only occurs in jumps of 'spacing', not 10-cent intervals.
+                anchor = round(current_price / spacing) * spacing
                 
                 # A. MAINTAIN GRID: Fill levels from anchor + 1 up to total_target
                 # This keeps the grid centered around the current price.
                 success_count = 0
                 for i in range(1, self.batch_size + 1):
-                    level_price = anchor + (i * self.spacing)
+                    level_price = anchor + (i * spacing)
                     level_price = round(round(level_price / symbol_info.trade_tick_size) * symbol_info.trade_tick_size, symbol_info.digits)
                     r_price = round(level_price, 2)
                     
@@ -686,7 +745,7 @@ class GridManager:
 
                 # B. PRUNE: Remove orders too far from the current market anchor
                 # This prevents old orders at 4900 when the market is at 5200.
-                limit_dist = (self.batch_size + 5) * self.spacing
+                limit_dist = (self.batch_size + 5) * spacing
                 for p_price, order in sell_pendings.items():
                     if abs(p_price - anchor) > limit_dist:
                         await self.broker.cancel_order(order.ticket)
@@ -697,12 +756,12 @@ class GridManager:
                 buy_positions = {round(p.price_open, 2): p for p in grid_objs if p.magic == self.magic_buy}
                 
                 # SNAP ANCHOR
-                anchor = round(current_price / self.spacing) * self.spacing
+                anchor = round(current_price / spacing) * spacing
                 
                 # A. MAINTAIN GRID: Fill levels from anchor - 1 down
                 success_count = 0
                 for i in range(1, self.batch_size + 1):
-                    level_price = anchor - (i * self.spacing)
+                    level_price = anchor - (i * spacing)
                     level_price = round(round(level_price / symbol_info.trade_tick_size) * symbol_info.trade_tick_size, symbol_info.digits)
                     r_price = round(level_price, 2)
                     
@@ -716,7 +775,7 @@ class GridManager:
                     elif res.get('error') == 'MARKET_CLOSED': break
 
                 # B. PRUNE: Remove far-away orders
-                limit_dist = (self.batch_size + 5) * self.spacing
+                limit_dist = (self.batch_size + 5) * spacing
                 for p_price, order in buy_pendings.items():
                     if abs(p_price - anchor) > limit_dist:
                         await self.broker.cancel_order(order.ticket)
@@ -1245,6 +1304,20 @@ class LiveTradingSystem:
                     })
             
             self.trade_history = new_history
+            
+            # Synchronize AI Memories with actual historical deals
+            # We clear and rebuild to ensure memories are always 100% accurate from MT5 history
+            self.ai_brain.memories = [] 
+            for t in self.trade_history:
+                # We only want to learn from ICT strategy trades (typically have comments or specific magic numbers)
+                # But for now, let's learn from everything to build a robust symbol bias
+                self.ai_brain.remember_trade({
+                    'symbol': t['symbol'],
+                    'action': t['type'],
+                    'pnl': t['profit'],
+                    'success': t['profit'] > 0
+                })
+
             # Today's specific metrics for display
             today_str = datetime.now().strftime('%Y-%m-%d')
             today_trades = [t for t in self.trade_history if today_str in t['time']]
