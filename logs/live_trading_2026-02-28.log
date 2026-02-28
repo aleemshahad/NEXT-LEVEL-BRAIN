@@ -2784,3 +2784,29 @@
 2026-02-28 23:06:48.752 | WARNING  | mt5_broker:_send_with_retry:128 - ⚠️ Trade Retry (49/50): Market closed (Code 10018). Retrying in 0.5s...
 2026-02-28 23:06:49.341 | WARNING  | mt5_broker:_send_with_retry:128 - ⚠️ Trade Retry (50/50): Market closed (Code 10018). Retrying in 0.5s...
 2026-02-28 23:06:55.688 | INFO     | profit_controller:monitor_trailing:136 - 🔍 [GRID DYNAMIC] Trail Trace | BUY: $-19.07 (Lock: $0.00) | SELL: Inactive
+2026-02-28 23:07:13.419 | INFO     | profit_controller:monitor_grand_basket:243 - 🛡️  GRAND BASKET LOCK: Total Profit $43.86 (Inc. Fees). New Lock: $35.09
+2026-02-28 23:07:13.422 | INFO     | profit_controller:monitor_equity_milestone:283 - 📊 Milestone Track | Current: $643.96 | Baseline: $593.03 | Progress: $50.93/$100
+2026-02-28 23:07:13.877 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127438949 canceled successfully.
+2026-02-28 23:07:14.047 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127438951 canceled successfully.
+2026-02-28 23:07:14.262 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127438955 canceled successfully.
+2026-02-28 23:07:14.442 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127440840 canceled successfully.
+2026-02-28 23:07:14.603 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127440842 canceled successfully.
+2026-02-28 23:07:14.745 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127440844 canceled successfully.
+2026-02-28 23:07:14.927 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441146 canceled successfully.
+2026-02-28 23:07:15.094 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441150 canceled successfully.
+2026-02-28 23:07:15.310 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441163 canceled successfully.
+2026-02-28 23:07:15.510 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441171 canceled successfully.
+2026-02-28 23:07:15.684 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441184 canceled successfully.
+2026-02-28 23:07:15.845 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441193 canceled successfully.
+2026-02-28 23:07:16.026 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441203 canceled successfully.
+2026-02-28 23:07:16.215 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441211 canceled successfully.
+2026-02-28 23:07:16.395 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441216 canceled successfully.
+2026-02-28 23:07:16.563 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441225 canceled successfully.
+2026-02-28 23:07:16.733 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441232 canceled successfully.
+2026-02-28 23:07:16.963 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441237 canceled successfully.
+2026-02-28 23:07:17.091 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441248 canceled successfully.
+2026-02-28 23:07:17.301 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441255 canceled successfully.
+2026-02-28 23:07:17.463 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441260 canceled successfully.
+2026-02-28 23:07:17.545 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441268 canceled successfully.
+2026-02-28 23:07:17.782 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441281 canceled successfully.
+2026-02-28 23:07:18.279 | INFO     | mt5_broker:cancel_order:193 - 🗑️ Order 1127441291 canceled successfully.
