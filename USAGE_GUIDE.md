@@ -111,45 +111,6 @@ XAUUSDm:
 6. **Dashboard Opens** - Real-time monitoring interface
 7. **Continuous Learning** - AI learns from every trade
 
----
-
-## 🎯 **RECOMMENDED WORKFLOW**
-
-### **For New Users:**
-```bash
-# 1. Train AI with sample data (fastest)
-python backtest_and_train.py
-# Choose option 5: "AI Training Only"
-
-# 2. Start live trading
-python main.py
-# Choose your preferred pair (Gold recommended for beginners)
-```
-
-### **For Experienced Users:**
-```bash
-# 1. Full historical training (best performance)
-python backtest_and_train.py
-# Choose option 3: "Full Historical (365 days)"
-# Select "ALL" symbols for comprehensive training
-
-# 2. Start live trading
-python main.py
-# Choose option 8: "Trade All Pairs" for diversification
-```
-
-### **For Testing:**
-```bash
-# 1. Quick training
-python backtest_and_train.py
-# Choose option 1: "Quick Training (30 days)"
-
-# 2. Test with single pair
-python main.py
-# Choose option 3: "BTCUSDm" for 24/7 testing
-```
-
----
 
 ## 📊 **MONITORING YOUR SYSTEM**
 

@@ -1,6 +1,6 @@
 
 """
-NEXT LEVEL BRAIN - Backtesting System
+NEXT LEVEL TRADING SYSTEM - Backtesting System
 All-in-one backtesting and AI training
 Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)
 """
@@ -34,11 +34,7 @@ class BacktestEngine:
     
     def __init__(self):
         self.trades = []
-<<<<<<< HEAD
         self.balance = 10000.0  # Starting balance (Updated to 10k default)
-=======
-        self.balance = 100000.0  # Starting balance
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
         self.equity_curve = []
         self.ai_memories = []
         # Tunable parameters (adjust to your preference)
@@ -74,18 +70,12 @@ class BacktestEngine:
         """Get historical data from MT5 with robust error handling"""
         try:
             symbol = symbol.strip()
-<<<<<<< HEAD
             import os
             terminal_path = os.getenv("MT5_TERMINAL_PATH", r"C:\Program Files\MetaTrader 5 EXNESS\terminal64.exe")
             
             if not mt5.initialize(path=terminal_path):
                 err = mt5.last_error()
                 logger.error(f"MT5 initialization failed with path {terminal_path}: {err}")
-=======
-            if not mt5.initialize():
-                err = mt5.last_error()
-                logger.error(f"MT5 initialization failed: {err}")
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
                 return pd.DataFrame()
             
             # Ensure symbol is selected in MarketWatch
@@ -564,18 +554,11 @@ class BacktestEngine:
         
         return max(0.01, position_size)
     
-<<<<<<< HEAD
     def run_grid_backtest(self, symbol: str, start_date: datetime, end_date: datetime, timeframe: str = "M5", mode: str = "BOTH", trailing_enabled: bool = True) -> Dict:
         """Run grid strategy backtest with mode: BOTH, BUY_ONLY, SELL_ONLY"""
         try:
             strategy_name = "SMART TRAILING 10-20" if trailing_enabled else "GRID STANDARD"
             logger.info(f"🕸️ Running Grid Backtest ({mode}) for {symbol} | Strategy: {strategy_name}")
-=======
-    def run_grid_backtest(self, symbol: str, start_date: datetime, end_date: datetime, timeframe: str = "M5", mode: str = "BOTH") -> Dict:
-        """Run grid strategy backtest with mode: BOTH, BUY_ONLY, SELL_ONLY"""
-        try:
-            logger.info(f"🕸️ Running Grid Backtest ({mode}) for {symbol}")
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
             data = self.get_historical_data(symbol, start_date, end_date, timeframe)
             if data.empty: return {'error': 'No data'}
 
@@ -590,13 +573,10 @@ class BacktestEngine:
             pending_orders = []
             open_positions = []
             
-<<<<<<< HEAD
             # Trailing Handler
             trail_handler = SmartTrailingHandler()
             trail_handler.reset('BOTH')
 
-=======
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
             # Use settings from config if possible, else defaults
             try:
                 import yaml
@@ -606,41 +586,26 @@ class BacktestEngine:
                 grid_size = grid_cfg.get('size', 300)
                 spacing = grid_cfg.get('spacing', 1.0)
                 lot_size = grid_cfg.get('lot_size', 0.01)
-<<<<<<< HEAD
-=======
-                target_pct = grid_cfg.get('profit_target_pct', 0.25)
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
+                lot_size = grid_cfg.get('lot_size', 0.01)
             except:
                 grid_size = 300
                 spacing = 1.0
                 lot_size = 0.01
-<<<<<<< HEAD
-
             logger.info(f"⚙️ Grid Config: Size={grid_size}, Spacing={spacing}, Lot={lot_size}")
             if trailing_enabled:
                 logger.info(f"🛡️ Smart Trailing Enabled ($10-$20) - Separate BUY/SELL")
-=======
-                target_pct = 0.25
-
-            logger.info(f"⚙️ Grid Config: Size={grid_size}, Spacing={spacing}, Lot={lot_size}, Target={target_pct:.0%}")
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
 
             for i in range(50, len(data)):
                 current_bar = data.iloc[i]
                 current_time = data.index[i]
                 
-<<<<<<< HEAD
                 # 1. Total Grid Profit Check
-=======
-                # 1. Check profit targets
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
                 buy_pos = [p for p in open_positions if p['type'] == 'BUY']
                 sell_pos = [p for p in open_positions if p['type'] == 'SELL']
                 
                 buy_profit = sum(self._calculate_floating_pnl(p, current_bar['close'], symbol) for p in buy_pos)
                 sell_profit = sum(self._calculate_floating_pnl(p, current_bar['close'], symbol) for p in sell_pos)
                 
-<<<<<<< HEAD
                 # Smart Trailing Logic (Separate BUY and SELL)
                 if trailing_enabled:
                     # BUY Trailing
@@ -664,29 +629,6 @@ class BacktestEngine:
                             open_positions = [p for p in open_positions if p['type'] != 'SELL']
                             pending_orders = [o for o in pending_orders if o['type'] != 'SELL']
                             self.equity_curve.append(self.balance)
-=======
-                target_amt = initial_balance * target_pct # Target based on starting balance
-                
-                if buy_pos and buy_profit >= target_amt:
-                    logger.info(f"🎯 Buy Grid target hit at {current_time}! Profit: ${buy_profit:.2f}")
-                    for p in buy_pos:
-                        trade = self._close_position(p, current_bar['close'], current_time, 'Grid Target')
-                        self.trades.append(trade)
-                        self.balance += trade['pnl']
-                    open_positions = [p for p in open_positions if p['type'] != 'BUY']
-                    pending_orders = [o for o in pending_orders if o['type'] != 'BUY']
-                    self.equity_curve.append(self.balance)
-
-                if sell_pos and sell_profit >= target_amt:
-                    logger.info(f"🎯 Sell Grid target hit at {current_time}! Profit: ${sell_profit:.2f}")
-                    for p in sell_pos:
-                        trade = self._close_position(p, current_bar['close'], current_time, 'Grid Target')
-                        self.trades.append(trade)
-                        self.balance += trade['pnl']
-                    open_positions = [p for p in open_positions if p['type'] != 'SELL']
-                    pending_orders = [o for o in pending_orders if o['type'] != 'SELL']
-                    self.equity_curve.append(self.balance)
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
 
                 # 2. Check pending hits
                 for order in pending_orders[:]:
@@ -700,10 +642,7 @@ class BacktestEngine:
                 # 3. Check bias and grid placement
                 bias = self._determine_market_bias(data, i)
                 
-<<<<<<< HEAD
-=======
                 # Grid placement based on mode
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
                 if mode in ['BOTH', 'SELL_ONLY']:
                     if bias == 'BULLISH' and not any(o['type'] == 'SELL' for o in pending_orders) and not any(p['type'] == 'SELL' for p in open_positions):
                         logger.info(f"🚀 Placing SELL grid at {current_time} (Price: {current_bar['close']})")
@@ -1319,7 +1258,6 @@ class BacktestEngine:
             logger.error(f"Chart creation error: {e}")
             return None
 
-<<<<<<< HEAD
 class TradingDashboard:
     """Interactive Trading Dashboard with GUI"""
     
@@ -1590,8 +1528,6 @@ Trade {i}: {trade['type']} {pnl_emoji}
         """Run the dashboard"""
         self.root.mainloop()
 
-=======
->>>>>>> 14abb47e0b19d6f3d917a35c984eaac55fd56bd1
 def select_backtest_options():
     """Select backtesting options"""
     print("\n" + "="*60)

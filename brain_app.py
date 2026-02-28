@@ -4,7 +4,7 @@ Standalone desktop trading software
 Created by: Aleem Shahzad
 
 Run:   python brain_app.py
-Build: pyinstaller --onefile --windowed --icon=brain.ico --name="NEXT LEVEL TRADING SYSTEM" brain_app.py
+Build: pyinstaller --onefile --windowed --icon=TRADINGSYSTEM.ico --name="NEXT LEVEL TRADING SYSTEM" brain_app.py
 """
 
 import customtkinter as ctk
@@ -75,20 +75,20 @@ class OutputRedirector:
             pass
 
 
-class NextLevelBrainApp(ctk.CTk):
+class NextLevelTRADINGSYSTEMApp(ctk.CTk):
     """Main Desktop Application."""
 
     def __init__(self):
         super().__init__()
 
         # ── Window Setup ──
-        self.title("🧠 NEXT LEVEL BRAIN — Command Center")
+        self.title("🧠 NEXT LEVEL TRADING SYSTEM  — Command Center")
         self.geometry("1280x780")
         self.minsize(1000, 650)
         self.configure(fg_color=COLORS["bg_dark"])
 
         # Try to set icon
-        icon_path = PROJECT_ROOT / "brain.ico"
+        icon_path = PROJECT_ROOT / "TRADING SYSTEM .ico"
         if icon_path.exists():
             self.iconbitmap(str(icon_path))
 
@@ -119,7 +119,7 @@ class NextLevelBrainApp(ctk.CTk):
         logo_frame.pack(pady=(28, 5), padx=16)
 
         ctk.CTkLabel(logo_frame, text="🧠", font=("Segoe UI Emoji", 40)).pack()
-        ctk.CTkLabel(logo_frame, text="NEXT LEVEL\nBRAIN",
+        ctk.CTkLabel(logo_frame, text="NEXT LEVEL\nTRADING SYSTEM ",
                      font=("Segoe UI", 18, "bold"),
                      text_color=COLORS["accent_blue"]).pack(pady=(5, 0))
         ctk.CTkLabel(logo_frame, text="Command Center",
@@ -277,7 +277,7 @@ class NextLevelBrainApp(ctk.CTk):
 
         threading.Thread(target=worker, daemon=True).start()
 
-    def _launch_terminal(self, script, title="NEXT LEVEL BRAIN"):
+    def _launch_terminal(self, script, title="NEXT LEVEL TRADING SYSTEM "):
         """Launch script in new CMD window."""
         try:
             cmd = f'start "{title}" cmd /k "cd /d {PROJECT_ROOT} && python {script}"'
@@ -315,7 +315,7 @@ class NextLevelBrainApp(ctk.CTk):
         env_path = PROJECT_ROOT / ".env"
         if not env_path.exists():
             # Create a basic .env if it doesn't exist
-            content = "# NEXT LEVEL BRAIN - Environment Variables\n"
+            content = "# NEXT LEVEL TRADING SYSTEM  - Environment Variables\n"
         else:
             content = env_path.read_text(encoding="utf-8", errors="replace")
 
@@ -343,7 +343,7 @@ class NextLevelBrainApp(ctk.CTk):
     # ═══════════════════════════════════════════════════════════════════════════
 
     def _page_dashboard(self):
-        self._make_title(self.scroll, "🧠 NEXT LEVEL BRAIN",
+        self._make_title(self.scroll, "🧠 NEXT LEVEL TRADING SYSTEM ",
                          "Yahan se sab kuch control karein — Backtesting, Live Trading, Intelligence")
 
         # Stats row
@@ -789,7 +789,7 @@ for d in ["logs","charts","models"]: Path(d).mkdir(exist_ok=True)
 from live_trading import LiveTradingSystem
 
 print("=" * 60)
-print("🧠 NEXT LEVEL BRAIN - LIVE TRADING")
+print("🧠 NEXT LEVEL TRADING SYSTEM  - LIVE TRADING")
 print("=" * 60)
 print(f"Symbol: {symbol}")
 print(f"Strategy: {strat}")
@@ -1203,5 +1203,5 @@ mt5.shutdown()
 # ═══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
-    app = NextLevelBrainApp()
+    app = NextLevelTRADINGSYSTEMApp()
     app.mainloop()
