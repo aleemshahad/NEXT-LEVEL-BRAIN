@@ -2,7 +2,7 @@
 """
 NEXT LEVEL BRAIN - Live Trading System (CLI only)
 All-in-one live trading with AI enhancement
-Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)
+Created by: Aleem Shahzad
 """
 
 import asyncio
@@ -65,7 +65,10 @@ class TradingBrain:
                         logger.info(f"📡 Market Intelligence: {self.sentiment_decision}")
                         self._last_sentiment_content = content
             else:
-                logger.warning("📡 No intelligence report found. Defaulting to ALLOW.")
+                # Only warn once at startup, not every loop cycle
+                if not getattr(self, '_sentiment_warning_shown', False):
+                    logger.info("📡 No intelligence report — running in default ALLOW mode.")
+                    self._sentiment_warning_shown = True
         except Exception as e:
             logger.error(f"Failed to read sentiment report: {e}")
 
@@ -1309,12 +1312,53 @@ class LiveTradingSystem:
             logger.error(f"Failed to generate report: {e}")
             return None
 
+# Exness available trading pairs (micro/standard)
+EXNESS_PAIRS = [
+    "XAUUSDm",   # Gold
+    "XAGUSDm",   # Silver
+    "EURUSDm",   # Euro / US Dollar
+    "GBPUSDm",   # British Pound / US Dollar
+    "USDJPYm",   # US Dollar / Japanese Yen
+    "USDCHFm",   # US Dollar / Swiss Franc
+    "AUDUSDm",   # Australian Dollar / US Dollar
+    "NZDUSDm",   # New Zealand Dollar / US Dollar
+    "USDCADm",   # US Dollar / Canadian Dollar
+    "EURGBPm",   # Euro / British Pound
+    "EURJPYm",   # Euro / Japanese Yen
+    "GBPJPYm",   # British Pound / Japanese Yen
+    "BTCUSDm",   # Bitcoin / US Dollar
+    "ETHUSDm",   # Ethereum / US Dollar
+    "USOILm",    # US Crude Oil
+    "UKOILm",    # Brent Crude Oil
+    "NASDAQ",    # Nasdaq 100 Index
+    "SP500m",    # S&P 500 Index
+]
+
 def select_trade_setup():
-    """Simplified setup selection as requested"""
+    """Setup selection with full Exness pair list"""
     print("\n" + "="*60)
-    print("🚀 NEXT LEVEL BRAIN - QUICK LAUNCH (GOLD ONLY)")
+    print("🚀 NEXT LEVEL TRADING SYSTEM")
     print("="*60)
-    
+
+    # 0. Symbol Selection
+    print("\n🪙 SELECT TRADING PAIR:")
+    for i, sym in enumerate(EXNESS_PAIRS, 1):
+        print(f"{i:2}. {sym}")
+    selected_symbol = "XAUUSDm"
+    while True:
+        try:
+            val = input(f"Choice (1-{len(EXNESS_PAIRS)}) [Default 1 - XAUUSDm]: ").strip()
+            if not val:
+                selected_symbol = "XAUUSDm"
+                break
+            idx = int(val)
+            if 1 <= idx <= len(EXNESS_PAIRS):
+                selected_symbol = EXNESS_PAIRS[idx - 1]
+                break
+        except: pass
+        print(f"Invalid. Enter 1-{len(EXNESS_PAIRS)}.")
+    print(f"✅ Selected: {selected_symbol}")
+
     # 1. Strategy/Direction
     print("\n🎯 SELECT DIRECTION / ACTION:")
     print("1. 🛡️ SMART TRAILING BUY ONLY ($10/$20)")
@@ -1323,7 +1367,7 @@ def select_trade_setup():
     print("4. 📊 OPEN LIVE DASHBOARD (Visual Tracker)")
     print("5. 🧹 DELETE ALL PENDING ORDERS")
     print("6. 📈 OPEN BACKTESTING (Strategy Tester)")
-    
+
     strategy = "Grid Both"
     trailing_enabled = False
     recycler_mode = False
@@ -1346,15 +1390,16 @@ def select_trade_setup():
             print("✅ Dashboard launched. Continuing...")
             continue
         if choice == "5":
-            print("🧹 Cleaning up all Gold pending orders...")
+            print("🧹 Cleaning up all pending orders across all pairs...")
             if mt5.initialize():
-                # Rapid cleanup
-                for s in ["XAUUSDm", "XAUUSD"]:
+                count = 0
+                for s in EXNESS_PAIRS + [p.replace('m','') for p in EXNESS_PAIRS]:
                     orders = mt5.orders_get(symbol=s)
                     if orders:
                         for o in orders:
                             mt5.order_send({"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket})
-                print("✅ All pending orders deleted.")
+                            count += 1
+                print(f"✅ {count} pending orders deleted.")
             else:
                 print("❌ Failed to connect to MT5 for cleanup.")
             continue
@@ -1481,7 +1526,7 @@ def select_trade_setup():
         except: pass
         print("Invalid choice. Please enter 1-10.")
 
-    return ["XAUUSDm"], strategy, timeframe, profit_pct, profit_usd, trailing_enabled, recycler_profit_usd, lot_size
+    return [selected_symbol], strategy, timeframe, profit_pct, profit_usd, trailing_enabled, recycler_profit_usd, lot_size
 
 
 def main():

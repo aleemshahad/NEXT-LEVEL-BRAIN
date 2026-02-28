@@ -568,8 +568,11 @@ else:
         # Symbol
         ctk.CTkLabel(row1, text="🪙 Symbol", font=("Segoe UI", 11),
                      text_color=COLORS["text_secondary"]).pack(side="left", padx=(0, 8))
-        self.bt_symbol = ctk.CTkComboBox(row1, values=["XAUUSDm", "BTCUSDm", "EURUSDm", "GBPUSDm", "USDJPYm", "ETHUSDm", "XAGUSDm"],
-                                          width=140, fg_color=COLORS["bg_input"])
+        self.bt_symbol = ctk.CTkComboBox(row1, values=[
+            "XAUUSDm", "XAGUSDm", "EURUSDm", "GBPUSDm", "USDJPYm", "USDCHFm",
+            "AUDUSDm", "NZDUSDm", "USDCADm", "EURGBPm", "EURJPYm", "GBPJPYm",
+            "BTCUSDm", "ETHUSDm", "USOILm", "UKOILm", "NASDAQ", "SP500m"
+        ], width=160, fg_color=COLORS["bg_input"])
         self.bt_symbol.pack(side="left", padx=(0, 20))
         self.bt_symbol.set("XAUUSDm")
 
@@ -731,15 +734,20 @@ else:
         row2 = ctk.CTkFrame(card, fg_color="transparent")
         row2.pack(fill="x", padx=16, pady=(8, 4))
 
+        ALL_EXNESS_PAIRS = [
+            "XAUUSDm", "XAGUSDm", "EURUSDm", "GBPUSDm", "USDJPYm", "USDCHFm",
+            "AUDUSDm", "NZDUSDm", "USDCADm", "EURGBPm", "EURJPYm", "GBPJPYm",
+            "BTCUSDm", "ETHUSDm", "USOILm", "UKOILm", "NASDAQ", "SP500m"
+        ]
         config = self._load_config()
-        symbols = config.get("symbols", ["XAUUSDm"])
+        default_sym = config.get("symbols", ["XAUUSDm"])[0]
 
         ctk.CTkLabel(row2, text="🪙 Symbol", font=("Segoe UI", 11),
                      text_color=COLORS["text_secondary"]).pack(side="left", padx=(0, 8))
-        self.live_symbol = ctk.CTkComboBox(row2, values=symbols, width=140,
+        self.live_symbol = ctk.CTkComboBox(row2, values=ALL_EXNESS_PAIRS, width=160,
                                             fg_color=COLORS["bg_input"])
         self.live_symbol.pack(side="left")
-        self.live_symbol.set(symbols[0])
+        self.live_symbol.set(default_sym if default_sym in ALL_EXNESS_PAIRS else "XAUUSDm")
 
         # Warning
         warn = ctk.CTkFrame(card, fg_color="#1c1917", corner_radius=10,

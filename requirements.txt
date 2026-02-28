@@ -1,5 +1,5 @@
 # NEXT LEVEL BRAIN - Essential Dependencies
-# Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)
+# Created by: Aleem Shahzad
 
 # Core Trading
 MetaTrader5>=5.0.45
