@@ -1,10 +1,10 @@
 """
-🧠 NEXT LEVEL BRAIN — Desktop Command Center
+🧠 NEXT LEVEL TRADING SYSTEM — Desktop Command Center
 Standalone desktop trading software
-Created by: Aleem Shahzad | AI Partner: Claude (Anthropic)
+Created by: Aleem Shahzad
 
 Run:   python brain_app.py
-Build: pyinstaller --onefile --windowed --icon=brain.ico --name="NEXT LEVEL BRAIN" brain_app.py
+Build: pyinstaller --onefile --windowed --icon=brain.ico --name="NEXT LEVEL TRADING SYSTEM" brain_app.py
 """
 
 import customtkinter as ctk
