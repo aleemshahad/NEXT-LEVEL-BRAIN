@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NEXT LEVEL BRAIN - Live Trading System (CLI only)
+NEXT LEVEL TRADING SYSTEM - Live Trading System (CLI only)
 All-in-one live trading with AI enhancement
 Created by: Aleem Shahzad
 """
@@ -877,7 +877,7 @@ class LiveTradingSystem:
     async def initialize(self) -> bool:
         """Initialize the trading system"""
         try:
-            logger.info("🧠 Initializing NEXT LEVEL BRAIN Live Trading System...")
+            logger.info("🧠 Initializing NEXT LEVEL TRADING SYSTEM Live Trading System...")
             
             # Connect to broker
             if not await self.broker.connect():
@@ -1038,7 +1038,7 @@ class LiveTradingSystem:
                 daily_change = current_balance - self.start_balance
                 
                 print(f"\n{'='*50}")
-                print(f"🧠 NEXT LEVEL BRAIN - LIVE TRADING STATUS")
+                print(f"🧠 NEXT LEVEL TRADING - LIVE TRADING STATUS")
                 print(f"{'='*50}")
                 print(f"💰 Balance: ${current_balance:.2f}")
                 print(f"📈 Daily P&L: ${daily_change:.2f} (Start: ${self.start_balance:.2f})")
@@ -1356,7 +1356,7 @@ class LiveTradingSystem:
             max_dd_pct = np.max(drawdown_pct) if len(drawdown_pct) > 0 else 0
             
             report = [
-                "# 🧠 NEXT LEVEL BRAIN - LIVE PERFORMANCE REPORT",
+                "# 🧠 NEXT LEVEL TRADING- LIVE PERFORMANCE REPORT",
                 f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
                 f"**Tracking Period:** Last 30 Days",
                 f"**Strategy:** {self.strategy}",
